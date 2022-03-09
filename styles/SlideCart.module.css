@@ -1,0 +1,28 @@
+.slideCart {
+  width: 450px;
+  height: 100%;
+  background: white;
+  position: fixed;
+  right: 0;
+  overflow: scroll;
+  z-index: 101;
+}
+.slideCart .container {
+  padding: 30px;
+}
+.slideCart .row {
+  display: flex;
+  justify-content: space-between;
+}
+.slideCart .row .title {
+  margin: auto 0;
+}
+.slideCart .row .timesIcon {
+  margin: auto 0;
+  font-size: 22px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.slideCart .row .timesIcon:hover {
+  color: grey;
+}

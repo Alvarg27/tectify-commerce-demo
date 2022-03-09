@@ -1,0 +1,74 @@
+.optionSelector {
+  margin: 30px 0;
+}
+.optionSelector .row {
+  display: flex;
+}
+.optionSelector .valuesContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.optionSelector .valueCard .cardContainer {
+  height: 50px;
+  margin: 15px 15px 0 0;
+  border: 1px solid lightgrey;
+  border-radius: 7px;
+  display: flex;
+  transition: 0.3s;
+  width: 100px;
+  cursor: pointer;
+}
+.optionSelector .valueCard .cardContainer:hover {
+  background: #0077ff;
+  color: white;
+  border: 1px solid #0077ff;
+}
+.optionSelector .valueCard .cardContainer p {
+  margin: auto;
+}
+.optionSelector .valueCard .colorCardContainer {
+  height: 35px;
+  width: 35px;
+  margin: 15px 15px 0 0;
+  border: 1px solid lightgrey;
+  border-radius: 50%;
+  display: flex;
+  transition: 0.3s;
+  outline: transparent solid 2px;
+  outline-offset: 3px;
+  cursor: pointer;
+}
+.optionSelector .valueCard .colorCardContainer:hover {
+  outline: lightgray solid 2px;
+  outline-offset: 3px;
+}
+
+.optionSelector .valueCard .cardContainerSelected {
+  height: 50px;
+  margin: 15px 15px 0 0;
+  border-radius: 7px;
+  display: flex;
+  transition: 0.3s;
+  width: 100px;
+  cursor: pointer;
+  background: #0077ff;
+  color: white;
+  border: 1px solid #0077ff;
+}
+.optionSelector .valueCard .cardContainerSelected p {
+  margin: auto;
+}
+
+.optionSelector .valueCard .colorCardContainerSelected {
+  height: 35px;
+  width: 35px;
+  margin: 15px 15px 0 0;
+  border: 1px solid lightgrey;
+  border-radius: 50%;
+  display: flex;
+  transition: 0.3s;
+  outline: grey solid 2px;
+  outline-offset: 3px;
+  cursor: pointer;
+}

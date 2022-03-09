@@ -1,0 +1,81 @@
+@keyframes slideInRight {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding: 0 5%;
+  height: 90px;
+  width: 100%;
+  box-shadow: 0 0 10px rgb(0, 0, 0, 0.25);
+}
+
+.header .logoContainer {
+  margin: auto 0;
+  display: flex;
+  align-content: center;
+  cursor: pointer;
+}
+.header .logoContainer .logo {
+  margin: auto 0;
+  color: #0077ff;
+  position: relative;
+  z-index: 2;
+  background: white;
+}
+.header .logoContainer .subLogo {
+  margin: auto 5px;
+  font-size: 20px;
+  color: grey;
+  position: relative;
+  z-index: 1;
+  animation-timing-function: ease-out;
+  animation-duration: 0.3s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-name: slideInRight;
+}
+.header .iconsContainer {
+  margin: auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+.header .bagContainer {
+  position: relative;
+  cursor: pointer;
+}
+.header .bagContainer .quantity {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #0077ff;
+  top: -9px;
+  right: -9px;
+}
+.header .bagContainer .quantity p {
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+  font-size: 14px;
+}
+.header .iconsContainer .bagIcon {
+  font-size: 22px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.header .iconsContainer .bagIcon:hover {
+  color: grey;
+}

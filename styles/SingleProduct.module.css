@@ -1,0 +1,53 @@
+@keyframes slideInUp {
+  0% {
+    filter: blur(10px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
+.singleProduct .container {
+  display: flex;
+}
+.singleProduct .label {
+  font-weight: bold;
+}
+.singleProduct .container .gallery {
+  width: 60%;
+  overflow: hidden;
+  padding: 30px;
+}
+.singleProduct .container .gallery img {
+  width: 100%;
+  border-radius: 15px;
+  animation-timing-function: ease-out;
+  animation-duration: 0.3s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-name: slideInUp;
+}
+.singleProduct .container .dataContainer {
+  width: 40%;
+  overflow: hidden;
+  padding: 30px;
+}
+.singleProduct .container .dataContainer .breadcrumbs {
+  display: flex;
+  margin-bottom: 30px;
+}
+.singleProduct .container .dataContainer .breadcrumbs p {
+  cursor: pointer;
+  margin: 0 10px 0 0;
+  color: gray;
+  font-size: 12px;
+}
+.singleProduct .container .dataContainer .row {
+  display: flex;
+  justify-content: space-between;
+}
+.singleProduct .container .dataContainer .row .name {
+  margin: auto 0;
+}
+.singleProduct .container .dataContainer .row .price {
+  margin: auto 0;
+}

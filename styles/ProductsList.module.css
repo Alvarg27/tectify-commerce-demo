@@ -1,0 +1,12 @@
+.productsList {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+.productsList .container {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
