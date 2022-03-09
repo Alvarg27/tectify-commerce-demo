@@ -51,3 +51,14 @@
 .singleProduct .container .dataContainer .row .price {
   margin: auto 0;
 }
+@media all and (max-width: 768px) {
+  .singleProduct .container {
+    flex-direction: column;
+  }
+  .singleProduct .container .gallery {
+    width: 100%;
+  }
+  .singleProduct .container .dataContainer {
+    width: 100%;
+  }
+}

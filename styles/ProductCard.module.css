@@ -44,3 +44,9 @@
   font-weight: bold;
   margin: 0;
 }
+
+@media all and (max-width: 768px) {
+  .productCard {
+    width: 100%;
+  }
+}

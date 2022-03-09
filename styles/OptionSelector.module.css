@@ -72,3 +72,8 @@
   outline-offset: 3px;
   cursor: pointer;
 }
+@media all and (max-width: 768px) {
+  .optionSelector .valueCard {
+    width: 33%;
+  }
+}

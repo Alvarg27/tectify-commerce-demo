@@ -26,3 +26,9 @@
 .slideCart .row .timesIcon:hover {
   color: grey;
 }
+
+@media all and (max-width: 768px) {
+  .slideCart {
+    width: 100%;
+  }
+}
