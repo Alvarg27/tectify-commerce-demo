@@ -74,6 +74,5 @@
 }
 @media all and (max-width: 768px) {
   .optionSelector .valueCard {
-    width: 33%;
   }
 }
