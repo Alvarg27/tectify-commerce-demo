@@ -1,0 +1,14 @@
+.checkoutForm {
+  width: 50%;
+}
+.checkoutForm .container {
+  width: 100%;
+  padding: 60px;
+}
+.checkoutForm .powered {
+  margin: 30px 0;
+  color: lightgray;
+}
+.checkoutForm small {
+  color: lightgray;
+}

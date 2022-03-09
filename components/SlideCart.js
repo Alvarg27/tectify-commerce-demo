@@ -4,7 +4,7 @@ import { FaTimes } from "react-icons/fa";
 import { useEffect } from "react";
 import { useState } from "react";
 import CartCard from "./CartCard";
-import { set } from "swell-js/dist/utils";
+import Link from "next/link";
 
 export default function SlideCart({
   slideCart,
@@ -49,9 +49,15 @@ export default function SlideCart({
           </p>
         </div>
 
-        <button style={{ width: " 100%" }} className="primaryButton">
-          Continuar al pago
-        </button>
+        {cart ? (
+          <Link href="/checkout">
+            <button style={{ width: " 100%" }} className="primaryButton">
+              Continuar al pago
+            </button>
+          </Link>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

@@ -44,6 +44,7 @@ function MyApp({ Component, pageProps }) {
         products={products}
         fetchCart={fetchCart}
         setSlideCart={setSlideCart}
+        cart={cart}
       />
     </Layout>
   );

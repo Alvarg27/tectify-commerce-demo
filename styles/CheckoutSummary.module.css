@@ -1,0 +1,8 @@
+.checkoutSummary {
+  width: 50%;
+}
+.checkoutSummary .container {
+  padding: 60px 60px;
+  background: rgb(250, 250, 250);
+  height: 100%;
+}

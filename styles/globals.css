@@ -50,3 +50,34 @@ h3 {
   height: 1px;
   background: lightgray;
 }
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+.formContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 15px 0 0px 0;
+}
+.stepTitle {
+  display: flex;
+}
+.stepTitle h3 {
+  margin: auto 15px;
+}
+.stepTitle .stepNumber {
+  margin: auto 0;
+  width: 30px;
+  height: 30px;
+  background: #0077ff;
+  display: flex;
+  border-radius: 50%;
+}
+.stepTitle .stepNumber p {
+  margin: auto;
+  color: white;
+}

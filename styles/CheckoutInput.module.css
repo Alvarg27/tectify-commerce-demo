@@ -1,0 +1,22 @@
+.checkoutInput .container {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0px 0 10px;
+  transform: translateX(-5px);
+}
+.checkoutInput .container label {
+  margin: 0 0 7px 0;
+}
+.checkoutInput .container input {
+  height: 50px;
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  cursor: pointer;
+  padding: 0 10px;
+}
+.checkoutInput .container input:focus {
+  border-color: #0077ff;
+}
+.checkoutInput .container input:hover {
+  border-color: #0077ff;
+}
