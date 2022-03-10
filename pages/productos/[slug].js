@@ -29,7 +29,12 @@ export const getStaticProps = async (context) => {
   };
 };
 
-export default function ProductPage({ product, fetchCart, setSlideCart }) {
+export default function ProductPage({
+  product,
+  fetchCart,
+  setSlideCart,
+  setIsCheckout,
+}) {
   useEffect(() => {
     setIsCheckout(false);
   }, []);
