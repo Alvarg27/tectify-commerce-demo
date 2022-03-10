@@ -16,7 +16,7 @@ export default function Layout({
 }) {
   const [overlay, setOverlay] = useState(false);
   useEffect(() => {
-    if (slideCart) {
+    if (slideCart || mobileOrderSummary) {
       setOverlay(true);
       document.body.style.overflow = "hidden";
     } else {
