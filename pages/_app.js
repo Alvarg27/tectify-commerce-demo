@@ -10,6 +10,7 @@ swell.init(
 );
 
 function MyApp({ Component, pageProps }) {
+  const [mobileOrderSummary, setMobileOrderSummary] = useState(true);
   const [products, setProducts] = useState();
   const [slideCart, setSlideCart] = useState();
   const [cart, setCart] = useState();
@@ -38,6 +39,8 @@ function MyApp({ Component, pageProps }) {
       slideCart={slideCart}
       fetchCart={fetchCart}
       cart={cart}
+      setMobileOrderSummary={setMobileOrderSummary}
+      mobileOrderSummary={mobileOrderSummary}
     >
       <Component
         {...pageProps}
@@ -45,6 +48,8 @@ function MyApp({ Component, pageProps }) {
         fetchCart={fetchCart}
         setSlideCart={setSlideCart}
         cart={cart}
+        setMobileOrderSummary={setMobileOrderSummary}
+        mobileOrderSummary={mobileOrderSummary}
       />
     </Layout>
   );

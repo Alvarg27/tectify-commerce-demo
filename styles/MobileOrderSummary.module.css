@@ -1,0 +1,35 @@
+.mobileOrderSummary {
+  width: 100%;
+  height: 100%;
+  background: white;
+  position: fixed;
+  right: 0;
+  overflow: scroll;
+  z-index: 101;
+  display: none;
+}
+.mobileOrderSummary .container {
+  padding: 30px;
+}
+.mobileOrderSummary .row {
+  display: flex;
+  justify-content: space-between;
+}
+.mobileOrderSummary .row .title {
+  margin: auto 0;
+}
+.mobileOrderSummary .row .timesIcon {
+  margin: auto 0;
+  font-size: 22px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.mobileOrderSummary .row .timesIcon:hover {
+  color: grey;
+}
+
+@media all and (max-width: 768px) {
+  .mobileOrderSummary {
+    display: block;
+  }
+}

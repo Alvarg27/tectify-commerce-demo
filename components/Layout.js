@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import SlideCart from "./SlideCart";
 import Head from "next/head";
+import MobileOrderSummary from "./MobileOrderSummary";
 
 export default function Layout({
   children,
@@ -10,6 +11,8 @@ export default function Layout({
   setSlideCart,
   cart,
   fetchCart,
+  mobileOrderSummary,
+  setMobileOrderSummary,
 }) {
   const [overlay, setOverlay] = useState(false);
   useEffect(() => {
@@ -42,6 +45,12 @@ export default function Layout({
           zIndex: "100",
         }}
       ></div>
+      <MobileOrderSummary
+        cart={cart}
+        fetchCart={fetchCart}
+        setMobileOrderSummary={setMobileOrderSummary}
+        mobileOrderSummary={mobileOrderSummary}
+      />
       <SlideCart
         setSlideCart={setSlideCart}
         slideCart={slideCart}
