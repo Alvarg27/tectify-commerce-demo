@@ -31,6 +31,7 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     fetchProducts();
     fetchCart();
+    setMobileOrderSummary(false);
   }, []);
 
   return (
