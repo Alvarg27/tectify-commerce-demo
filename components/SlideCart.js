@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import CartCard from "./CartCard";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function SlideCart({
   slideCart,
@@ -12,6 +13,15 @@ export default function SlideCart({
   fetchCart,
   cart,
 }) {
+  const router = useRouter();
+
+  const HandleProccedToCheckout = () => {
+    if (cart && cart.item_quantity > 0) {
+      router.push("/checkout");
+    } else {
+      alert("Añade un articulo al carrito para continuar");
+    }
+  };
   return (
     <div
       className={styles.slideCart}
@@ -50,11 +60,13 @@ export default function SlideCart({
         </div>
 
         {cart ? (
-          <Link href="/checkout">
-            <button style={{ width: " 100%" }} className="primaryButton">
-              Continuar al pago
-            </button>
-          </Link>
+          <button
+            onClick={() => HandleProccedToCheckout()}
+            style={{ width: " 100%" }}
+            className="primaryButton"
+          >
+            Continuar al pago
+          </button>
         ) : (
           ""
         )}

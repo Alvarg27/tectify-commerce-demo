@@ -4,6 +4,7 @@ import CartCard from "./CartCard";
 import React from "react";
 import Link from "next/link";
 import CheckoutOrderTotal from "./CheckoutOrderTotal";
+import CheckoutProductCard from "./CheckoutProductCard";
 
 export default function MobileOrderSummary({
   mobileOrderSummary,
@@ -31,7 +32,12 @@ export default function MobileOrderSummary({
         <div className={styles.cardContainer}>
           {cart
             ? cart.items.map((item) => (
-                <CartCard key={item.id} item={item} fetchCart={fetchCart} />
+                <CheckoutProductCard
+                  key={item.id}
+                  item={item}
+                  fetchCart={fetchCart}
+                  cart={cart}
+                />
               ))
             : ""}
           {!cart || cart.item_quantity === 0 ? (

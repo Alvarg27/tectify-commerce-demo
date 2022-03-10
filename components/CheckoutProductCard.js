@@ -3,10 +3,14 @@ import swell from "swell-js";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import React from "react";
 
-export default function CheckoutProductCard({ item, fetchCart }) {
+export default function CheckoutProductCard({ item, fetchCart, cart }) {
   const handleDelete = async (id) => {
-    const response = await swell.cart.removeItem(id);
-    fetchCart();
+    if (cart.items.length > 1) {
+      const response = await swell.cart.removeItem(id);
+      fetchCart();
+    } else {
+      alert("no puedes eliminar todos los productos dentro del checkout");
+    }
   };
 
   const increaseQuantity = async () => {

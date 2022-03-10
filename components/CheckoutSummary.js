@@ -14,6 +14,7 @@ export default function CheckoutSummary({ cart, fetchCart }) {
                 key={item.id}
                 item={item}
                 fetchCart={fetchCart}
+                cart={cart}
               />
             ))
           : ""}
