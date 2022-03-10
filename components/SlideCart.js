@@ -19,7 +19,7 @@ export default function SlideCart({
     if (cart && cart.item_quantity > 0) {
       router.push("/checkout");
     } else {
-      alert("Añade un articulo al carrito para continuar");
+      alert("¡Añade un articulo al carrito para continuar!");
     }
   };
   return (

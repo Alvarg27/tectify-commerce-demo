@@ -9,7 +9,7 @@ export default function CheckoutProductCard({ item, fetchCart, cart }) {
       const response = await swell.cart.removeItem(id);
       fetchCart();
     } else {
-      alert("no puedes eliminar todos los productos dentro del checkout");
+      alert("¡No puedes eliminar todos los productos dentro del checkout!");
     }
   };
 
