@@ -13,6 +13,7 @@ export default function Layout({
   fetchCart,
   mobileOrderSummary,
   setMobileOrderSummary,
+  isCheckout,
 }) {
   const [overlay, setOverlay] = useState(false);
   useEffect(() => {
@@ -62,6 +63,7 @@ export default function Layout({
         slideCart={slideCart}
         fetchCart={fetchCart}
         cart={cart}
+        isCheckout={isCheckout}
       />
       {children}
     </div>

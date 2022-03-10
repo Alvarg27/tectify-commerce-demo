@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import swell from "swell-js";
 import SingleProduct from "../../components/SingleProduct";
 
@@ -30,6 +30,9 @@ export const getStaticProps = async (context) => {
 };
 
 export default function ProductPage({ product, fetchCart, setSlideCart }) {
+  useEffect(() => {
+    setIsCheckout(false);
+  }, []);
   return (
     <div>
       <SingleProduct

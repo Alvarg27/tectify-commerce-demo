@@ -8,8 +8,10 @@ export default function Checkout({
   fetchCart,
   setSlideCart,
   setMobileOrderSummary,
+  setIsCheckout,
 }) {
   useEffect(() => {
+    setIsCheckout(true);
     setSlideCart(false);
   }, []);
   return (

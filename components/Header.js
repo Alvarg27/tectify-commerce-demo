@@ -4,7 +4,7 @@ import { FaShoppingBag } from "react-icons/fa";
 import styles from "../styles/Header.module.css";
 import SlideCart from "./SlideCart";
 
-export default function Header({ setSlideCart, slideCart, cart }) {
+export default function Header({ setSlideCart, slideCart, cart, isCheckout }) {
   return (
     <div className={styles.header}>
       <div className={styles.container}>
@@ -15,19 +15,23 @@ export default function Header({ setSlideCart, slideCart, cart }) {
           </div>
         </Link>
         <div className={styles.iconsContainer}>
-          <div
-            onClick={() => setSlideCart(!slideCart)}
-            className={styles.bagContainer}
-          >
-            <FaShoppingBag className={styles.bagIcon} />
-            {cart && cart.item_quantity > 0 ? (
-              <div className={styles.quantity}>
-                <p>{cart.item_quantity}</p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+          {isCheckout ? (
+            " "
+          ) : (
+            <div
+              onClick={() => setSlideCart(!slideCart)}
+              className={styles.bagContainer}
+            >
+              <FaShoppingBag className={styles.bagIcon} />
+              {cart && cart.item_quantity > 0 ? (
+                <div className={styles.quantity}>
+                  <p>{cart.item_quantity}</p>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps }) {
   const [products, setProducts] = useState();
   const [slideCart, setSlideCart] = useState();
   const [cart, setCart] = useState();
+  const [isCheckout, setIsCheckout] = useState(false);
 
   const fetchCart = async () => {
     const response = await swell.cart.get();
@@ -34,6 +35,8 @@ function MyApp({ Component, pageProps }) {
     setMobileOrderSummary(false);
   }, []);
 
+  console.log(isCheckout);
+
   return (
     <Layout
       setSlideCart={setSlideCart}
@@ -42,6 +45,7 @@ function MyApp({ Component, pageProps }) {
       cart={cart}
       setMobileOrderSummary={setMobileOrderSummary}
       mobileOrderSummary={mobileOrderSummary}
+      isCheckout={isCheckout}
     >
       <Component
         {...pageProps}
@@ -51,6 +55,7 @@ function MyApp({ Component, pageProps }) {
         cart={cart}
         setMobileOrderSummary={setMobileOrderSummary}
         mobileOrderSummary={mobileOrderSummary}
+        setIsCheckout={setIsCheckout}
       />
     </Layout>
   );
