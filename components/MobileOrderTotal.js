@@ -12,7 +12,7 @@ export default function MobileOrderTotal({ cart, setMobileOrderSummary }) {
           </div>
           <div className={styles.column}>
             <h3>{cart ? cart.item_quantity : "--"} artículos</h3>
-            <p onClick={() => setMobileOrderSummary(true)}>Mostrar detalles</p>
+            <p onClick={() => setMobileOrderSummary(true)}>Ver resumen</p>
           </div>
         </div>
 

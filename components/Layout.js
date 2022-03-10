@@ -24,7 +24,7 @@ export default function Layout({
       setOverlay(false);
       document.body.style.overflow = "auto";
     }
-  }, [slideCart]);
+  }, [slideCart, mobileOrderSummary]);
   return (
     <div>
       <Head>
@@ -33,7 +33,6 @@ export default function Layout({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div
-        onClick={() => setSlideCart(false)}
         style={{
           width: "100%",
           height: "100%",
