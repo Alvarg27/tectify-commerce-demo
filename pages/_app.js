@@ -10,7 +10,7 @@ swell.init(
 );
 
 function MyApp({ Component, pageProps }) {
-  const [mobileOrderSummary, setMobileOrderSummary] = useState(true);
+  const [mobileOrderSummary, setMobileOrderSummary] = useState(false);
   const [products, setProducts] = useState();
   const [slideCart, setSlideCart] = useState();
   const [cart, setCart] = useState();
