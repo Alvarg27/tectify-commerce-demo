@@ -61,14 +61,18 @@ export default function CheckoutProductCard({ item, fetchCart, cart }) {
                 <FaPlus className={styles.icon} />
               </div>
             </div>
-            <button
-              className="linkButton"
-              onClick={() => {
-                handleDelete(item.id);
-              }}
-            >
-              Eliminar
-            </button>
+            {cart.items.length > 1 ? (
+              <button
+                className="linkButton"
+                onClick={() => {
+                  handleDelete(item.id);
+                }}
+              >
+                Eliminar
+              </button>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
