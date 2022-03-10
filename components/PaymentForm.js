@@ -5,28 +5,6 @@ import React from "react";
 import { useEffect } from "react";
 
 export default function PaymentForm() {
-  const payPalElement = swell.payment.createElements({
-    paypal: {
-      elementId: "#paypal", // default: #paypal-button
-      style: {
-        layout: "horizontal", // optional
-        color: "blue",
-        shape: "rect",
-        label: "buynow",
-        tagline: false,
-      },
-      onSuccess: (data, actions) => {
-        // optional, called on payment success
-      },
-      onCancel: () => {
-        // optional, called on payment cancel
-      },
-      onError: (error) => {
-        // optional, called on payment error
-      },
-    },
-  });
-
   const stripeElement = swell.payment.createElements({
     card: {
       elementId: "#card-element-id", // default: #card-element
@@ -65,6 +43,8 @@ export default function PaymentForm() {
       },
     },
   });
+
+  useEffect(() => {});
 
   return (
     <div className={styles.paymentForm}>
