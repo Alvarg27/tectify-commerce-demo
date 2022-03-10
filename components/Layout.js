@@ -16,6 +16,11 @@ export default function Layout({
   isCheckout,
 }) {
   const [overlay, setOverlay] = useState(false);
+
+  const handleOverlayClick = () => {
+    setSlideCart(false);
+  };
+
   useEffect(() => {
     if (slideCart || mobileOrderSummary) {
       setOverlay(true);
@@ -33,6 +38,7 @@ export default function Layout({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div
+        onClick={() => handleOverlayClick()}
         style={{
           width: "100%",
           height: "100%",
