@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import CheckoutPage from "../components/CheckoutPage";
 import MobileOrderSummary from "../components/MobileOrderSummary";
 
-export default function checkout({
+export default function Checkout({
   cart,
   fetchCart,
   setSlideCart,
