@@ -14,7 +14,7 @@ export default function CheckoutPage({
     <div className={styles.checkoutPage}>
       <div className={styles.container}>
         <CheckoutSummary cart={cart} fetchCart={fetchCart} />
-        <CheckoutForm cart={cart} />
+        <CheckoutForm cart={cart} fetchCart={fetchCart} />
       </div>
       <MobileOrderTotal
         cart={cart}

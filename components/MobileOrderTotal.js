@@ -4,7 +4,10 @@ import React from "react";
 
 export default function MobileOrderTotal({ cart, setMobileOrderSummary }) {
   return (
-    <div className={styles.mobileOrderTotal}>
+    <div
+      className={styles.mobileOrderTotal}
+      onClick={() => setMobileOrderSummary(true)}
+    >
       <div className={styles.container}>
         <div className={styles.row}>
           <div className={styles.imageContainer}>

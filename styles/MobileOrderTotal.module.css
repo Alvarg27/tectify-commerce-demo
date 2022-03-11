@@ -8,6 +8,7 @@
 }
 .mobileOrderTotal {
   display: none;
+  cursor: pointer;
 }
 
 .mobileOrderTotal .container {

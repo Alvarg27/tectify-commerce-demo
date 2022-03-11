@@ -28,6 +28,7 @@ export default function SlideCart({
       style={{
         transform: `translateX(${slideCart ? 0 : 100}%)`,
         transition: "0.3s",
+        visibility: slideCart ? "visible" : "hidden",
       }}
     >
       <div className={styles.container}>

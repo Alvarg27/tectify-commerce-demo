@@ -8,14 +8,14 @@ import ShippingMethod from "./ShippingMethod";
 import PaymentForm from "./PaymentForm";
 import { FaLock } from "react-icons/fa";
 
-export default function CheckoutForm() {
+export default function CheckoutForm({ cart, fetchCart }) {
   return (
     <div className={styles.checkoutForm}>
       <div className={styles.container}>
-        <CustomerForm />
-        <AddressForm />
-        <ShippingMethod />
-        <PaymentForm />
+        <CustomerForm cart={cart} fetchCart={fetchCart} />
+        <AddressForm cart={cart} fetchCart={fetchCart} />
+        <ShippingMethod cart={cart} fetchCart={fetchCart} />
+        <PaymentForm cart={cart} fetchCart={fetchCart} />
         <p
           style={{ margin: "10px 0 0 0", fontSize: "12px", color: "lightgray" }}
         >

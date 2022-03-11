@@ -5,46 +5,33 @@ import React from "react";
 import { useEffect } from "react";
 
 export default function PaymentForm() {
-  const stripeElement = swell.payment.createElements({
-    card: {
-      elementId: "#card-element-id", // default: #card-element
-      options: {
-        // options are passed as a direct argument to stripe.js
+  const paypalElement = async () => {
+    await swell.payment.createElements({
+      paypal: {
+        elementId: "#paypal-button", // default: #paypal-button
         style: {
-          base: {
-            fontWeight: 500,
-            fontSize: "16px",
-          },
+          layout: "horizontal", // optional
+          color: "blue",
+          shape: "rect",
+          label: "buynow",
+          tagline: false,
+        },
+        onSuccess: (data, actions) => {
+          // optional, called on payment success
+        },
+        onCancel: () => {
+          // optional, called on payment cancel
+        },
+        onError: (error) => {
+          // optional, called on payment error
         },
       },
-      onChange: (event) => {
-        // optional, called when the Element value changes
-      },
-      onReady: (event) => {
-        // optional, called when the Element is fully rendered
-      },
-      onFocus: (event) => {
-        // optional, called when the Element gains focus
-      },
-      onBlur: (event) => {
-        // optional, called when the Element loses focus
-      },
-      onEscape: (event) => {
-        // optional, called when the escape key is pressed within an Element
-      },
-      onClick: (event) => {
-        // optional, called when the Element is clicked
-      },
-      onSuccess: (result) => {
-        // optional, called on card payment success
-      },
-      onError: (error) => {
-        // optional, called on card payment error
-      },
-    },
-  });
+    });
+  };
 
-  useEffect(() => {});
+  useEffect(() => {
+    paypalElement();
+  }, []);
 
   return (
     <div className={styles.paymentForm}>
@@ -55,8 +42,9 @@ export default function PaymentForm() {
           </div>
           <h3>Información de pago</h3>
         </div>
+        <div id="paypal-button"></div>
         <div className={styles.stripeContainer}>
-          <div style={{ margin: "auto 0" }} id="card-element-id"></div>
+          <div style={{ margin: "auto 0" }} id=""></div>
         </div>
       </div>
     </div>

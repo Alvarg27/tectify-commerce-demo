@@ -5,6 +5,7 @@ import React from "react";
 import Link from "next/link";
 import CheckoutOrderTotal from "./CheckoutOrderTotal";
 import CheckoutProductCard from "./CheckoutProductCard";
+import CouponCode from "./CouponCode";
 
 export default function MobileOrderSummary({
   mobileOrderSummary,
@@ -18,6 +19,7 @@ export default function MobileOrderSummary({
       style={{
         transform: `translateY(${mobileOrderSummary ? 0 : 100}%)`,
         transition: "0.3s",
+        visibility: mobileOrderSummary ? "visible" : "hidden",
       }}
     >
       <div className={styles.container}>
@@ -46,7 +48,7 @@ export default function MobileOrderSummary({
             ""
           )}
         </div>
-        <div className="line" style={{ margin: "0 0 0 0" }}></div>
+        <CouponCode />
         <CheckoutOrderTotal cart={cart} />
         <button
           onClick={() => setMobileOrderSummary(false)}

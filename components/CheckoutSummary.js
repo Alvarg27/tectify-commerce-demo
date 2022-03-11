@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/CheckoutSummary.module.css";
 import CheckoutOrderTotal from "./CheckoutOrderTotal";
 import CheckoutProductCard from "./CheckoutProductCard";
+import CouponCode from "./CouponCode";
 
 export default function CheckoutSummary({ cart, fetchCart }) {
   return (
@@ -18,6 +19,7 @@ export default function CheckoutSummary({ cart, fetchCart }) {
               />
             ))
           : ""}
+        <CouponCode />
         {!cart || cart.item_quantity === 0 ? <p>Tu carrito esta vacio.</p> : ""}
         <CheckoutOrderTotal cart={cart} />
       </div>
