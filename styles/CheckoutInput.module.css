@@ -32,3 +32,9 @@
   opacity: 0;
   transition: 0.3s;
 }
+
+@media all and (max-width: 768px) {
+  .checkoutInput {
+    width: 100% !important;
+  }
+}
