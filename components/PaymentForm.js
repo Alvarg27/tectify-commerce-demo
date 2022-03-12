@@ -3,8 +3,10 @@ import swell from "swell-js";
 import { FaLock } from "react-icons/fa";
 import React from "react";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function PaymentForm({ fetchCart, step }) {
+  const router = useRouter();
   const stepNumber = 4;
   const [stepStatus, setStepStatus] = useState();
 
@@ -80,11 +82,12 @@ export default function PaymentForm({ fetchCart, step }) {
     tokenizeCard();
     try {
       const response = await swell.cart.submitOrder();
-      alert("Su orden se ha procesado");
+      router.push("/order-confirmation");
       console.log(response);
     } catch (err) {
       console.log(err.message);
       alert("ocurrio un error al procesar su orden");
+      router.push("/");
     }
   };
 
