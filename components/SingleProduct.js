@@ -5,8 +5,10 @@ import styles from "../styles/SingleProduct.module.css";
 import OptionSelector from "./OptionSelector";
 import swell, { products } from "swell-js";
 import Link from "next/link";
+import LoadingButton from "./LoadingButton";
 
 export default function SingleProduct({ product, fetchCart, setSlideCart }) {
+  const [loading, setLoading] = useState();
   const [inStock, setInStock] = useState();
   const [selectedVariant, setSelectedVariant] = useState();
   const [selectedOptions, setSelectedOptions] = useState({
@@ -15,6 +17,7 @@ export default function SingleProduct({ product, fetchCart, setSlideCart }) {
   });
 
   const handleAddToCart = async () => {
+    setLoading(true);
     if (inStock) {
       const response = await swell.cart.addItem({
         product_id: product.id,
@@ -27,6 +30,7 @@ export default function SingleProduct({ product, fetchCart, setSlideCart }) {
       setSlideCart(true);
       console.log(response);
     }
+    setLoading(false);
   };
 
   const checkStock = () => {
@@ -101,17 +105,13 @@ export default function SingleProduct({ product, fetchCart, setSlideCart }) {
             ))}
             <p className={styles.label}>Descripción</p>
             <p>{product.description}</p>
-            <button
-              onClick={() => handleAddToCart()}
-              className="primaryButton"
-              style={{
-                width: "100%",
-                background: inStock ? "#0077ff" : "lightgray",
-                cursor: inStock ? "pointer" : "not-allowed",
-              }}
-            >
-              {inStock ? "Añadir al carrito" : "Agotado"}
-            </button>
+            <LoadingButton
+              loading={loading}
+              name="Añadir al carrito"
+              width="100%"
+              action={handleAddToCart}
+              loadingText="Añadiendo"
+            />
           </div>
         </div>
       </div>

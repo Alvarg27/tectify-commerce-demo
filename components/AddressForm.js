@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import swell from "swell-js";
 import CheckoutSelect from "./CheckoutSelect";
+import LoadingButton from "./LoadingButton";
 
 const countryOptions = [
   { id: "MX", name: "México" },
@@ -17,6 +18,7 @@ const stateOptions = [
 ];
 
 export default function AddressForm({ cart, fetchCart, step, setStep }) {
+  const [loading, setLoading] = useState();
   const [submitFail, setSubmitFail] = useState(false);
   const [allFieldsValid, setAllFieldsValid] = useState(false);
   const [error, setError] = useState();
@@ -67,6 +69,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
 
   const handleSubmit = async () => {
     if (allFieldsValid) {
+      setLoading(true);
       try {
         const response = await swell.cart.update({
           shipping: {
@@ -88,6 +91,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
         console.log(err.message);
         setError(err.message);
       }
+      setLoading(false);
     } else {
       setSubmitFail(true);
     }
@@ -147,7 +151,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               setOrderData={setOrderData}
               fetchCart={fetchCart}
               cart={cart}
-              label="Nombre"
+              label="Apellido"
               category="shipping"
               type="last_name"
               width={50}
@@ -273,13 +277,12 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               id="telefono"
             />
           </div>
-          <button
-            style={{ margin: "15px 0 0 0", width: "100%" }}
-            onClick={() => handleSubmit()}
-            className="primaryButton"
-          >
-            Continuar
-          </button>
+          <LoadingButton
+            loading={loading}
+            name="Continuar"
+            width="100%"
+            action={handleSubmit}
+          />
         </div>
       ) : (
         ""

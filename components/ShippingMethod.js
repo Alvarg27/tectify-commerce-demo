@@ -4,8 +4,10 @@ import ShippingMethodCard from "./ShippingMethodCard";
 import swell from "swell-js";
 import { FaCheck } from "react-icons/fa";
 import { set } from "swell-js/dist/utils";
+import LoadingButton from "./LoadingButton";
 
 export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
+  const [loading, setLoading] = useState();
   const [error, setError] = useState();
   const [selectedMethod, setSelectedMethod] = useState();
   const [shippingMethods, setShippingMethods] = useState();
@@ -28,6 +30,7 @@ export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
 
   const handleSubmit = async () => {
     if (selectedMethod) {
+      setLoading(true);
       try {
         const response = await swell.cart.update({
           shipping: {
@@ -40,6 +43,7 @@ export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
         console.log(err.message);
         setError(err.message);
       }
+      setLoading(false);
     }
     setError("Selecciona un método de envío");
   };
@@ -110,13 +114,12 @@ export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
               : ""}
           </div>
           <p className="errorMessage">{error}</p>
-          <button
-            style={{ margin: "15px 0 0 0", width: "100%" }}
-            onClick={() => handleSubmit()}
-            className="primaryButton"
-          >
-            Continuar
-          </button>
+          <LoadingButton
+            loading={loading}
+            name="Continuar"
+            width="100%"
+            action={handleSubmit}
+          />
         </div>
       ) : (
         ""

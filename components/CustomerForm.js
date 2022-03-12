@@ -3,8 +3,10 @@ import swell from "swell-js";
 import React, { useState, useEffect } from "react";
 import CheckoutInput from "./CheckoutInput";
 import { FaCheck } from "react-icons/fa";
+import LoadingButton from "./LoadingButton";
 
 export default function CustomerForm({ cart, fetchCart, step, setStep }) {
+  const [loading, setLoading] = useState();
   const [submitFail, setSubmitFail] = useState(false);
   const [allFieldsValid, setAllFieldsValid] = useState(false);
   const [error, setError] = useState();
@@ -39,6 +41,7 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
 
   const handleSubmit = async () => {
     if (allFieldsValid) {
+      setLoading(true);
       try {
         const response = await swell.cart.update({
           account: {
@@ -52,6 +55,7 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
         setError(err.message);
         console.log(err.message);
       }
+      setLoading(false);
     } else {
       setSubmitFail(true);
     }
@@ -104,13 +108,12 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
               id="email"
             />
           </div>
-          <button
-            style={{ margin: "15px 0 0 0", width: "100%" }}
-            onClick={() => handleSubmit()}
-            className="primaryButton"
-          >
-            Continuar
-          </button>
+          <LoadingButton
+            loading={loading}
+            name="Continuar"
+            width="100%"
+            action={handleSubmit}
+          />
         </div>
       ) : (
         ""

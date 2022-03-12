@@ -13,6 +13,7 @@
   border: 1px solid lightgray;
   border-radius: 7px;
   padding: 0 10px;
+  font-size: 16px;
 }
 .checkoutInput .container input:focus {
   border-color: #0077ff;

@@ -6,6 +6,7 @@ import { useState } from "react";
 import CartCard from "./CartCard";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import LoadingButton from "./LoadingButton";
 
 export default function SlideCart({
   slideCart,
@@ -13,14 +14,17 @@ export default function SlideCart({
   fetchCart,
   cart,
 }) {
+  const [loading, setLoading] = useState();
   const router = useRouter();
 
   const HandleProccedToCheckout = () => {
+    setLoading(true);
     if (cart && cart.item_quantity > 0) {
       router.push("/checkout");
     } else {
       alert("¡Añade un articulo al carrito para continuar!");
     }
+    setLoading(false);
   };
   return (
     <div
@@ -61,13 +65,12 @@ export default function SlideCart({
         </div>
 
         {cart ? (
-          <button
-            onClick={() => HandleProccedToCheckout()}
-            style={{ width: " 100%" }}
-            className="primaryButton"
-          >
-            Continuar al pago
-          </button>
+          <LoadingButton
+            loading={loading}
+            name="Continuar al pago"
+            width="100%"
+            action={HandleProccedToCheckout}
+          />
         ) : (
           ""
         )}

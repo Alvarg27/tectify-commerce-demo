@@ -4,8 +4,10 @@ import { FaLock } from "react-icons/fa";
 import React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import LoadingButton from "./LoadingButton";
 
 export default function PaymentForm({ fetchCart, step }) {
+  const [loading, setLoading] = useState();
   const router = useRouter();
   const stepNumber = 4;
   const [stepStatus, setStepStatus] = useState();
@@ -25,6 +27,7 @@ export default function PaymentForm({ fetchCart, step }) {
       card: {
         elementId: "#card-element-id", // default: #card-element
         options: {
+          hidePostalCode: true,
           // options are passed as a direct argument to stripe.js
           style: {
             base: {
@@ -63,21 +66,27 @@ export default function PaymentForm({ fetchCart, step }) {
   };
 
   const tokenizeCard = async () => {
-    const response = await swell.payment.tokenize({
-      card: {
-        onError: (err) => {
-          console.log(err);
-          setCardError(err.message);
+    if (loading) {
+      return;
+    } else {
+      setLoading(true);
+      const response = await swell.payment.tokenize({
+        card: {
+          onError: (err) => {
+            console.log(err);
+            setCardError(err.message);
 
-          // inform the customer there was an error
+            // inform the customer there was an error
+          },
+          onSuccess: () => {
+            submitOrder();
+            //finally submit the form
+          },
         },
-        onSuccess: () => {
-          submitOrder();
-          //finally submit the form
-        },
-      },
-      // ideal: { onError: (err) => {}, ...}
-    });
+        // ideal: { onError: (err) => {}, ...}
+      });
+    }
+    setLoading(false);
   };
 
   const submitOrder = async () => {
@@ -124,7 +133,8 @@ export default function PaymentForm({ fetchCart, step }) {
         <h3>Información de pago</h3>
       </div>
       {step === 4 ? (
-        <div>
+        <div style={{ margin: "30px 0 0 0", width: "100%" }}>
+          <label>Tarjeta de crédito / débito</label>
           <div className={styles.stripeContainer}>
             <div style={{ margin: "auto 0" }} id="card-element-id"></div>
           </div>
@@ -138,13 +148,13 @@ export default function PaymentForm({ fetchCart, step }) {
           >
             Todas las transacciones son seguras y encriptadas <FaLock />
           </p>
-          <button
-            onClick={() => tokenizeCard()}
-            style={{ margin: "15px 0 0 0", width: "100%" }}
-            className="primaryButton"
-          >
-            Pagar
-          </button>
+          <LoadingButton
+            loading={loading}
+            name="Pagar"
+            loadingText="Procesando"
+            width="100%"
+            action={tokenizeCard}
+          />
         </div>
       ) : (
         ""
