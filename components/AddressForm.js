@@ -3,8 +3,40 @@ import CheckoutInput from "./CheckoutInput";
 import styles from "../styles/AddressForm.module.css";
 import { useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa";
+import swell from "swell-js";
 
 export default function AddressForm({ cart, fetchCart, step, setStep }) {
+  const [allFieldsValid, setAllFieldsValid] = useState(false);
+  const [error, setError] = useState();
+  const [orderData, setOrderData] = useState({
+    first_name: undefined,
+    last_name: undefined,
+    address1: undefined,
+    address2: undefined,
+    city: undefined,
+    zip: undefined,
+    phone: undefined,
+  });
+
+  const checkValid = (type) => {
+    if (orderData[type] === undefined || orderData[type] === "") {
+      valid[type] = false;
+      setValid({ ...valid });
+    } else {
+      valid[type] = true;
+      setValid({ ...valid });
+    }
+  };
+
+  const [valid, setValid] = useState({
+    first_name: undefined,
+    last_name: undefined,
+    address1: undefined,
+    address2: undefined,
+    city: undefined,
+    zip: undefined,
+    phone: undefined,
+  });
   const stepNumber = 2;
   const [stepStatus, setStepStatus] = useState();
   useEffect(() => {
@@ -16,6 +48,44 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
       setStepStatus("completed");
     }
   }, [step]);
+
+  const handleSubmit = async () => {
+    if (allFieldsValid) {
+      try {
+        const response = await swell.cart.update({
+          shipping: {
+            first_name: orderData.first_name,
+            last_name: orderData.last_name,
+            address1: orderData.address1,
+            address2: orderData.address2,
+            city: orderData.city,
+            zip: orderData.zip,
+            phone: orderData.phone,
+          },
+        });
+        setError(null);
+        fetchCart();
+        setStep(3);
+      } catch (err) {
+        console.log(err.message);
+        setError(err.message);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (
+      Object.values(valid).indexOf(undefined) > -1 ||
+      Object.values(valid).indexOf(false) > -1
+    ) {
+      setAllFieldsValid(false);
+    } else {
+      setAllFieldsValid(true);
+    }
+  }, [valid]);
+
+  console.log(orderData);
+  console.log(valid);
 
   return (
     <div className={styles.addressForm}>
@@ -36,7 +106,106 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
       </div>
       {stepStatus === "current" ? (
         <div>
-          <div className="formContainer"></div>
+          <div className="formContainer">
+            <CheckoutInput
+              valid={valid}
+              checkValid={checkValid}
+              orderData={orderData}
+              setOrderData={setOrderData}
+              fetchCart={fetchCart}
+              cart={cart}
+              label="Nombre"
+              category="shipping"
+              type="first_name"
+              width={50}
+              errorMessage={error}
+              setErrorMessage={setError}
+            />
+            <CheckoutInput
+              valid={valid}
+              checkValid={checkValid}
+              orderData={orderData}
+              setOrderData={setOrderData}
+              fetchCart={fetchCart}
+              cart={cart}
+              label="Nombre"
+              category="shipping"
+              type="last_name"
+              width={50}
+              errorMessage={error}
+              setErrorMessage={setError}
+            />
+            <CheckoutInput
+              valid={valid}
+              checkValid={checkValid}
+              orderData={orderData}
+              setOrderData={setOrderData}
+              fetchCart={fetchCart}
+              cart={cart}
+              label="Dirección"
+              category="shipping"
+              type="address1"
+              width={100}
+              errorMessage={error}
+              setErrorMessage={setError}
+            />
+            <CheckoutInput
+              valid={valid}
+              checkValid={checkValid}
+              orderData={orderData}
+              setOrderData={setOrderData}
+              fetchCart={fetchCart}
+              cart={cart}
+              label="Colonia"
+              category="shipping"
+              type="address2"
+              width={100}
+              errorMessage={error}
+              setErrorMessage={setError}
+            />
+            <CheckoutInput
+              valid={valid}
+              checkValid={checkValid}
+              orderData={orderData}
+              setOrderData={setOrderData}
+              fetchCart={fetchCart}
+              cart={cart}
+              label="Municipio"
+              category="shipping"
+              type="city"
+              width={100}
+              errorMessage={error}
+              setErrorMessage={setError}
+            />
+            <CheckoutInput
+              valid={valid}
+              checkValid={checkValid}
+              orderData={orderData}
+              setOrderData={setOrderData}
+              fetchCart={fetchCart}
+              cart={cart}
+              label="Código postal"
+              category="shipping"
+              type="zip"
+              width={50}
+              errorMessage={error}
+              setErrorMessage={setError}
+            />
+            <CheckoutInput
+              valid={valid}
+              checkValid={checkValid}
+              orderData={orderData}
+              setOrderData={setOrderData}
+              fetchCart={fetchCart}
+              cart={cart}
+              label="Teléfono"
+              category="shipping"
+              type="phone"
+              width={50}
+              errorMessage={error}
+              setErrorMessage={setError}
+            />
+          </div>
           <button onClick={() => handleSubmit()} className="primaryButton">
             Continuar
           </button>
@@ -52,7 +221,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
                 Envío
               </p>
               <p>
-                {cart
+                {cart && cart.shipping
                   ? `${cart.shipping.name}, ${cart.shipping.address1} ${cart.shipping.address2}, ${cart.shipping.city},  ${cart.shipping.zip},  ${cart.shipping.phone}`
                   : ""}
               </p>

@@ -12,19 +12,28 @@ export default function CheckoutInput({
   category,
   cart,
   fetchCart,
-  setValid,
-  valid,
-  submitFail,
+  checkValid,
   orderData,
   setOrderData,
   errorMessage,
+  valid,
+  setErrorMessage,
 }) {
   const [isEdited, setIsEdited] = useState(false);
   const [focused, setFocused] = useState();
-  const [invalid, setInvalid] = useState();
   const [input, setInput] = useState();
   const cartValue =
-    cart && cart[category] && cart[category][type] ? cart[category][type] : "";
+    cart && cart[category] && cart[category][type]
+      ? cart[category][type]
+      : input;
+
+  const translateErrorMessage = () => {
+    if (errorMessage === "Invalid e-mail address") {
+      return "Tu correo electónico no es válido";
+    } else if (errorMessage === "Required") {
+      return `Tu ${label.toLowerCase()} no puede estar vacio`;
+    }
+  };
 
   const handleInput = (e) => {
     setInput(e.target.value);
@@ -38,10 +47,19 @@ export default function CheckoutInput({
     setFocused(false);
     setIsEdited(true);
   };
+
   useEffect(() => {
     orderData[type] = input;
     setOrderData({ ...orderData });
+    checkValid(type);
+    setErrorMessage(null);
   }, [input]);
+
+  useEffect(() => {
+    orderData[type] = cartValue;
+    setOrderData({ ...orderData });
+    checkValid(type);
+  }, [fetchCart]);
 
   return (
     <div className={styles.checkoutInput} style={{ width: `${width}%` }}>
@@ -54,8 +72,20 @@ export default function CheckoutInput({
           onFocus={() => handleFocus(true)}
           onBlur={() => handleBlur(false)}
         />
-        <div className={styles.confirmationDot}></div>
-        <p className="errorMessage">{errorMessage}</p>
+        <div
+          className={styles.confirmationDot}
+          style={{ opacity: valid[type] ? 1 : 0 }}
+        ></div>
+        {(!focused && !valid[type] && orderData[type] !== undefined) ||
+        errorMessage ? (
+          <p className="errorMessage">
+            {errorMessage
+              ? translateErrorMessage()
+              : `Tu ${label.toLowerCase()} no puede estar vacio`}
+          </p>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

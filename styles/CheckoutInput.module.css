@@ -29,5 +29,6 @@
   right: 0;
   top: 45px;
   right: 15px;
-  display: none;
+  opacity: 0;
+  transition: 0.3s;
 }

@@ -5,10 +5,15 @@ import CheckoutInput from "./CheckoutInput";
 import { FaCheck } from "react-icons/fa";
 
 export default function CustomerForm({ cart, fetchCart, step, setStep }) {
+  const [allFieldsValid, setAllFieldsValid] = useState(false);
   const [error, setError] = useState();
   const [orderData, setOrderData] = useState({
     email: undefined,
   });
+  const [valid, setValid] = useState({
+    email: undefined,
+  });
+
   const stepNumber = 1;
   const [stepStatus, setStepStatus] = useState();
   useEffect(() => {
@@ -21,30 +26,45 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
     }
   }, [step]);
 
-  console.log(orderData);
+  const checkValid = (type) => {
+    if (orderData[type] === undefined || orderData[type] === "") {
+      valid[type] = false;
+      setValid({ ...valid });
+    } else {
+      valid[type] = true;
+      setValid({ ...valid });
+    }
+  };
 
   const handleSubmit = async () => {
-    try {
-      const response = await swell.cart.update({
-        account: {
-          email: orderData.email,
-        },
-      });
-      setError(null);
-      fetchCart();
-      setStep(2);
-    } catch (err) {
-      console.log(err.message);
-      setError(err.message);
+    if (allFieldsValid) {
+      try {
+        const response = await swell.cart.update({
+          account: {
+            email: orderData.email,
+          },
+        });
+        setError(null);
+        fetchCart();
+        setStep(2);
+      } catch (err) {
+        setError(err.message);
+        console.log(err.message);
+      }
     }
   };
   useEffect(() => {
-    setOrderData({
-      email:
-        cart && cart.account && cart.account.email ? cart.account.email : "",
-    });
-  }, []);
+    if (
+      Object.values(valid).indexOf(undefined) > -1 ||
+      Object.values(valid).indexOf(false) > -1
+    ) {
+      setAllFieldsValid(false);
+    } else {
+      setAllFieldsValid(true);
+    }
+  }, [valid]);
 
+  console.log(orderData);
   return (
     <div className={styles.CustomerForm}>
       <div className="stepTitle">
@@ -66,6 +86,8 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
         <div>
           <div className="formContainer">
             <CheckoutInput
+              valid={valid}
+              checkValid={checkValid}
               orderData={orderData}
               setOrderData={setOrderData}
               fetchCart={fetchCart}
@@ -75,6 +97,7 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
               type="email"
               width={100}
               errorMessage={error}
+              setErrorMessage={setError}
             />
           </div>
           <button
