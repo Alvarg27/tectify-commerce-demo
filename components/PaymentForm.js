@@ -70,20 +70,24 @@ export default function PaymentForm({ fetchCart, step }) {
           // inform the customer there was an error
         },
         onSuccess: () => {
-          try {
-            const response = await swell.cart.submitOrder();
-            router.push("/order-confirmation");
-            console.log(response);
-          } catch (err) {
-            console.log(err.message);
-            alert("ocurrio un error al procesar su orden");
-            router.push("/");
-          }
+          submitOrder();
           //finally submit the form
         },
       },
       // ideal: { onError: (err) => {}, ...}
     });
+  };
+
+  const submitOrder = async () => {
+    try {
+      const response = await swell.cart.submitOrder();
+      router.push("/order-confirmation");
+      console.log(response);
+    } catch (err) {
+      console.log(err.message);
+      alert("ocurrio un error al procesar su orden");
+      router.push("/");
+    }
   };
 
   useEffect(() => {
