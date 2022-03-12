@@ -62,6 +62,7 @@ export default function CheckoutSelect({
       <div className={styles.container}>
         <label>{label}</label>
         <select
+          type={type}
           value={isEdited ? input : cartValue}
           onClick={(e) => handleInput(e)}
           onChange={(e) => handleInput(e)}

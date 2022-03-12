@@ -19,7 +19,6 @@ export default function CheckoutInput({
   valid,
   setErrorMessage,
   submitFail,
-  id,
 }) {
   const [isEdited, setIsEdited] = useState(false);
   const [focused, setFocused] = useState();
@@ -69,7 +68,7 @@ export default function CheckoutInput({
       <div className={styles.container}>
         <label>{label}</label>
         <input
-          type={id}
+          type={type}
           value={isEdited ? input : cartValue}
           onClick={(e) => handleInput(e)}
           onChange={(e) => handleInput(e)}
