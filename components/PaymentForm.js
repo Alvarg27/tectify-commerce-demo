@@ -70,25 +70,20 @@ export default function PaymentForm({ fetchCart, step }) {
           // inform the customer there was an error
         },
         onSuccess: () => {
-          fetchCart();
+          try {
+            const response = await swell.cart.submitOrder();
+            router.push("/order-confirmation");
+            console.log(response);
+          } catch (err) {
+            console.log(err.message);
+            alert("ocurrio un error al procesar su orden");
+            router.push("/");
+          }
           //finally submit the form
         },
       },
       // ideal: { onError: (err) => {}, ...}
     });
-  };
-
-  const handlePayment = async () => {
-    tokenizeCard();
-    try {
-      const response = await swell.cart.submitOrder();
-      router.push("/order-confirmation");
-      console.log(response);
-    } catch (err) {
-      console.log(err.message);
-      alert("ocurrio un error al procesar su orden");
-      router.push("/");
-    }
   };
 
   useEffect(() => {
@@ -134,7 +129,7 @@ export default function PaymentForm({ fetchCart, step }) {
             Todas las transacciones son seguras y encriptadas <FaLock />
           </p>
           <button
-            onClick={() => handlePayment()}
+            onClick={() => tokenizeCard()}
             style={{ margin: "15px 0 0 0", width: "100%" }}
             className="primaryButton"
           >
