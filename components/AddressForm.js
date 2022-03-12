@@ -4,8 +4,20 @@ import styles from "../styles/AddressForm.module.css";
 import { useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import swell from "swell-js";
+import CheckoutSelect from "./CheckoutSelect";
+
+const countryOptions = [
+  { id: "MX", name: "México" },
+  { id: "US", name: "Estados Unidos" },
+];
+
+const stateOptions = [
+  { id: "MX-AGU", name: "Aguascalientes" },
+  { id: "MX-QUE", name: "Querétaro" },
+];
 
 export default function AddressForm({ cart, fetchCart, step, setStep }) {
+  const [submitFail, setSubmitFail] = useState(false);
   const [allFieldsValid, setAllFieldsValid] = useState(false);
   const [error, setError] = useState();
   const [orderData, setOrderData] = useState({
@@ -16,6 +28,8 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
     city: undefined,
     zip: undefined,
     phone: undefined,
+    country: undefined,
+    state: undefined,
   });
 
   const checkValid = (type) => {
@@ -36,6 +50,8 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
     city: undefined,
     zip: undefined,
     phone: undefined,
+    country: undefined,
+    state: undefined,
   });
   const stepNumber = 2;
   const [stepStatus, setStepStatus] = useState();
@@ -61,6 +77,8 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
             city: orderData.city,
             zip: orderData.zip,
             phone: orderData.phone,
+            country: orderData.country,
+            state: orderData.state,
           },
         });
         setError(null);
@@ -70,6 +88,8 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
         console.log(err.message);
         setError(err.message);
       }
+    } else {
+      setSubmitFail(true);
     }
   };
 
@@ -85,7 +105,6 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
   }, [valid]);
 
   console.log(orderData);
-  console.log(valid);
 
   return (
     <div className={styles.addressForm}>
@@ -120,6 +139,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               width={50}
               errorMessage={error}
               setErrorMessage={setError}
+              submitFail={submitFail}
             />
             <CheckoutInput
               valid={valid}
@@ -134,6 +154,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               width={50}
               errorMessage={error}
               setErrorMessage={setError}
+              submitFail={submitFail}
             />
             <CheckoutInput
               valid={valid}
@@ -148,6 +169,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               width={100}
               errorMessage={error}
               setErrorMessage={setError}
+              submitFail={submitFail}
             />
             <CheckoutInput
               valid={valid}
@@ -162,6 +184,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               width={100}
               errorMessage={error}
               setErrorMessage={setError}
+              submitFail={submitFail}
             />
             <CheckoutInput
               valid={valid}
@@ -176,6 +199,41 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               width={100}
               errorMessage={error}
               setErrorMessage={setError}
+              submitFail={submitFail}
+            />
+            <CheckoutSelect
+              valid={valid}
+              checkValid={checkValid}
+              orderData={orderData}
+              setOrderData={setOrderData}
+              fetchCart={fetchCart}
+              cart={cart}
+              label="País"
+              category="shipping"
+              type="country"
+              width={50}
+              errorMessage={error}
+              setErrorMessage={setError}
+              submitFail={submitFail}
+              options={countryOptions}
+              defaultOption="Selecciona un país"
+            />
+            <CheckoutSelect
+              valid={valid}
+              checkValid={checkValid}
+              orderData={orderData}
+              setOrderData={setOrderData}
+              fetchCart={fetchCart}
+              cart={cart}
+              label="Estado"
+              category="shipping"
+              type="state"
+              width={50}
+              errorMessage={error}
+              setErrorMessage={setError}
+              submitFail={submitFail}
+              options={stateOptions}
+              defaultOption="Selecciona un estado"
             />
             <CheckoutInput
               valid={valid}
@@ -190,6 +248,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               width={50}
               errorMessage={error}
               setErrorMessage={setError}
+              submitFail={submitFail}
             />
             <CheckoutInput
               valid={valid}
@@ -204,9 +263,14 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               width={50}
               errorMessage={error}
               setErrorMessage={setError}
+              submitFail={submitFail}
             />
           </div>
-          <button onClick={() => handleSubmit()} className="primaryButton">
+          <button
+            style={{ margin: "15px 0 0 0" }}
+            onClick={() => handleSubmit()}
+            className="primaryButton"
+          >
             Continuar
           </button>
         </div>
@@ -222,7 +286,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               </p>
               <p>
                 {cart && cart.shipping
-                  ? `${cart.shipping.name}, ${cart.shipping.address1} ${cart.shipping.address2}, ${cart.shipping.city},  ${cart.shipping.zip},  ${cart.shipping.phone}`
+                  ? `${cart.shipping.name}, ${cart.shipping.address1} ${cart.shipping.address2}, ${cart.shipping.city}, ${cart.shipping.state}, ${cart.shipping.country},  ${cart.shipping.zip},  ${cart.shipping.phone}`
                   : ""}
               </p>
             </div>

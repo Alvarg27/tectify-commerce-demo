@@ -1,11 +1,11 @@
-import styles from "../styles/CheckoutInput.module.css";
 import React from "react";
 import { useState } from "react";
 import swell from "swell-js";
 import { useEffect } from "react";
 import { setRevalidateHeaders } from "next/dist/server/send-payload";
+import styles from "../styles/CheckoutSelect.module.css";
 
-export default function CheckoutInput({
+export default function CheckoutSelect({
   label,
   width,
   type,
@@ -19,6 +19,8 @@ export default function CheckoutInput({
   valid,
   setErrorMessage,
   submitFail,
+  options,
+  defaultOption,
 }) {
   const [isEdited, setIsEdited] = useState(false);
   const [focused, setFocused] = useState();
@@ -27,14 +29,6 @@ export default function CheckoutInput({
     cart && cart[category] && cart[category][type]
       ? cart[category][type]
       : input;
-
-  const translateErrorMessage = () => {
-    if (errorMessage === "Invalid e-mail address") {
-      return "Tu correo electónico no es válido";
-    } else if (errorMessage === "Required") {
-      return `Debes de ingresar tu ${label.toLowerCase()}`;
-    }
-  };
 
   const handleInput = (e) => {
     e.preventDefault();
@@ -64,16 +58,25 @@ export default function CheckoutInput({
   }, [fetchCart]);
 
   return (
-    <div className={styles.checkoutInput} style={{ width: `${width}%` }}>
+    <div className={styles.checkoutSelect} style={{ width: `${width}%` }}>
       <div className={styles.container}>
         <label>{label}</label>
-        <input
+        <select
           value={isEdited ? input : cartValue}
           onClick={(e) => handleInput(e)}
           onChange={(e) => handleInput(e)}
           onFocus={() => handleFocus(true)}
           onBlur={() => handleBlur(false)}
-        />
+        >
+          <option value="" disabled selected>
+            {defaultOption}
+          </option>
+          {options.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </select>
         <div
           className={styles.confirmationDot}
           style={{ opacity: valid[type] ? 1 : 0 }}
@@ -83,7 +86,7 @@ export default function CheckoutInput({
         (submitFail && !focused && !valid[type]) ? (
           <p className="errorMessage">
             {errorMessage
-              ? translateErrorMessage()
+              ? error
               : `Debes de ingresar tu ${label.toLowerCase()}`}
           </p>
         ) : (

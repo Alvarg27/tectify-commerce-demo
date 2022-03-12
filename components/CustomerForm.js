@@ -5,6 +5,7 @@ import CheckoutInput from "./CheckoutInput";
 import { FaCheck } from "react-icons/fa";
 
 export default function CustomerForm({ cart, fetchCart, step, setStep }) {
+  const [submitFail, setSubmitFail] = useState(false);
   const [allFieldsValid, setAllFieldsValid] = useState(false);
   const [error, setError] = useState();
   const [orderData, setOrderData] = useState({
@@ -51,6 +52,8 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
         setError(err.message);
         console.log(err.message);
       }
+    } else {
+      setSubmitFail(true);
     }
   };
   useEffect(() => {
@@ -64,7 +67,6 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
     }
   }, [valid]);
 
-  console.log(orderData);
   return (
     <div className={styles.CustomerForm}>
       <div className="stepTitle">
@@ -98,6 +100,7 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
               width={100}
               errorMessage={error}
               setErrorMessage={setError}
+              submitFail={submitFail}
             />
           </div>
           <button
