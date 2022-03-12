@@ -8,6 +8,16 @@ export default function PaymentForm({ fetchCart, step }) {
   const stepNumber = 4;
   const [stepStatus, setStepStatus] = useState();
 
+  useEffect(() => {
+    if (step === stepNumber) {
+      setStepStatus("current");
+    } else if (step < stepNumber) {
+      setStepStatus("pending");
+    } else if (step > stepNumber) {
+      setStepStatus("completed");
+    }
+  }, [step]);
+
   const stripeElement = async () => {
     await swell.payment.createElements({
       card: {
@@ -66,11 +76,21 @@ export default function PaymentForm({ fetchCart, step }) {
     });
   };
 
-  useEffect(() => {
-    if (stepStatus === "current") {
-      stripeElement();
+  const handlePayment = async () => {
+    tokenizeCard();
+    try {
+      const response = await swell.cart.submitOrder();
+      alert("Su orden se ha procesado");
+      console.log(response);
+    } catch (err) {
+      console.log(err.message);
+      alert("ocurrio un error al procesar su orden");
     }
-  }, []);
+  };
+
+  useEffect(() => {
+    stripeElement();
+  }, [step]);
 
   useEffect(() => {
     if (step === stepNumber) {
@@ -110,6 +130,13 @@ export default function PaymentForm({ fetchCart, step }) {
           >
             Todas las transacciones son seguras y encriptadas <FaLock />
           </p>
+          <button
+            onClick={() => handlePayment()}
+            style={{ margin: "15px 0 0 0", width: "100%" }}
+            className="primaryButton"
+          >
+            Pagar
+          </button>
           {cardError ? <p className="errorMessage">{cardError}</p> : ""}
         </div>
       ) : (

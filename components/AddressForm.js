@@ -104,8 +104,6 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
     }
   }, [valid]);
 
-  console.log(orderData);
-
   return (
     <div className={styles.addressForm}>
       <div className="stepTitle">

@@ -4,13 +4,14 @@
   transform: translateX(-10px);
 }
 .shippingMethodCard .container {
-  border: 1px #0077ff solid;
+  border: 1px lightgrey solid;
   padding: 15px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   height: 120px;
   cursor: pointer;
+  transition: 0.3s;
 }
 .shippingMethodCard .row {
   display: flex;
@@ -24,6 +25,8 @@
   margin: auto 0;
   color: #0077ff;
   font-size: 20px;
+  opacity: 0;
+  transition: 0.3s;
 }
 .shippingMethodCard .description {
   color: gray;
