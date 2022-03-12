@@ -83,10 +83,12 @@ export default function PaymentForm({ fetchCart, step }) {
       const response = await swell.cart.submitOrder();
       router.push("/order-confirmation");
       console.log(response);
+      fetchCart();
     } catch (err) {
       console.log(err.message);
       alert("ocurrio un error al procesar su orden");
       router.push("/");
+      fetchCart();
     }
   };
 
