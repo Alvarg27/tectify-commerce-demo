@@ -95,7 +95,11 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
               <p style={{ color: "grey", margin: "auto 10px auto auto" }}>
                 Contacto
               </p>
-              <p>{cart ? cart.account.email : ""}</p>
+              <p>
+                {cart && cart.account && cart.account.email
+                  ? cart.account.email
+                  : ""}
+              </p>
             </div>
             <button onClick={() => setStep(1)} className="linkButton">
               Editar
