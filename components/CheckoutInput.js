@@ -23,7 +23,8 @@ export default function CheckoutInput({
   const [focused, setFocused] = useState();
   const [invalid, setInvalid] = useState();
   const [input, setInput] = useState();
-  const cartValue = cart ? cart[category][type] : "";
+  const cartValue =
+    cart && cart[category] && cart[category][type] ? cart[category][type] : "";
 
   const handleInput = (e) => {
     setInput(e.target.value);

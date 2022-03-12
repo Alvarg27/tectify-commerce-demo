@@ -40,7 +40,8 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
   };
   useEffect(() => {
     setOrderData({
-      email: cart ? cart.account.email : "",
+      email:
+        cart && cart.account && cart.account.email ? cart.account.email : "",
     });
   }, []);
 
