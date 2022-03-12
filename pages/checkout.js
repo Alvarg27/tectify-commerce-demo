@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { useEffect, useState } from "react";
 import CheckoutPage from "../components/CheckoutPage";
@@ -10,6 +11,8 @@ export default function Checkout({
   setMobileOrderSummary,
   setIsCheckout,
 }) {
+  const router = useRouter();
+
   useEffect(() => {
     setIsCheckout(true);
     setSlideCart(false);

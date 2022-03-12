@@ -1,3 +1,6 @@
+.paymentForm {
+  margin: 30px 0 0 0;
+}
 .paymentForm .stripeContainer {
   border: 1px solid lightgray;
   width: 100;

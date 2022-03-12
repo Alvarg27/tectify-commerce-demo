@@ -67,7 +67,7 @@ button:focus {
   display: flex;
 }
 .stepTitle h3 {
-  margin: auto 15px;
+  margin: auto 10px;
 }
 .stepTitle .stepNumber {
   margin: auto 0;
@@ -80,4 +80,20 @@ button:focus {
 .stepTitle .stepNumber p {
   margin: auto;
   color: white;
+}
+
+.errorMessage {
+  margin: 5px 0;
+  color: tomato;
+  font-size: 12px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+.dataReviewCard {
+  border: 1px solid lightgray;
+  padding: 0 15px;
+  border-radius: 7px;
+  margin: 30px 0;
 }

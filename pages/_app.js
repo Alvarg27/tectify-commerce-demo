@@ -35,8 +35,6 @@ function MyApp({ Component, pageProps }) {
     setMobileOrderSummary(false);
   }, []);
 
-  console.log(isCheckout);
-
   return (
     <Layout
       setSlideCart={setSlideCart}

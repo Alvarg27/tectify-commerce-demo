@@ -7,26 +7,40 @@ import AddressForm from "./AddressForm";
 import ShippingMethod from "./ShippingMethod";
 import PaymentForm from "./PaymentForm";
 import { FaLock } from "react-icons/fa";
+import { useState } from "react";
+import swell from "swell-js";
 
 export default function CheckoutForm({ cart, fetchCart }) {
+  const [step, setStep] = useState(1);
+
   return (
     <div className={styles.checkoutForm}>
       <div className={styles.container}>
-        <CustomerForm cart={cart} fetchCart={fetchCart} />
-        <AddressForm cart={cart} fetchCart={fetchCart} />
-        <ShippingMethod cart={cart} fetchCart={fetchCart} />
-        <PaymentForm cart={cart} fetchCart={fetchCart} />
-        <p
-          style={{ margin: "10px 0 0 0", fontSize: "12px", color: "lightgray" }}
-        >
-          Todas las transacciones son seguras y encriptadas <FaLock />
-        </p>
-        <button
-          className="primaryButton"
-          style={{ width: "100%", margin: "30px 0 0 0 " }}
-        >
-          Pagar
-        </button>
+        <CustomerForm
+          cart={cart}
+          fetchCart={fetchCart}
+          step={step}
+          setStep={setStep}
+        />
+        <AddressForm
+          cart={cart}
+          fetchCart={fetchCart}
+          step={step}
+          setStep={setStep}
+        />
+        <ShippingMethod
+          cart={cart}
+          fetchCart={fetchCart}
+          step={step}
+          setStep={setStep}
+        />
+        <PaymentForm
+          cart={cart}
+          fetchCart={fetchCart}
+          step={step}
+          setStep={setStep}
+        />
+
         <p className={styles.powered}>
           powered by <b>tectify.io</b>
         </p>
