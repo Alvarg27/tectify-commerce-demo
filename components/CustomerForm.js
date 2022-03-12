@@ -1,14 +1,13 @@
 import styles from "../styles/CustomerForm.module.css";
-
+import swell from "swell-js";
 import React, { useState, useEffect } from "react";
 import CheckoutInput from "./CheckoutInput";
 import { FaCheck } from "react-icons/fa";
 
 export default function CustomerForm({ cart, fetchCart, step, setStep }) {
-  const [valid, setValid] = useState({
-    account: {
-      email: undefined,
-    },
+  const [error, setError] = useState();
+  const [orderData, setOrderData] = useState({
+    email: undefined,
   });
   const stepNumber = 1;
   const [stepStatus, setStepStatus] = useState();
@@ -22,7 +21,28 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
     }
   }, [step]);
 
-  console.log(valid);
+  console.log(orderData);
+
+  const handleSubmit = async () => {
+    try {
+      const response = await swell.cart.update({
+        account: {
+          email: orderData.email,
+        },
+      });
+      setError(null);
+      fetchCart();
+      setStep(2);
+    } catch (err) {
+      console.log(err.message);
+      setError(err.message);
+    }
+  };
+  useEffect(() => {
+    setOrderData({
+      email: cart ? cart.account.email : "",
+    });
+  }, []);
 
   return (
     <div className={styles.CustomerForm}>
@@ -45,17 +65,22 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
         <div>
           <div className="formContainer">
             <CheckoutInput
-              valid={valid}
-              setValid={setValid}
+              orderData={orderData}
+              setOrderData={setOrderData}
               fetchCart={fetchCart}
               cart={cart}
               label="Correo electónico"
               category="account"
               type="email"
               width={100}
+              errorMessage={error}
             />
           </div>
-          <button onClick={() => setStep(2)} className="primaryButton">
+          <button
+            style={{ margin: "15px 0 0 0" }}
+            onClick={() => handleSubmit()}
+            className="primaryButton"
+          >
             Continuar
           </button>
         </div>

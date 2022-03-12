@@ -36,65 +36,8 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
       </div>
       {stepStatus === "current" ? (
         <div>
-          <div className="formContainer">
-            <CheckoutInput
-              cart={cart}
-              fetchCart={fetchCart}
-              label="Nombre"
-              category="shipping"
-              type="first_name"
-              width={50}
-            />
-            <CheckoutInput
-              cart={cart}
-              fetchCart={fetchCart}
-              label="Apellido"
-              category="shipping"
-              type="last_name"
-              width={50}
-            />
-            <CheckoutInput
-              cart={cart}
-              fetchCart={fetchCart}
-              label="Dirección"
-              category="shipping"
-              type="address1"
-              width={100}
-            />
-            <CheckoutInput
-              cart={cart}
-              fetchCart={fetchCart}
-              label="Colonia"
-              category="shipping"
-              type="address2"
-              width={100}
-            />
-            <CheckoutInput
-              cart={cart}
-              fetchCart={fetchCart}
-              label="Municipio"
-              category="shipping"
-              type="city"
-              width={100}
-            />
-            <CheckoutInput
-              cart={cart}
-              fetchCart={fetchCart}
-              label="Código postal"
-              category="shipping"
-              type="zip"
-              width={50}
-            />
-            <CheckoutInput
-              cart={cart}
-              fetchCart={fetchCart}
-              label="Telefono"
-              category="shipping"
-              type="phone"
-              width={50}
-            />
-          </div>
-          <button onClick={() => setStep(3)} className="primaryButton">
+          <div className="formContainer"></div>
+          <button onClick={() => handleSubmit()} className="primaryButton">
             Continuar
           </button>
         </div>
