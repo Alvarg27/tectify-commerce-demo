@@ -54,6 +54,7 @@ export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
     }
     fetchCart();
     fetchShippingMethods();
+    setError(null);
   }, [step]);
 
   useEffect(() => {
