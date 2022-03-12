@@ -138,6 +138,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="nombre"
             />
             <CheckoutInput
               valid={valid}
@@ -153,6 +154,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="apellido"
             />
             <CheckoutInput
               valid={valid}
@@ -168,6 +170,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="direccion"
             />
             <CheckoutInput
               valid={valid}
@@ -183,6 +186,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="colonia"
             />
             <CheckoutSelect
               valid={valid}
@@ -200,6 +204,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               submitFail={submitFail}
               options={countryOptions}
               defaultOption="Selecciona un país"
+              id="pais"
             />
             <CheckoutSelect
               valid={valid}
@@ -217,6 +222,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               submitFail={submitFail}
               options={stateOptions}
               defaultOption="Selecciona un estado"
+              id="estado"
             />
             <CheckoutInput
               valid={valid}
@@ -232,6 +238,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="ciudad"
             />
             <CheckoutInput
               valid={valid}
@@ -247,6 +254,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="zip"
             />
             <CheckoutInput
               valid={valid}
@@ -262,6 +270,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="telefono"
             />
           </div>
           <button

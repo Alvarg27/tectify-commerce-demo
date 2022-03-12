@@ -101,6 +101,7 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="email"
             />
           </div>
           <button
