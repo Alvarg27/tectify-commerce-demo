@@ -125,6 +125,7 @@ export default function PaymentForm({ fetchCart, step }) {
           <div className={styles.stripeContainer}>
             <div style={{ margin: "auto 0" }} id="card-element-id"></div>
           </div>
+          {cardError ? <p className="errorMessage">{cardError}</p> : ""}
           <p
             style={{
               margin: "10px 0 0 0",
@@ -141,7 +142,6 @@ export default function PaymentForm({ fetchCart, step }) {
           >
             Pagar
           </button>
-          {cardError ? <p className="errorMessage">{cardError}</p> : ""}
         </div>
       ) : (
         ""
