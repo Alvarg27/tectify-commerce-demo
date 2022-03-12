@@ -33,7 +33,9 @@ export default function PaymentForm({ fetchCart, step }) {
             },
           },
         },
-        onChange: (event) => {},
+        onChange: (event) => {
+          setCardError(null);
+        },
         onReady: (event) => {
           // optional, called when the Element is fully rendered
         },
@@ -94,6 +96,7 @@ export default function PaymentForm({ fetchCart, step }) {
 
   useEffect(() => {
     stripeElement();
+    setCardError(null);
   }, [step]);
 
   useEffect(() => {

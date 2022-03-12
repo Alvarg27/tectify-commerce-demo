@@ -138,6 +138,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="input_first_name"
             />
             <CheckoutInput
               valid={valid}
@@ -153,6 +154,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="input_last_name"
             />
             <CheckoutInput
               valid={valid}
@@ -168,6 +170,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="input_address"
             />
             <CheckoutInput
               valid={valid}
@@ -183,21 +186,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
-            />
-            <CheckoutInput
-              valid={valid}
-              checkValid={checkValid}
-              orderData={orderData}
-              setOrderData={setOrderData}
-              fetchCart={fetchCart}
-              cart={cart}
-              label="Municipio"
-              category="shipping"
-              type="city"
-              width={100}
-              errorMessage={error}
-              setErrorMessage={setError}
-              submitFail={submitFail}
+              id="colonia"
             />
             <CheckoutSelect
               valid={valid}
@@ -215,6 +204,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               submitFail={submitFail}
               options={countryOptions}
               defaultOption="Selecciona un país"
+              id="input_country"
             />
             <CheckoutSelect
               valid={valid}
@@ -232,6 +222,23 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               submitFail={submitFail}
               options={stateOptions}
               defaultOption="Selecciona un estado"
+              id="input_state"
+            />
+            <CheckoutInput
+              valid={valid}
+              checkValid={checkValid}
+              orderData={orderData}
+              setOrderData={setOrderData}
+              fetchCart={fetchCart}
+              cart={cart}
+              label="Municipio"
+              category="shipping"
+              type="city"
+              width={100}
+              errorMessage={error}
+              setErrorMessage={setError}
+              submitFail={submitFail}
+              id="input_city"
             />
             <CheckoutInput
               valid={valid}
@@ -247,6 +254,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="input_zip"
             />
             <CheckoutInput
               valid={valid}
@@ -262,10 +270,11 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="input_phone"
             />
           </div>
           <button
-            style={{ margin: "15px 0 0 0" }}
+            style={{ margin: "15px 0 0 0", width: "100%" }}
             onClick={() => handleSubmit()}
             className="primaryButton"
           >

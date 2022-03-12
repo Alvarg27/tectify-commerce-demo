@@ -11,15 +11,6 @@ export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
   const [shippingMethods, setShippingMethods] = useState();
   const stepNumber = 3;
   const [stepStatus, setStepStatus] = useState();
-  useEffect(() => {
-    if (step === stepNumber) {
-      setStepStatus("current");
-    } else if (step < stepNumber) {
-      setStepStatus("pending");
-    } else if (step > stepNumber) {
-      setStepStatus("completed");
-    }
-  }, [step]);
 
   const fetchShippingMethods = async () => {
     try {
@@ -54,11 +45,15 @@ export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
   };
 
   useEffect(() => {
-    fetchShippingMethods();
-  }, [step]);
-
-  useEffect(() => {
+    if (step === stepNumber) {
+      setStepStatus("current");
+    } else if (step < stepNumber) {
+      setStepStatus("pending");
+    } else if (step > stepNumber) {
+      setStepStatus("completed");
+    }
     fetchCart();
+    fetchShippingMethods();
   }, [step]);
 
   useEffect(() => {
@@ -68,6 +63,14 @@ export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
         : ""
     );
   }, [fetchCart]);
+
+  useEffect(() => {
+    if (selectedMethod) {
+      setError(null);
+    } else {
+      return;
+    }
+  }, [selectedMethod]);
 
   return (
     <div className={styles.shippingMethod}>
@@ -107,7 +110,7 @@ export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
           </div>
           <p className="errorMessage">{error}</p>
           <button
-            style={{ margin: "15px 0 0 0" }}
+            style={{ margin: "15px 0 0 0", width: "100%" }}
             onClick={() => handleSubmit()}
             className="primaryButton"
           >

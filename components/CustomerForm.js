@@ -101,10 +101,11 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
               errorMessage={error}
               setErrorMessage={setError}
               submitFail={submitFail}
+              id="input_email"
             />
           </div>
           <button
-            style={{ margin: "15px 0 0 0" }}
+            style={{ margin: "15px 0 0 0", width: "100%" }}
             onClick={() => handleSubmit()}
             className="primaryButton"
           >
