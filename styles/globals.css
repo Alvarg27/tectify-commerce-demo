@@ -94,4 +94,7 @@ button {
   padding: 0 15px;
   border-radius: 7px;
   margin: 30px 0;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
 }

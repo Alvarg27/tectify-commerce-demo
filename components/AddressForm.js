@@ -472,7 +472,7 @@ export default function AddressForm({
             borderColor: template.borderColor,
           }}
         >
-          <div className="row">
+          <div className="row" style={{ margin: "auto 0" }}>
             <div style={{ display: "flex", margin: "0 30px 0 0" }}>
               <p style={{ color: "grey", margin: "auto 10px auto auto" }}>
                 Envío

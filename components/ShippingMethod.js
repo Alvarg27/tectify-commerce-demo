@@ -144,7 +144,7 @@ export default function ShippingMethod({
             borderColor: template.borderColor,
           }}
         >
-          <div className="row">
+          <div className="row" style={{ margin: "auto 0" }}>
             <div style={{ display: "flex" }}>
               <p style={{ color: "grey", margin: "auto 10px auto auto" }}>
                 Envío

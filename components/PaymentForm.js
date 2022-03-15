@@ -16,10 +16,20 @@ export default function PaymentForm({
 }) {
   const [focused, setFocused] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [processingPayment, setProcessingPayment] = useState(false);
+  const [processingOrder, setProcessingOrder] = useState(false);
   const [hovered, setHovered] = useState(false);
   const router = useRouter();
   const stepNumber = 4;
   const [stepStatus, setStepStatus] = useState();
+
+  const renderProcessingText = () => {
+    if (processingPayment) {
+      return "Procesando tu pago";
+    } else if (processingOrder) {
+      return "Procesando tu pedido";
+    }
+  };
 
   useEffect(() => {
     if (step === stepNumber) {
@@ -76,28 +86,12 @@ export default function PaymentForm({
     });
   };
 
-  const checkCard = async () => {
-    const response = await swell.payment.tokenize({
-      card: {
-        onError: (err) => {
-          console.log(err);
-          setCardError(err.message);
-
-          // inform the customer there was an error
-        },
-        onSuccess: () => {
-          //finally submit the form
-        },
-      },
-      // ideal: { onError: (err) => {}, ...}
-    });
-  };
-
   const tokenizeCard = async () => {
     if (loading || mobileOrderSummary) {
       return;
     } else {
       setLoading(true);
+      setProcessingPayment(true);
       const response = await swell.payment.tokenize({
         card: {
           onError: (err) => {
@@ -108,6 +102,7 @@ export default function PaymentForm({
             // inform the customer there was an error
           },
           onSuccess: () => {
+            setProcessingPayment(false);
             submitOrder();
             //finally submit the form
           },
@@ -119,6 +114,7 @@ export default function PaymentForm({
   };
 
   const submitOrder = async () => {
+    setProcessingOrder(true);
     try {
       const response = await swell.cart.submitOrder();
       router.push(`/order-confirmation`);
@@ -132,6 +128,7 @@ export default function PaymentForm({
   };
   useEffect(() => {
     setLoading(false);
+    setProcessingOrder(false);
   }, []);
 
   useEffect(() => {
@@ -204,7 +201,7 @@ export default function PaymentForm({
           <LoadingButton
             loading={loading}
             name="Pagar"
-            loadingText="Procesando"
+            loadingText={renderProcessingText()}
             width="100%"
             action={tokenizeCard}
             template={template}

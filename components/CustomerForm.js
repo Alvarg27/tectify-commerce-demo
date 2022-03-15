@@ -138,7 +138,7 @@ export default function CustomerForm({
             borderColor: template.borderColor,
           }}
         >
-          <div className="row">
+          <div className="row" style={{ margin: "auto 0" }}>
             <div style={{ display: "flex" }}>
               <p style={{ color: "grey", margin: "auto 10px auto auto" }}>
                 Contacto
@@ -146,7 +146,7 @@ export default function CustomerForm({
               <p style={{ color: template.textColor }}>
                 {cart && cart.account && cart.account.email
                   ? cart.account.email
-                  : ""}
+                  : "--"}
               </p>
             </div>
             <LinkButton
