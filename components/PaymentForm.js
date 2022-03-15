@@ -14,7 +14,9 @@ export default function PaymentForm({
   template,
   mobileOrderSummary,
 }) {
+  const [focused, setFocused] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const router = useRouter();
   const stepNumber = 4;
   const [stepStatus, setStepStatus] = useState();
@@ -52,9 +54,11 @@ export default function PaymentForm({
         },
         onFocus: (event) => {
           // optional, called when the Element gains focus
+          setFocused(true);
         },
         onBlur: (event) => {
           checkCard();
+          setFocused(false);
           // optional, called when the Element loses focus
         },
         onEscape: (event) => {
@@ -154,16 +158,12 @@ export default function PaymentForm({
           className="stepNumber"
           style={{
             background:
-              stepStatus === "pending" ? "lightgray" : template.primaryColor,
+              stepStatus === "pending"
+                ? template.borderColor
+                : template.primaryColor,
           }}
         >
-          <p
-            style={{
-              color: stepStatus === "pending" ? template.inputColor : "white",
-            }}
-          >
-            4
-          </p>
+          <p>4</p>
         </div>
         <h3 style={{ color: template.textColor }}>Información de pago</h3>
       </div>
@@ -173,10 +173,18 @@ export default function PaymentForm({
             Tarjeta de crédito / débito
           </label>
           <div
+            onMouseOver={() => setHovered(true)}
+            onMouseOut={() => setHovered(false)}
             className={styles.stripeContainer}
             style={{
               background: template.secondaryBackgroundColor,
               borderColor: template.borderColor,
+              transition: "0.3s",
+
+              borderColor:
+                hovered || focused
+                  ? template.primaryColor
+                  : template.borderColor,
             }}
           >
             <div style={{ margin: "auto 0" }} id="card-element-id"></div>

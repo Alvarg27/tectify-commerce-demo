@@ -26,7 +26,7 @@ export default function OrderConfirmation({
   });
   const fetchOrder = async () => {
     try {
-      const response = await swell.cart.getOrder("6230deb652d44c0132da524f");
+      const response = await swell.cart.getOrder();
       console.log(response);
       setOrder(response);
     } catch (err) {

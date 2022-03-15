@@ -278,19 +278,15 @@ export default function AddressForm({
           className="stepNumber"
           style={{
             background:
-              stepStatus === "pending" ? "lightgray" : template.primaryColor,
+              stepStatus === "pending"
+                ? template.borderColor
+                : template.primaryColor,
           }}
         >
           {stepStatus === "completed" ? (
             <FaCheck style={{ color: "white", margin: "auto" }} />
           ) : (
-            <p
-              style={{
-                color: stepStatus === "pending" ? template.inputColor : "white",
-              }}
-            >
-              2
-            </p>
+            <p>2</p>
           )}
         </div>
         <h3 style={{ color: template.textColor }}>Información del envío</h3>
