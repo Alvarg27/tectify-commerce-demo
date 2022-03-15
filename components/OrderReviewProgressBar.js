@@ -94,7 +94,7 @@ export default function OrderReviewProgressBar({ order, template }) {
                   : template.textColor,
             }}
           >
-            Procesando
+            Preparando
           </label>
           <label
             style={{

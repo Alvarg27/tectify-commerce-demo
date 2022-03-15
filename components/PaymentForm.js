@@ -176,7 +176,7 @@ export default function PaymentForm({
             onMouseOut={() => setHovered(false)}
             className={styles.stripeContainer}
             style={{
-              background: template.secondaryBackgroundColor,
+              background: template.inputColor,
               borderColor: template.borderColor,
               transition: "0.3s",
 
