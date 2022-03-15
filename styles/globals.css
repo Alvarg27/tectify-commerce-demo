@@ -19,7 +19,6 @@ h3 {
 }
 
 .primaryButton {
-  background: #0077ff;
   border: none;
   padding: 0 30px;
   height: 50px;
@@ -29,19 +28,13 @@ h3 {
   cursor: pointer;
   transition: 0.3s;
 }
-.primaryButton:hover {
-  background: #0067dd;
-}
+
 .linkButton {
   border: none;
   padding: 0;
   background: none;
-  color: #0077ff;
   margin: 0;
   cursor: pointer;
-}
-.linkButton:hover {
-  color: #0056b8;
   transition: 0.3s;
 }
 
@@ -79,7 +72,6 @@ button {
   margin: auto 0;
   width: 30px;
   height: 30px;
-  background: #0077ff;
   display: flex;
   border-radius: 50%;
 }
