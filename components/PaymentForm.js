@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import LoadingButton from "./LoadingButton";
 
-export default function PaymentForm({ fetchCart, step }) {
-  const [loading, setLoading] = useState();
+export default function PaymentForm({ fetchCart, step, order, setOrder }) {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const stepNumber = 4;
   const [stepStatus, setStepStatus] = useState();
@@ -75,6 +75,7 @@ export default function PaymentForm({ fetchCart, step }) {
           onError: (err) => {
             console.log(err);
             setCardError(err.message);
+            setLoading(false);
 
             // inform the customer there was an error
           },
@@ -85,23 +86,25 @@ export default function PaymentForm({ fetchCart, step }) {
         },
         // ideal: { onError: (err) => {}, ...}
       });
+      fetchCart();
     }
-    setLoading(false);
   };
 
   const submitOrder = async () => {
     try {
       const response = await swell.cart.submitOrder();
-      router.push("/order-confirmation");
-      console.log(response);
+      router.push(`/order-confirmation`);
       fetchCart();
     } catch (err) {
       console.log(err.message);
-      alert("ocurrio un error al procesar su orden");
+      alert("ocurrio un error al procesar su orden, intentelo más tarde");
       router.push("/");
       fetchCart();
     }
   };
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   useEffect(() => {
     stripeElement();

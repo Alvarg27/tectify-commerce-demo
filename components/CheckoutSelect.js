@@ -4,6 +4,7 @@ import swell from "swell-js";
 import { useEffect } from "react";
 import { setRevalidateHeaders } from "next/dist/server/send-payload";
 import styles from "../styles/CheckoutSelect.module.css";
+import { FaCaretDown } from "react-icons/fa";
 
 export default function CheckoutSelect({
   label,
@@ -82,6 +83,7 @@ export default function CheckoutSelect({
           className={styles.confirmationDot}
           style={{ opacity: valid[type] ? 1 : 0 }}
         ></div>
+        <FaCaretDown className={styles.arrowIcon} />
         {(!focused && !valid[type] && isEdited) ||
         errorMessage ||
         (submitFail && !focused && !valid[type]) ? (

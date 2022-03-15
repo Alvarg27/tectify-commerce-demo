@@ -13,6 +13,8 @@
   border: 1px solid lightgray;
   border-radius: 7px;
   padding: 0 10px;
+  font-size: 16px;
+  background: none;
 }
 .checkoutSelect .container select:focus {
   border-color: #0077ff;
@@ -28,9 +30,17 @@
   border-radius: 50%;
   right: 0;
   top: 45px;
-  right: 15px;
+  right: 40px;
   opacity: 0;
   transition: 0.3s;
+}
+.checkoutSelect .arrowIcon {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  font-size: 20px;
+  color: lightgrey;
+  pointer-events: none;
 }
 
 @media all and (max-width: 768px) {

@@ -134,11 +134,11 @@ export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
               <p>
                 {cart && cart.shipping && cart.shipping.service
                   ? cart.shipping.service_name
-                  : ""}{" "}
+                  : "--"}{" "}
                 {`($${
                   cart && cart.shipping && cart.shipping.service
                     ? cart.shipping.price
-                    : ""
+                    : "--"
                 })`}
               </p>
             </div>

@@ -15,6 +15,7 @@ function MyApp({ Component, pageProps }) {
   const [slideCart, setSlideCart] = useState();
   const [cart, setCart] = useState();
   const [isCheckout, setIsCheckout] = useState(false);
+  const [order, setOrder] = useState();
 
   const fetchCart = async () => {
     const response = await swell.cart.get();
@@ -30,10 +31,12 @@ function MyApp({ Component, pageProps }) {
   };
 
   useEffect(() => {
-    fetchProducts();
     fetchCart();
+    fetchProducts();
     setMobileOrderSummary(false);
   }, []);
+
+  console.log(order);
 
   return (
     <Layout
@@ -54,6 +57,8 @@ function MyApp({ Component, pageProps }) {
         setMobileOrderSummary={setMobileOrderSummary}
         mobileOrderSummary={mobileOrderSummary}
         setIsCheckout={setIsCheckout}
+        order={order}
+        setOrder={setOrder}
       />
     </Layout>
   );
