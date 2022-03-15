@@ -21,7 +21,7 @@ export default function LoadingButton({
     } else {
       setBackgroundColor(template.primaryColor);
     }
-  }, [hovered, loading]);
+  }, [hovered, loading, template]);
   return (
     <button
       onClick={() => action()}

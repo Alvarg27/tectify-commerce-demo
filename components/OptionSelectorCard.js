@@ -23,7 +23,7 @@ export default function OptionSelectorCard({
       setBorderColor("lightgray");
       setTextColor("black");
     }
-  }, [selectedOptions, hovered]);
+  }, [selectedOptions, hovered, template]);
 
   return (
     <div style={{ width: "33.3%" }}>
