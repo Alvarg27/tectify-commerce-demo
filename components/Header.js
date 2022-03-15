@@ -37,7 +37,6 @@ export default function Header({
             <p className={styles.subLogo}>demoshop</p>
           </div>
         </Link>
-        <Search />
         <div className={styles.iconsContainer}>
           {isCheckout ? (
             " "
