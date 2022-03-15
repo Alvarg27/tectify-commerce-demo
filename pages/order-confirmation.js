@@ -9,7 +9,7 @@ import { FaCcVisa, FaCcAmex, FaCcMastercard } from "react-icons/fa";
 import Link from "next/link";
 import OrderReviewProgressBar from "../components/OrderReviewProgressBar";
 
-export default function orderConfirmation({
+export default function OrderConfirmation({
   setOrder,
   order,
   setIsCheckout,
