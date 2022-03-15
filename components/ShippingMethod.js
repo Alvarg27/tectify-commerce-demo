@@ -138,7 +138,7 @@ export default function ShippingMethod({
         <div
           className="dataReviewCard"
           style={{
-            background: template.secondaryBackgroundColor,
+            background: template.inputColor,
             borderColor: template.borderColor,
           }}
         >

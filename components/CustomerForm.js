@@ -132,7 +132,7 @@ export default function CustomerForm({
         <div
           className="dataReviewCard"
           style={{
-            background: template.secondaryBackgroundColor,
+            background: template.inputColor,
             borderColor: template.borderColor,
           }}
         >

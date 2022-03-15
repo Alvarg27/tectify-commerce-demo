@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "../styles/DarkModeToggle.module.css";
 import { FaMoon } from "react-icons/fa";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -22,32 +21,45 @@ export default function DarkModeToggle({
   }, [darkMode]);
   return (
     <div
+      onClick={() => setDarkMode(!darkMode)}
       style={{
+        position: "relative",
         height: "30px",
-        width: "60px",
-        background: "red",
-        borderRadius: "30%",
+        width: "50px",
+        background: template.secondaryBackgroundColor,
+        border: `1px solid ${template.borderColor}`,
+        borderRadius: "30px",
+        margin: "auto auto auto 60px",
+        cursor: "pointer",
       }}
     >
       <div
         style={{
           margin: "0",
           display: "flex",
+          height: "30px",
+          width: "30px",
+          display: "flex",
+          borderRadius: "30px",
+          background: template.primaryColor,
+          position: "absolute",
+          left: darkMode ? 20 : 0,
+          transition: "0.3s",
         }}
-        onClick={() => setDarkMode(!darkMode)}
       >
         {darkMode ? (
           <FiSun
             style={{
-              color: template.textColor,
-              margin: "auto 0 auto 30px",
+              color: "white",
+              margin: "auto",
             }}
           />
         ) : (
           <FaMoon
             style={{
-              color: template.textColor,
-              margin: "auto 0 auto 30px",
+              color: "white",
+              margin: "auto",
+              fontSize: "14px",
             }}
           />
         )}

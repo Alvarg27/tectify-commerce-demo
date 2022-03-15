@@ -7,7 +7,7 @@ import styles from "../styles/Header.module.css";
 import SlideCart from "./SlideCart";
 import { useEffect } from "react";
 import { FiSun } from "react-icons/fi";
-import DarkModeToggle from "./darkModeToggle";
+import DarkModeToggle from "./DarkModeToggle";
 
 export default function Header({
   setSlideCart,

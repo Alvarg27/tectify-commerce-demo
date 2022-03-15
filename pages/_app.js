@@ -13,7 +13,7 @@ const lightModeTemplate = {
   primaryColor: "#0077ff",
   primaryColorHover: "#0067dd",
   backgroundColor: "white",
-  secondaryBackgroundColor: "rgb(250,250,250)",
+  secondaryBackgroundColor: "rgb(247,247,247)",
   textColor: "black",
   secondaryTextColor: "grey",
   borderColor: "lightgrey",
