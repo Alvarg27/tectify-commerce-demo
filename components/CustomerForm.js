@@ -91,7 +91,13 @@ export default function CustomerForm({
           {stepStatus === "completed" ? (
             <FaCheck style={{ color: "white", margin: "auto" }} />
           ) : (
-            <p>1</p>
+            <p
+              style={{
+                color: stepStatus === "pending" ? template.inputColor : "white",
+              }}
+            >
+              1
+            </p>
           )}
         </div>
         <h3 style={{ color: template.textColor }}>Información del cliente</h3>

@@ -97,7 +97,13 @@ export default function ShippingMethod({
           {stepStatus === "completed" ? (
             <FaCheck style={{ color: "white", margin: "auto" }} />
           ) : (
-            <p>3</p>
+            <p
+              style={{
+                color: stepStatus === "pending" ? template.inputColor : "white",
+              }}
+            >
+              3
+            </p>
           )}
         </div>
 

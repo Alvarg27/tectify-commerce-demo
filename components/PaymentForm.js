@@ -140,7 +140,13 @@ export default function PaymentForm({
               stepStatus === "pending" ? "lightgray" : template.primaryColor,
           }}
         >
-          <p>4</p>
+          <p
+            style={{
+              color: stepStatus === "pending" ? template.inputColor : "white",
+            }}
+          >
+            4
+          </p>
         </div>
         <h3 style={{ color: template.textColor }}>Información de pago</h3>
       </div>
