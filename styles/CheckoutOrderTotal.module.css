@@ -1,0 +1,21 @@
+.checkoutOrderTotal {
+  margin-top: 30px;
+}
+.checkoutOrderTotal .row {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0;
+}
+.checkoutOrderTotal .row p {
+  margin: auto 0;
+}
+.checkoutOrderTotal .rowSub {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 20px 0px;
+}
+.checkoutOrderTotal .rowSub p {
+  margin: auto 0;
+  font-size: 14px;
+  color: gray;
+}
