@@ -10,6 +10,11 @@ swell.init(
 );
 
 function MyApp({ Component, pageProps }) {
+  const [template, setTemplate] = useState({
+    primaryColor: "#0077ff",
+    primaryColorHover: "#0067dd",
+  });
+
   const [mobileOrderSummary, setMobileOrderSummary] = useState(false);
   const [products, setProducts] = useState();
   const [slideCart, setSlideCart] = useState();
@@ -47,6 +52,8 @@ function MyApp({ Component, pageProps }) {
       setMobileOrderSummary={setMobileOrderSummary}
       mobileOrderSummary={mobileOrderSummary}
       isCheckout={isCheckout}
+      template={template}
+      setTemplate={setTemplate}
     >
       <Component
         {...pageProps}
@@ -59,6 +66,7 @@ function MyApp({ Component, pageProps }) {
         setIsCheckout={setIsCheckout}
         order={order}
         setOrder={setOrder}
+        template={template}
       />
     </Layout>
   );

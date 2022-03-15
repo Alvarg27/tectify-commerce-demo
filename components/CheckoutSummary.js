@@ -4,7 +4,7 @@ import CheckoutOrderTotal from "./CheckoutOrderTotal";
 import CheckoutProductCard from "./CheckoutProductCard";
 import CouponCode from "./CouponCode";
 
-export default function CheckoutSummary({ cart, fetchCart }) {
+export default function CheckoutSummary({ cart, fetchCart, template }) {
   return (
     <div className={styles.checkoutSummary}>
       <div className={styles.container}>
@@ -16,12 +16,13 @@ export default function CheckoutSummary({ cart, fetchCart }) {
                 item={item}
                 fetchCart={fetchCart}
                 cart={cart}
+                template={template}
               />
             ))
           : ""}
-        <CouponCode />
+        <CouponCode template={template} />
         {!cart || cart.item_quantity === 0 ? <p>Tu carrito esta vacio.</p> : ""}
-        <CheckoutOrderTotal cart={cart} />
+        <CheckoutOrderTotal cart={cart} template={template} />
       </div>
     </div>
   );

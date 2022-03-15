@@ -8,13 +8,18 @@ import OrderConfirmationTotal from "../components/OrderConfirmationTotal";
 import { FaCcVisa, FaCcAmex, FaCcMastercard } from "react-icons/fa";
 import Link from "next/link";
 import OrderReviewProgressBar from "../components/OrderReviewProgressBar";
+import LoadingButton from "../components/LoadingButton";
+import { useRouter } from "next/router";
 
 export default function OrderConfirmation({
   setOrder,
   order,
   setIsCheckout,
   fetchCart,
+  template,
 }) {
+  const router = useRouter();
+  const [loading, setLoading] = useState();
   const [title, setTitle] = useState({
     title: "¡Gracias por tu compra!",
     subtitle: "Estamos preparando tu pedido y te avisaremos cuando se envíe.",
@@ -27,6 +32,12 @@ export default function OrderConfirmation({
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const returnHome = () => {
+    setLoading(true);
+    router.push("/");
+    setLoading(false);
   };
 
   const renderTitle = () => {
@@ -97,7 +108,7 @@ export default function OrderConfirmation({
       <div className={styles.container}>
         <div className={styles.title}>
           {order && order.paid === true ? (
-            <p style={{ color: "#0077ff" }}>Pago exitoso</p>
+            <p style={{ color: template.primaryColor }}>Pago exitoso</p>
           ) : (
             ""
           )}
@@ -106,10 +117,12 @@ export default function OrderConfirmation({
         </div>
         <div className={styles.orderNumber}>
           <p>Número de pedido</p>
-          <p style={{ color: "#0077ff" }}>{order ? order.number : "--"}</p>
+          <p style={{ color: template.primaryColor }}>
+            {order ? order.number : "--"}
+          </p>
         </div>
         <div className="line" />
-        <OrderReviewProgressBar order={order} />
+        <OrderReviewProgressBar order={order} template={template} />
         <div className="line" />
         <div className={styles.cardContainer}>
           {order
@@ -151,12 +164,12 @@ export default function OrderConfirmation({
         </div>
         <div className="line" />
         <Link href={"/"}>
-          <button
-            style={{ margin: "30px 0 0 0", width: "100%" }}
-            className="primaryButton"
-          >
-            Seguir Comprando
-          </button>
+          <LoadingButton
+            action={() => returnHome()}
+            name="Seguir comprando"
+            width="100%"
+            template={template}
+          />
         </Link>
       </div>
     </div>

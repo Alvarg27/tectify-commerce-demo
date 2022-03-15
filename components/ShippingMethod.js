@@ -5,8 +5,15 @@ import swell from "swell-js";
 import { FaCheck } from "react-icons/fa";
 import { set } from "swell-js/dist/utils";
 import LoadingButton from "./LoadingButton";
+import LinkButton from "./LinkButton";
 
-export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
+export default function ShippingMethod({
+  step,
+  fetchCart,
+  setStep,
+  cart,
+  template,
+}) {
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
   const [selectedMethod, setSelectedMethod] = useState();
@@ -83,7 +90,8 @@ export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
         <div
           className="stepNumber"
           style={{
-            background: stepStatus === "pending" ? "lightgray" : "#0077ff",
+            background:
+              stepStatus === "pending" ? "lightgray" : template.primaryColor,
           }}
         >
           {stepStatus === "completed" ? (
@@ -109,6 +117,7 @@ export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
                     selectedMethod={selectedMethod}
                     handleSelect={handleSelect}
                     fetchCart={fetchCart}
+                    template={template}
                   />
                 ))
               : ""}
@@ -119,6 +128,7 @@ export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
             name="Continuar"
             width="100%"
             action={handleSubmit}
+            template={template}
           />
         </div>
       ) : (
@@ -142,9 +152,12 @@ export default function ShippingMethod({ step, fetchCart, setStep, cart }) {
                 })`}
               </p>
             </div>
-            <button onClick={() => setStep(3)} className="linkButton">
-              Editar
-            </button>
+            <LinkButton
+              action={setStep}
+              actionParam={3}
+              name="Editar"
+              template={template}
+            />
           </div>
         </div>
       ) : (

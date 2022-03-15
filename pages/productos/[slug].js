@@ -34,6 +34,7 @@ export default function ProductPage({
   fetchCart,
   setSlideCart,
   setIsCheckout,
+  template,
 }) {
   useEffect(() => {
     setIsCheckout(false);
@@ -44,6 +45,7 @@ export default function ProductPage({
         product={product}
         fetchCart={fetchCart}
         setSlideCart={setSlideCart}
+        template={template}
       />
     </div>
   );

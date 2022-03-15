@@ -11,7 +11,13 @@ import { useState, useEffect } from "react";
 import swell from "swell-js";
 import { useRouter } from "next/router";
 
-export default function CheckoutForm({ cart, fetchCart, order, setOrder }) {
+export default function CheckoutForm({
+  cart,
+  fetchCart,
+  order,
+  setOrder,
+  template,
+}) {
   const router = useRouter();
   const [step, setStep] = useState(1);
 
@@ -51,18 +57,21 @@ export default function CheckoutForm({ cart, fetchCart, order, setOrder }) {
           fetchCart={fetchCart}
           step={step}
           setStep={setStep}
+          template={template}
         />
         <AddressForm
           cart={cart}
           fetchCart={fetchCart}
           step={step}
           setStep={setStep}
+          template={template}
         />
         <ShippingMethod
           cart={cart}
           fetchCart={fetchCart}
           step={step}
           setStep={setStep}
+          template={template}
         />
         <PaymentForm
           cart={cart}
@@ -71,6 +80,7 @@ export default function CheckoutForm({ cart, fetchCart, order, setOrder }) {
           setStep={setStep}
           order={order}
           setOrder={setOrder}
+          template={template}
         />
 
         <p className={styles.powered}>

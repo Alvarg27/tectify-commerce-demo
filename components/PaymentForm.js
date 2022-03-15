@@ -6,7 +6,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import LoadingButton from "./LoadingButton";
 
-export default function PaymentForm({ fetchCart, step, order, setOrder }) {
+export default function PaymentForm({
+  fetchCart,
+  step,
+  order,
+  setOrder,
+  template,
+}) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const stepNumber = 4;
@@ -128,7 +134,8 @@ export default function PaymentForm({ fetchCart, step, order, setOrder }) {
         <div
           className="stepNumber"
           style={{
-            background: stepStatus === "pending" ? "lightgray" : "#0077ff",
+            background:
+              stepStatus === "pending" ? "lightgray" : template.primaryColor,
           }}
         >
           <p>4</p>
@@ -157,6 +164,7 @@ export default function PaymentForm({ fetchCart, step, order, setOrder }) {
             loadingText="Procesando"
             width="100%"
             action={tokenizeCard}
+            template={template}
           />
         </div>
       ) : (

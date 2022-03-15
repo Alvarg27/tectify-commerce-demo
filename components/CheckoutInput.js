@@ -20,9 +20,11 @@ export default function CheckoutInput({
   setErrorMessage,
   submitFail,
   id,
+  template,
 }) {
   const [isEdited, setIsEdited] = useState(false);
-  const [focused, setFocused] = useState();
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
   const [input, setInput] = useState();
   const cartValue =
     cart && cart[category] && cart[category][type]
@@ -69,12 +71,18 @@ export default function CheckoutInput({
       <div className={styles.container}>
         <label>{label}</label>
         <input
+          style={{
+            borderColor:
+              hovered || focused ? template.primaryColor : "lightgray",
+          }}
           id={id}
           value={isEdited ? input : cartValue}
           onClick={(e) => handleInput(e)}
           onChange={(e) => handleInput(e)}
           onFocus={() => handleFocus(true)}
           onBlur={() => handleBlur(false)}
+          onMouseOver={() => setHovered(true)}
+          onMouseOut={() => setHovered(false)}
         />
         <div
           className={styles.confirmationDot}

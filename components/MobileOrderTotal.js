@@ -2,13 +2,20 @@ import styles from "../styles/MobileOrderTotal.module.css";
 
 import React from "react";
 
-export default function MobileOrderTotal({ cart, setMobileOrderSummary }) {
+export default function MobileOrderTotal({
+  cart,
+  setMobileOrderSummary,
+  template,
+}) {
   return (
     <div
       className={styles.mobileOrderTotal}
       onClick={() => setMobileOrderSummary(true)}
     >
-      <div className={styles.container}>
+      <div
+        className={styles.container}
+        style={{ background: template.primaryColor }}
+      >
         <div className={styles.row}>
           <div className={styles.imageContainer}>
             {cart ? <img src={cart.items[0].product.images[0].file.url} /> : ""}

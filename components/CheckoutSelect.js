@@ -22,7 +22,9 @@ export default function CheckoutSelect({
   submitFail,
   options,
   defaultOption,
+  template,
 }) {
+  const [hovered, setHovered] = useState(false);
   const [isEdited, setIsEdited] = useState(false);
   const [focused, setFocused] = useState();
   const [input, setInput] = useState();
@@ -63,12 +65,18 @@ export default function CheckoutSelect({
       <div className={styles.container}>
         <label>{label}</label>
         <select
+          style={{
+            borderColor:
+              hovered || focused ? template.primaryColor : "lightgray",
+          }}
           type={type}
           value={isEdited ? input : cartValue}
           onClick={(e) => handleInput(e)}
           onChange={(e) => handleInput(e)}
           onFocus={() => handleFocus(true)}
           onBlur={() => handleBlur(false)}
+          onMouseOver={() => setHovered(true)}
+          onMouseOut={() => setHovered(false)}
         >
           <option value="" disabled selected>
             {defaultOption}

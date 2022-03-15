@@ -2,8 +2,14 @@ import styles from "../styles/CheckoutProductCard.module.css";
 import swell from "swell-js";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import React from "react";
+import LinkButton from "./LinkButton";
 
-export default function CheckoutProductCard({ item, fetchCart, cart }) {
+export default function CheckoutProductCard({
+  item,
+  fetchCart,
+  cart,
+  template,
+}) {
   const handleDelete = async (id) => {
     if (cart.items.length > 1) {
       const response = await swell.cart.removeItem(id);
@@ -62,14 +68,12 @@ export default function CheckoutProductCard({ item, fetchCart, cart }) {
               </div>
             </div>
             {cart.items.length > 1 ? (
-              <button
-                className="linkButton"
-                onClick={() => {
-                  handleDelete(item.id);
-                }}
-              >
-                Eliminar
-              </button>
+              <LinkButton
+                name="Eliminar"
+                action={handleDelete}
+                template={template}
+                actionParam={item.id}
+              />
             ) : (
               ""
             )}

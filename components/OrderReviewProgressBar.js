@@ -4,7 +4,7 @@ import React from "react";
 import { payment } from "swell-js";
 import { useState, useEffect } from "react";
 
-export default function OrderReviewProgressBar({ order }) {
+export default function OrderReviewProgressBar({ order, template }) {
   const orderStatus = order ? order.status : "";
   const [orderStep, setOrderStep] = useState();
   const [barWidth, setBarWidth] = useState();
@@ -28,14 +28,17 @@ export default function OrderReviewProgressBar({ order }) {
   return (
     <div className={styles.orderReviewProgressBar}>
       <div className={styles.progressBar}>
-        <div className={styles.progress} style={{ width: barWidth }}></div>
+        <div
+          className={styles.progress}
+          style={{ width: barWidth, background: template.primaryColor }}
+        ></div>
       </div>
       {orderStatus === "canceled" ? (
         <div className={styles.labelContainer}>
           <label
             style={{
               textAlign: "left",
-              color: orderStep === 4 ? "#0077ff" : "black",
+              color: orderStep === 4 ? template.primaryColor : "black",
             }}
           >
             Pedido realizado
@@ -43,7 +46,7 @@ export default function OrderReviewProgressBar({ order }) {
           <label
             style={{
               textAlign: "right",
-              color: orderStep === 4 ? "#0077ff" : "black",
+              color: orderStep === 4 ? template.primaryColor : "black",
             }}
           >
             Cancelado
@@ -56,7 +59,7 @@ export default function OrderReviewProgressBar({ order }) {
               textAlign: "left",
               color:
                 orderStep === 1 || orderStep == 2 || orderStep == 3
-                  ? "#0077ff"
+                  ? template.primaryColor
                   : "black",
             }}
           >
@@ -66,7 +69,10 @@ export default function OrderReviewProgressBar({ order }) {
             <label
               style={{
                 textAlign: "center",
-                color: orderStep === 1 || orderStep == 2 ? "#0077ff" : "black",
+                color:
+                  orderStep === 1 || orderStep == 2
+                    ? template.primaryColor
+                    : "black",
               }}
             >
               En espera
@@ -77,7 +83,10 @@ export default function OrderReviewProgressBar({ order }) {
           <label
             style={{
               textAlign: "center",
-              color: orderStep === 1 || orderStep == 3 ? "#0077ff" : "black",
+              color:
+                orderStep === 1 || orderStep == 3
+                  ? template.primaryColor
+                  : "black",
             }}
           >
             Procesando
@@ -85,7 +94,7 @@ export default function OrderReviewProgressBar({ order }) {
           <label
             style={{
               textAlign: "right",
-              color: orderStep === 3 ? "#0077ff" : "black",
+              color: orderStep === 3 ? template.primaryColor : "black",
             }}
           >
             Enviado

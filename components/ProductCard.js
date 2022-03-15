@@ -3,9 +3,19 @@ import styles from "../styles/ProductCard.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function ProductCard({ product }) {
   const [imageHover, setImageHover] = useState(false);
+  const [imageSrc, setImageSrc] = useState(product.images[0].file.url);
+
+  useEffect(() => {
+    if (imageHover && product.images.length > 1) {
+      setImageSrc(product.images[1].file.url);
+    } else {
+      setImageSrc(product.images[0].file.url);
+    }
+  }, [imageHover]);
   return (
     <div className={styles.productCard}>
       <Link href={`/productos/${product.slug}`}>
@@ -15,11 +25,7 @@ export default function ProductCard({ product }) {
               setImageHover(true);
             }}
             onMouseOut={() => setImageHover(false)}
-            src={
-              imageHover
-                ? product.images[1].file.url
-                : product.images[0].file.url
-            }
+            src={imageSrc}
           />
           <div className={styles.textContainer}>
             <div className={styles.column}>

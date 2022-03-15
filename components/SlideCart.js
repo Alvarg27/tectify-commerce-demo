@@ -13,6 +13,7 @@ export default function SlideCart({
   setSlideCart,
   fetchCart,
   cart,
+  template,
 }) {
   const [loading, setLoading] = useState();
   const router = useRouter();
@@ -47,7 +48,12 @@ export default function SlideCart({
         <div className={styles.cardContainer}>
           {cart
             ? cart.items.map((item) => (
-                <CartCard key={item.id} item={item} fetchCart={fetchCart} />
+                <CartCard
+                  key={item.id}
+                  item={item}
+                  fetchCart={fetchCart}
+                  template={template}
+                />
               ))
             : ""}
           {!cart || cart.item_quantity === 0 ? (
@@ -57,19 +63,24 @@ export default function SlideCart({
           )}
         </div>
         <div className="line" style={{ margin: "0 0 0 0" }}></div>
-        <div className={styles.row} style={{ margin: "15px 0" }}>
-          <p>Total:</p>
-          <p>
-            <b>${cart ? cart.sub_total : 0}</b>
-          </p>
-        </div>
+        {cart && cart.item_quantity > 0 ? (
+          <div className={styles.row} style={{ margin: "15px 0" }}>
+            <p>Total:</p>
+            <p>
+              <b>${cart ? cart.sub_total : 0}</b>
+            </p>
+          </div>
+        ) : (
+          ""
+        )}
 
-        {cart ? (
+        {cart && cart.item_quantity > 0 ? (
           <LoadingButton
             loading={loading}
             name="Continuar al pago"
             width="100%"
             action={HandleProccedToCheckout}
+            template={template}
           />
         ) : (
           ""

@@ -13,6 +13,7 @@ export default function ShippingMethodCard({
   handleSelect,
   selectedMethod,
   fetchCart,
+  template,
 }) {
   const [hovered, setHovered] = useState();
 
@@ -25,7 +26,9 @@ export default function ShippingMethodCard({
         onMouseOut={() => setHovered(false)}
         style={{
           borderColor:
-            selectedMethod === id || hovered ? "#0077ff" : "lightgray",
+            selectedMethod === id || hovered
+              ? template.primaryColor
+              : "lightgray",
         }}
       >
         <div className={styles.row}>
@@ -34,6 +37,7 @@ export default function ShippingMethodCard({
             className={styles.checkIcon}
             style={{
               opacity: selectedMethod === id ? "1" : "0",
+              color: template.primaryColor,
             }}
           />
         </div>

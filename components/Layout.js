@@ -14,6 +14,8 @@ export default function Layout({
   mobileOrderSummary,
   setMobileOrderSummary,
   isCheckout,
+  template,
+  setTemplate,
 }) {
   const [overlay, setOverlay] = useState(false);
 
@@ -60,12 +62,14 @@ export default function Layout({
         fetchCart={fetchCart}
         setMobileOrderSummary={setMobileOrderSummary}
         mobileOrderSummary={mobileOrderSummary}
+        template={template}
       />
       <SlideCart
         setSlideCart={setSlideCart}
         slideCart={slideCart}
         cart={cart}
         fetchCart={fetchCart}
+        template={template}
       />
       <Header
         setSlideCart={setSlideCart}
@@ -73,6 +77,8 @@ export default function Layout({
         fetchCart={fetchCart}
         cart={cart}
         isCheckout={isCheckout}
+        template={template}
+        setTemplate={setTemplate}
       />
       {children}
     </div>

@@ -6,14 +6,20 @@ import OptionSelector from "./OptionSelector";
 import swell, { products } from "swell-js";
 import Link from "next/link";
 import LoadingButton from "./LoadingButton";
+import { map } from "swell-js/dist/utils";
 
-export default function SingleProduct({ product, fetchCart, setSlideCart }) {
+export default function SingleProduct({
+  product,
+  fetchCart,
+  setSlideCart,
+  template,
+}) {
   const [loading, setLoading] = useState();
   const [inStock, setInStock] = useState();
   const [selectedVariant, setSelectedVariant] = useState();
   const [selectedOptions, setSelectedOptions] = useState({
-    Color: "Negro",
-    Talla: "Chico",
+    Color: undefined,
+    Talla: undefined,
   });
 
   const handleAddToCart = async () => {
@@ -87,7 +93,7 @@ export default function SingleProduct({ product, fetchCart, setSlideCart }) {
                 <p>Productos</p>
               </Link>
               <p>/</p>
-              <p style={{ color: "#0077ff" }}>{product.name}</p>
+              <p style={{ color: template.primaryColor }}>{product.name}</p>
             </div>
             <div className={styles.row}>
               <h3 className={styles.name}>{product.name}</h3>
@@ -101,6 +107,7 @@ export default function SingleProduct({ product, fetchCart, setSlideCart }) {
                 option={option}
                 updateOptions={updateOptions}
                 selectedOptions={selectedOptions}
+                template={template}
               />
             ))}
             <p className={styles.label}>Descripción</p>
@@ -111,6 +118,7 @@ export default function SingleProduct({ product, fetchCart, setSlideCart }) {
               width="100%"
               action={handleAddToCart}
               loadingText="Añadiendo"
+              template={template}
             />
           </div>
         </div>

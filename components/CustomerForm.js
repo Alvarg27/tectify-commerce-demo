@@ -4,8 +4,15 @@ import React, { useState, useEffect } from "react";
 import CheckoutInput from "./CheckoutInput";
 import { FaCheck } from "react-icons/fa";
 import LoadingButton from "./LoadingButton";
+import LinkButton from "./LinkButton";
 
-export default function CustomerForm({ cart, fetchCart, step, setStep }) {
+export default function CustomerForm({
+  cart,
+  fetchCart,
+  step,
+  setStep,
+  template,
+}) {
   const [loading, setLoading] = useState();
   const [submitFail, setSubmitFail] = useState(false);
   const [allFieldsValid, setAllFieldsValid] = useState(false);
@@ -77,7 +84,8 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
         <div
           className="stepNumber"
           style={{
-            background: stepStatus === "pending" ? "lightgray" : "#0077ff",
+            background:
+              stepStatus === "pending" ? "lightgray" : template.primaryColor,
           }}
         >
           {stepStatus === "completed" ? (
@@ -106,6 +114,7 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
               setErrorMessage={setError}
               submitFail={submitFail}
               id="email"
+              template={template}
             />
           </div>
           <LoadingButton
@@ -113,6 +122,7 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
             name="Continuar"
             width="100%"
             action={handleSubmit}
+            template={template}
           />
         </div>
       ) : (
@@ -131,9 +141,12 @@ export default function CustomerForm({ cart, fetchCart, step, setStep }) {
                   : ""}
               </p>
             </div>
-            <button onClick={() => setStep(1)} className="linkButton">
-              Editar
-            </button>
+            <LinkButton
+              action={setStep}
+              actionParam={1}
+              name="Editar"
+              template={template}
+            />
           </div>
         </div>
       ) : (

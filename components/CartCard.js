@@ -2,11 +2,20 @@ import styles from "../styles/CartCard.module.css";
 import React from "react";
 import swell from "swell-js";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import { useState } from "react";
+import LinkButton from "./LinkButton";
 
-export default function CartCard({ item, fetchCart }) {
+export default function CartCard({ item, fetchCart, template }) {
+  const [loading, setLoading] = useState(false);
   const handleDelete = async (id) => {
-    const response = await swell.cart.removeItem(id);
-    fetchCart();
+    setLoading(true);
+    if (loading) {
+      return;
+    } else {
+      const response = await swell.cart.removeItem(id);
+      fetchCart();
+    }
+    setLoading(false);
   };
 
   const increaseQuantity = async () => {
@@ -57,14 +66,13 @@ export default function CartCard({ item, fetchCart }) {
                 <FaPlus className={styles.icon} />
               </div>
             </div>
-            <button
-              className="linkButton"
-              onClick={() => {
-                handleDelete(item.id);
-              }}
-            >
-              Eliminar
-            </button>
+
+            <LinkButton
+              name="Eliminar"
+              action={handleDelete}
+              template={template}
+              actionParam={item.id}
+            />
           </div>
         </div>
       </div>

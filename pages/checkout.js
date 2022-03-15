@@ -13,6 +13,7 @@ export default function Checkout({
   setIsCheckout,
   order,
   setOrder,
+  template,
 }) {
   const router = useRouter();
 
@@ -35,6 +36,7 @@ export default function Checkout({
           setMobileOrderSummary={setMobileOrderSummary}
           order={order}
           setOrder={setOrder}
+          template={template}
         />
       ) : (
         ""

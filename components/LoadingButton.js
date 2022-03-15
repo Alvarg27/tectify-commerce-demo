@@ -1,5 +1,7 @@
 import React from "react";
 import { BeatLoader } from "react-spinners";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function LoadingButton({
   loading,
@@ -7,14 +9,32 @@ export default function LoadingButton({
   loadingText,
   width,
   action,
+  template,
+  margin,
 }) {
+  const [hovered, setHovered] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState(template.primaryColor);
+
+  useEffect(() => {
+    if (hovered || loading) {
+      setBackgroundColor(template.primaryColorHover);
+    } else {
+      setBackgroundColor(template.primaryColor);
+    }
+  }, [hovered, loading]);
   return (
     <button
       onClick={() => action()}
+      onMouseOver={() => {
+        setHovered(true);
+      }}
+      onMouseOut={() => {
+        setHovered(false);
+      }}
       style={{
-        margin: "15px 0 0 0",
+        margin: margin ? margin : "15px 0 0 0",
         width: width ? width : "auto",
-        background: loading ? "#0067dd " : "#0077ff",
+        background: backgroundColor,
         cursor: loading ? "auto" : "pointer",
         display: "flex",
         justifyContent: "center",

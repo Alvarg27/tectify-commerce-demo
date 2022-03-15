@@ -6,13 +6,18 @@ import Link from "next/link";
 import CheckoutOrderTotal from "./CheckoutOrderTotal";
 import CheckoutProductCard from "./CheckoutProductCard";
 import CouponCode from "./CouponCode";
+import LoadingButton from "./LoadingButton";
 
 export default function MobileOrderSummary({
   mobileOrderSummary,
   cart,
   fetchCart,
   setMobileOrderSummary,
+  template,
 }) {
+  const handleReturn = () => {
+    setMobileOrderSummary(false);
+  };
   return (
     <div
       className={styles.mobileOrderSummary}
@@ -39,6 +44,7 @@ export default function MobileOrderSummary({
                   item={item}
                   fetchCart={fetchCart}
                   cart={cart}
+                  template={template}
                 />
               ))
             : ""}
@@ -48,15 +54,17 @@ export default function MobileOrderSummary({
             ""
           )}
         </div>
-        <CouponCode />
-        <CheckoutOrderTotal cart={cart} />
-        <button
-          onClick={() => setMobileOrderSummary(false)}
-          style={{ width: "100%", margin: "30px 0 0 0" }}
-          className="primaryButton"
-        >
-          Regresar
-        </button>
+        <CouponCode template={template} />
+        <CheckoutOrderTotal cart={cart} template={template} />
+        <div style={{ margin: "60px 0" }}>
+          <LoadingButton
+            template={template}
+            name="Regresar"
+            width="100%"
+            margin="0"
+            action={handleReturn}
+          />
+        </div>
       </div>
     </div>
   );

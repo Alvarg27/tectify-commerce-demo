@@ -6,6 +6,8 @@ import { FaCheck } from "react-icons/fa";
 import swell from "swell-js";
 import CheckoutSelect from "./CheckoutSelect";
 import LoadingButton from "./LoadingButton";
+import { useRouter } from "next/router";
+import LinkButton from "./LinkButton";
 
 const countryOptions = [{ id: "MX", name: "México" }];
 
@@ -172,7 +174,13 @@ const stateOptions = [
   },
 ];
 
-export default function AddressForm({ cart, fetchCart, step, setStep }) {
+export default function AddressForm({
+  cart,
+  fetchCart,
+  step,
+  setStep,
+  template,
+}) {
   const [loading, setLoading] = useState();
   const [submitFail, setSubmitFail] = useState(false);
   const [allFieldsValid, setAllFieldsValid] = useState(false);
@@ -269,7 +277,8 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
         <div
           className="stepNumber"
           style={{
-            background: stepStatus === "pending" ? "lightgray" : "#0077ff",
+            background:
+              stepStatus === "pending" ? "lightgray" : template.primaryColor,
           }}
         >
           {stepStatus === "completed" ? (
@@ -298,6 +307,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               setErrorMessage={setError}
               submitFail={submitFail}
               id="nombre"
+              template={template}
             />
             <CheckoutInput
               valid={valid}
@@ -314,6 +324,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               setErrorMessage={setError}
               submitFail={submitFail}
               id="apellido"
+              template={template}
             />
             <CheckoutInput
               valid={valid}
@@ -330,6 +341,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               setErrorMessage={setError}
               submitFail={submitFail}
               id="direccion"
+              template={template}
             />
             <CheckoutInput
               valid={valid}
@@ -346,6 +358,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               setErrorMessage={setError}
               submitFail={submitFail}
               id="colonia"
+              template={template}
             />
             <CheckoutSelect
               valid={valid}
@@ -364,6 +377,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               options={countryOptions}
               defaultOption="Selecciona un país"
               id="pais"
+              template={template}
             />
             <CheckoutSelect
               valid={valid}
@@ -382,6 +396,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               options={stateOptions}
               defaultOption="Selecciona un estado"
               id="estado"
+              template={template}
             />
             <CheckoutInput
               valid={valid}
@@ -398,6 +413,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               setErrorMessage={setError}
               submitFail={submitFail}
               id="ciudad"
+              template={template}
             />
             <CheckoutInput
               valid={valid}
@@ -414,6 +430,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               setErrorMessage={setError}
               submitFail={submitFail}
               id="zip"
+              template={template}
             />
             <CheckoutInput
               valid={valid}
@@ -430,6 +447,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
               setErrorMessage={setError}
               submitFail={submitFail}
               id="telefono"
+              template={template}
             />
           </div>
           <LoadingButton
@@ -437,6 +455,7 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
             name="Continuar"
             width="100%"
             action={handleSubmit}
+            template={template}
           />
         </div>
       ) : (
@@ -455,9 +474,12 @@ export default function AddressForm({ cart, fetchCart, step, setStep }) {
                   : ""}
               </p>
             </div>
-            <button onClick={() => setStep(2)} className="linkButton">
-              Editar
-            </button>
+            <LinkButton
+              action={setStep}
+              actionParam={2}
+              name="Editar"
+              template={template}
+            />
           </div>
         </div>
       ) : (
