@@ -1,8 +1,12 @@
 import styles from "../styles/CheckoutOrderTotal.module.css";
 
 import React from "react";
+import { useState } from "react";
 
 export default function CheckoutOrderTotal({ cart, template }) {
+  const [shippingTotal, setShippingTotal] = useState();
+
+  console.log(cart);
   return (
     <div className={styles.checkoutOrderTotal}>
       <div className={styles.rowSub}>
