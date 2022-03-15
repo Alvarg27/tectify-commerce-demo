@@ -12,7 +12,7 @@ export default function OptionSelectorCard({
     template.secondaryBackgroundColor
   );
   const [borderColor, setBorderColor] = useState(template.borderColor);
-  const [textColor, setTextColor] = useState(template.setTextColor);
+  const [textColor, setTextColor] = useState(template.textColor);
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function OptionSelectorCard({
     } else {
       setBackgroundColor(template.secondaryBackgroundColor);
       setBorderColor(template.borderColor);
-      setTextColor("black");
+      setTextColor(template.textColor);
     }
   }, [selectedOptions, hovered, template]);
 

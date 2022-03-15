@@ -7,6 +7,7 @@ import styles from "../styles/Header.module.css";
 import SlideCart from "./SlideCart";
 import { useEffect } from "react";
 import { FiSun } from "react-icons/fi";
+import DarkModeToggle from "./darkModeToggle";
 
 export default function Header({
   setSlideCart,
@@ -18,16 +19,6 @@ export default function Header({
   darkModeTemplate,
   lightModeTemplate,
 }) {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    if (darkMode === true) {
-      setTemplate(darkModeTemplate);
-    } else {
-      setTemplate(lightModeTemplate);
-    }
-  }, [darkMode]);
-
   return (
     <div className={styles.header}>
       <div className={styles.container}>
@@ -69,32 +60,12 @@ export default function Header({
               )}
             </div>
           )}
-          <div
-            style={{
-              margin: "0",
-              display: "flex",
-              transform: "translateY(1px)",
-            }}
-            onClick={() => setDarkMode(!darkMode)}
-          >
-            {darkMode ? (
-              <FiSun
-                className={styles.icon}
-                style={{
-                  color: template.textColor,
-                  margin: "auto 0 auto 30px",
-                }}
-              />
-            ) : (
-              <FaMoon
-                className={styles.icon}
-                style={{
-                  color: template.textColor,
-                  margin: "auto 0 auto 30px",
-                }}
-              />
-            )}
-          </div>
+          <DarkModeToggle
+            template={template}
+            setTemplate={setTemplate}
+            darkModeTemplate={darkModeTemplate}
+            lightModeTemplate={lightModeTemplate}
+          />
         </div>
       </div>
     </div>
