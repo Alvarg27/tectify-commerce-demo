@@ -24,19 +24,19 @@ export default function CheckoutForm({
 
   useEffect(() => {
     if (step === 1) {
-      router.push("/checkout", undefined, {
+      router.replace("/checkout", undefined, {
         shallow: true,
       });
     } else if (step === 2) {
-      router.push("/checkout/?información-de-envio", undefined, {
+      router.replace("/checkout/?información-de-envio", undefined, {
         shallow: true,
       });
     } else if (step === 3) {
-      router.push("/checkout/?metodo-de-envío", undefined, {
+      router.replace("/checkout/?metodo-de-envío", undefined, {
         shallow: true,
       });
     } else if (step === 4) {
-      router.push("/checkout/?metodo-de-pago", undefined, {
+      router.replace("/checkout/?metodo-de-pago", undefined, {
         shallow: true,
       });
     } else {

@@ -57,7 +57,6 @@ export default function PaymentForm({
           setFocused(true);
         },
         onBlur: (event) => {
-          checkCard();
           setFocused(false);
           // optional, called when the Element loses focus
         },
@@ -136,9 +135,12 @@ export default function PaymentForm({
   }, []);
 
   useEffect(() => {
-    stripeElement();
     setCardError(null);
   }, [step]);
+
+  useEffect(() => {
+    stripeElement();
+  }, [step, template]);
 
   useEffect(() => {
     if (step === stepNumber) {

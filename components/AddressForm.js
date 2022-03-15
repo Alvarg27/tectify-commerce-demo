@@ -254,6 +254,7 @@ export default function AddressForm({
         console.log(err.message);
         setError(err.message);
       }
+
       setLoading(false);
     } else {
       setSubmitFail(true);
