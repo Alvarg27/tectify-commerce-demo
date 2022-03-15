@@ -12,6 +12,7 @@ export default function PaymentForm({
   order,
   setOrder,
   template,
+  mobileOrderSummary,
 }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -72,7 +73,7 @@ export default function PaymentForm({
   };
 
   const tokenizeCard = async () => {
-    if (loading) {
+    if (loading || mobileOrderSummary) {
       return;
     } else {
       setLoading(true);

@@ -12,6 +12,7 @@ export default function CheckoutPage({
   setOrder,
   order,
   template,
+  mobileOrderSummary,
 }) {
   return (
     <div className={styles.checkoutPage}>
@@ -27,6 +28,7 @@ export default function CheckoutPage({
           fetchCart={fetchCart}
           order={order}
           setOrder={setOrder}
+          mobileOrderSummary={mobileOrderSummary}
         />
       </div>
       <MobileOrderTotal

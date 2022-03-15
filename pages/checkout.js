@@ -14,6 +14,7 @@ export default function Checkout({
   order,
   setOrder,
   template,
+  mobileOrderSummary,
 }) {
   const router = useRouter();
 
@@ -34,6 +35,7 @@ export default function Checkout({
           cart={cart}
           fetchCart={fetchCart}
           setMobileOrderSummary={setMobileOrderSummary}
+          mobileOrderSummary={mobileOrderSummary}
           order={order}
           setOrder={setOrder}
           template={template}

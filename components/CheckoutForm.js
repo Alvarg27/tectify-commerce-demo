@@ -17,6 +17,7 @@ export default function CheckoutForm({
   order,
   setOrder,
   template,
+  mobileOrderSummary,
 }) {
   const router = useRouter();
   const [step, setStep] = useState(1);
@@ -81,6 +82,7 @@ export default function CheckoutForm({
           order={order}
           setOrder={setOrder}
           template={template}
+          mobileOrderSummary={mobileOrderSummary}
         />
 
         <p className={styles.powered}>
