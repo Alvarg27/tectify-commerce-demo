@@ -28,7 +28,7 @@ export default function OptionSelectorCard({
   }, [selectedOptions, hovered, template]);
 
   return (
-    <div style={{ width: "33.3%" }}>
+    <div style={{ width: "33.33%" }}>
       <div
         onMouseOver={() => setHovered(true)}
         onMouseOut={() => setHovered(false)}
