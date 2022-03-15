@@ -28,11 +28,13 @@ export default function ShippingMethodCard({
           borderColor:
             selectedMethod === id || hovered
               ? template.primaryColor
-              : "lightgray",
+              : template.borderColor,
+
+          background: template.secondaryBackgroundColor,
         }}
       >
         <div className={styles.row}>
-          <p>{name}</p>
+          <p style={{ color: template.textColor }}>{name}</p>
           <FaCheckCircle
             className={styles.checkIcon}
             style={{
@@ -42,7 +44,9 @@ export default function ShippingMethodCard({
           />
         </div>
         <p className={styles.description}>{description}</p>
-        <p className={styles.price}>${price}</p>
+        <p className={styles.price} style={{ color: template.textColor }}>
+          ${price}
+        </p>
       </div>
     </div>
   );

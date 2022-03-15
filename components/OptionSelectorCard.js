@@ -44,7 +44,9 @@ export default function OptionSelectorCard({
           transition: "0.3s",
         }}
       >
-        <p style={{ margin: "auto" }}>{value.name}</p>
+        <p style={{ margin: "auto", color: template.textColor }}>
+          {value.name}
+        </p>
       </div>
     </div>
   );

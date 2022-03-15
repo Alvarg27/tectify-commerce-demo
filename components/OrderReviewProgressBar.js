@@ -27,7 +27,10 @@ export default function OrderReviewProgressBar({ order, template }) {
 
   return (
     <div className={styles.orderReviewProgressBar}>
-      <div className={styles.progressBar}>
+      <div
+        className={styles.progressBar}
+        style={{ background: template.secondaryBackgroundColor }}
+      >
         <div
           className={styles.progress}
           style={{ width: barWidth, background: template.primaryColor }}
@@ -38,7 +41,8 @@ export default function OrderReviewProgressBar({ order, template }) {
           <label
             style={{
               textAlign: "left",
-              color: orderStep === 4 ? template.primaryColor : "black",
+              color:
+                orderStep === 4 ? template.primaryColor : template.textColor,
             }}
           >
             Pedido realizado
@@ -46,7 +50,8 @@ export default function OrderReviewProgressBar({ order, template }) {
           <label
             style={{
               textAlign: "right",
-              color: orderStep === 4 ? template.primaryColor : "black",
+              color:
+                orderStep === 4 ? template.primaryColor : template.textColor,
             }}
           >
             Cancelado
@@ -60,7 +65,7 @@ export default function OrderReviewProgressBar({ order, template }) {
               color:
                 orderStep === 1 || orderStep == 2 || orderStep == 3
                   ? template.primaryColor
-                  : "black",
+                  : template.textColor,
             }}
           >
             Pedido realizado
@@ -72,7 +77,7 @@ export default function OrderReviewProgressBar({ order, template }) {
                 color:
                   orderStep === 1 || orderStep == 2
                     ? template.primaryColor
-                    : "black",
+                    : template.textColor,
               }}
             >
               En espera
@@ -86,7 +91,7 @@ export default function OrderReviewProgressBar({ order, template }) {
               color:
                 orderStep === 1 || orderStep == 3
                   ? template.primaryColor
-                  : "black",
+                  : template.textColor,
             }}
           >
             Procesando
@@ -94,7 +99,8 @@ export default function OrderReviewProgressBar({ order, template }) {
           <label
             style={{
               textAlign: "right",
-              color: orderStep === 3 ? template.primaryColor : "black",
+              color:
+                orderStep === 3 ? template.primaryColor : template.textColor,
             }}
           >
             Enviado

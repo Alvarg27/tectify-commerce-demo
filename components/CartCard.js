@@ -40,7 +40,7 @@ export default function CartCard({ item, fetchCart, template }) {
           <img src={item.variant.images[0].file.url} />
         </div>
         <div className={styles.dataContainer}>
-          <div className={styles.row}>
+          <div className={styles.row} style={{ color: template.textColor }}>
             <div className={styles.nameContainer}>
               <p className={styles.name}>{item.product.name}</p>
               <p className={styles.variantName}>{item.variant.name}</p>
@@ -48,7 +48,7 @@ export default function CartCard({ item, fetchCart, template }) {
             <p className={styles.price}>${item.price_total}</p>
           </div>
 
-          <div className={styles.row}>
+          <div className={styles.row} style={{ color: template.textColor }}>
             <div className={styles.quantityContainer}>
               <div
                 className={styles.quantityButton}

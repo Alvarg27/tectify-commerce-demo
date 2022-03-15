@@ -101,7 +101,7 @@ export default function ShippingMethod({
           )}
         </div>
 
-        <h3>Método de envío</h3>
+        <h3 style={{ color: template.textColor }}>Método de envío</h3>
       </div>
       {step === 3 ? (
         <div>
@@ -135,13 +135,19 @@ export default function ShippingMethod({
         ""
       )}
       {stepStatus === "completed" ? (
-        <div className="dataReviewCard">
+        <div
+          className="dataReviewCard"
+          style={{
+            background: template.secondaryBackgroundColor,
+            borderColor: template.borderColor,
+          }}
+        >
           <div className="row">
             <div style={{ display: "flex" }}>
               <p style={{ color: "grey", margin: "auto 10px auto auto" }}>
                 Envío
               </p>
-              <p>
+              <p style={{ color: template.textColor }}>
                 {cart && cart.shipping && cart.shipping.service
                   ? cart.shipping.service_name
                   : "--"}{" "}

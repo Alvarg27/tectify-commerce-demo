@@ -16,8 +16,8 @@ export default function OptionSelector({
   }, []);
   return (
     <div className={styles.optionSelector}>
-      <div className={styles.row}>
-        <label>
+      <div className={styles.row} style={{ color: template.textColor }}>
+        <label style={{ color: template.textColor }}>
           <b>{option.name}</b>
         </label>
         <label style={{ marginLeft: "10px" }}>

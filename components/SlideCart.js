@@ -34,14 +34,18 @@ export default function SlideCart({
         transform: `translateX(${slideCart ? 0 : 100}%)`,
         transition: "0.3s",
         visibility: slideCart ? "visible" : "hidden",
+        backgroundColor: template.backgroundColor,
       }}
     >
       <div className={styles.container}>
         <div className={styles.row}>
-          <h3 className={styles.title}>Carrito</h3>
+          <h3 className={styles.title} style={{ color: template.textColor }}>
+            Carrito
+          </h3>
           <FaTimes
             className={styles.timesIcon}
             onClick={() => setSlideCart(false)}
+            style={{ color: template.textColor }}
           />
         </div>
         <div className="line" style={{ margin: "30px 0 0 0" }}></div>
@@ -57,14 +61,17 @@ export default function SlideCart({
               ))
             : ""}
           {!cart || cart.item_quantity === 0 ? (
-            <p>Tu carrito esta vacio.</p>
+            <p style={{ color: template.textColor }}>Tu carrito esta vacio.</p>
           ) : (
             ""
           )}
         </div>
         <div className="line" style={{ margin: "0 0 0 0" }}></div>
         {cart && cart.item_quantity > 0 ? (
-          <div className={styles.row} style={{ margin: "15px 0" }}>
+          <div
+            className={styles.row}
+            style={{ margin: "15px 0", color: template.textColor }}
+          >
             <p>Total:</p>
             <p>
               <b>${cart ? cart.sub_total : 0}</b>

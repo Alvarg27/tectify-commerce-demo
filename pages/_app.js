@@ -13,6 +13,11 @@ function MyApp({ Component, pageProps }) {
   const [template, setTemplate] = useState({
     primaryColor: "#0077ff",
     primaryColorHover: "#0067dd",
+    backgroundColor: "#15171c",
+    secondaryBackgroundColor: "#1e2129",
+    textColor: "white",
+    secondaryTextColor: "grey",
+    borderColor: "#292d38",
   });
 
   const [mobileOrderSummary, setMobileOrderSummary] = useState(false);

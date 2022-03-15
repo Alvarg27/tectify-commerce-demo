@@ -95,7 +95,7 @@ export default function SingleProduct({
               <p>/</p>
               <p style={{ color: template.primaryColor }}>{product.name}</p>
             </div>
-            <div className={styles.row}>
+            <div style={{ color: template.textColor }} className={styles.row}>
               <h3 className={styles.name}>{product.name}</h3>
               <h3 className={styles.price}>
                 ${selectedVariant ? selectedVariant.price : product.price}
@@ -110,8 +110,10 @@ export default function SingleProduct({
                 template={template}
               />
             ))}
-            <p className={styles.label}>Descripción</p>
-            <p>{product.description}</p>
+            <p className={styles.label} style={{ color: template.textColor }}>
+              Descripción
+            </p>
+            <p style={{ color: template.textColor }}>{product.description}</p>
             <LoadingButton
               loading={loading}
               name="Añadir al carrito"

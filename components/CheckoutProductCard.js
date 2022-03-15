@@ -43,14 +43,26 @@ export default function CheckoutProductCard({
         <div className={styles.dataContainer}>
           <div className={styles.row}>
             <div className={styles.nameContainer}>
-              <p className={styles.name}>{item.product.name}</p>
-              <p className={styles.variantName}>{item.variant.name}</p>
+              <p className={styles.name} style={{ color: template.textColor }}>
+                {item.product.name}
+              </p>
+              <p
+                className={styles.variantName}
+                style={{ color: template.secondaryTextColor }}
+              >
+                {item.variant.name}
+              </p>
             </div>
-            <p className={styles.price}>${item.price_total}</p>
+            <p className={styles.price} style={{ color: template.textColor }}>
+              ${item.price_total}
+            </p>
           </div>
 
           <div className={styles.row}>
-            <div className={styles.quantityContainer}>
+            <div
+              className={styles.quantityContainer}
+              style={{ color: template.textColor }}
+            >
               <div
                 className={styles.quantityButton}
                 onClick={() => subtractQuantity()}

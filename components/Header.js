@@ -30,7 +30,10 @@ export default function Header({
         <Link href="/">
           <div className={styles.logoContainer}>
             <h1
-              style={{ color: template.primaryColor }}
+              style={{
+                color: template.primaryColor,
+                background: template.backgroundColor,
+              }}
               className={styles.logo}
             >
               tectify
@@ -73,7 +76,10 @@ export default function Header({
               onClick={() => setSlideCart(!slideCart)}
               className={styles.bagContainer}
             >
-              <FaShoppingBag className={styles.bagIcon} />
+              <FaShoppingBag
+                className={styles.bagIcon}
+                style={{ color: template.textColor }}
+              />
               {cart && cart.item_quantity > 0 ? (
                 <div
                   className={styles.quantity}

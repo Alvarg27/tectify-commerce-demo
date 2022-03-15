@@ -287,7 +287,7 @@ export default function AddressForm({
             <p>2</p>
           )}
         </div>
-        <h3>Información del envío</h3>
+        <h3 style={{ color: template.textColor }}>Información del envío</h3>
       </div>
       {stepStatus === "current" ? (
         <div>
@@ -462,13 +462,19 @@ export default function AddressForm({
         ""
       )}
       {stepStatus === "completed" ? (
-        <div className="dataReviewCard">
+        <div
+          className="dataReviewCard"
+          style={{
+            background: template.secondaryBackgroundColor,
+            borderColor: template.borderColor,
+          }}
+        >
           <div className="row">
             <div style={{ display: "flex", margin: "0 30px 0 0" }}>
               <p style={{ color: "grey", margin: "auto 10px auto auto" }}>
                 Envío
               </p>
-              <p>
+              <p style={{ color: template.textColor }}>
                 {cart && cart.shipping
                   ? `${cart.shipping.name}, ${cart.shipping.address1} ${cart.shipping.address2}, ${cart.shipping.city}, ${cart.shipping.state}, ${cart.shipping.country},  ${cart.shipping.zip},  ${cart.shipping.phone}`
                   : ""}

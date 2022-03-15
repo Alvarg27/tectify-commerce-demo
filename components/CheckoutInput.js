@@ -69,11 +69,12 @@ export default function CheckoutInput({
   return (
     <div className={styles.checkoutInput} style={{ width: `${width}%` }}>
       <div className={styles.container}>
-        <label>{label}</label>
+        <label style={{ color: template.textColor }}>{label}</label>
         <input
           style={{
-            borderColor:
-              hovered || focused ? template.primaryColor : "lightgray",
+            borderColor: hovered || focused ? template.primaryColor : template.borderColor,
+            background: template.secondaryBackgroundColor,
+            color: template.textColor,
           }}
           id={id}
           value={isEdited ? input : cartValue}

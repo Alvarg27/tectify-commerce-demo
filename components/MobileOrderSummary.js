@@ -25,12 +25,16 @@ export default function MobileOrderSummary({
         transform: `translateY(${mobileOrderSummary ? 0 : 100}%)`,
         transition: "0.3s",
         visibility: mobileOrderSummary ? "visible" : "hidden",
+        background: template.secondaryBackgroundColor,
       }}
     >
       <div className={styles.container}>
         <div className={styles.row}>
-          <h3 className={styles.title}>Resumen de orden</h3>
+          <h3 className={styles.title} style={{ color: template.textColor }}>
+            Resumen de orden
+          </h3>
           <FaTimes
+            style={{ color: template.textColor }}
             className={styles.timesIcon}
             onClick={() => setMobileOrderSummary(false)}
           />

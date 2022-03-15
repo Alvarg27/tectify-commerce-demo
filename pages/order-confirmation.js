@@ -112,11 +112,11 @@ export default function OrderConfirmation({
           ) : (
             ""
           )}
-          <h1>{title.title}</h1>
+          <h1 style={{ color: template.textColor }}>{title.title}</h1>
           <p>{title.subtitle}</p>
         </div>
         <div className={styles.orderNumber}>
-          <p>Número de pedido</p>
+          <p style={{ color: template.textColor }}>Número de pedido</p>
           <p style={{ color: template.primaryColor }}>
             {order ? order.number : "--"}
           </p>
@@ -127,13 +127,17 @@ export default function OrderConfirmation({
         <div className={styles.cardContainer}>
           {order
             ? order.items.map((item) => (
-                <OrderReviewCard key={item.id} item={item} />
+                <OrderReviewCard
+                  key={item.id}
+                  item={item}
+                  template={template}
+                />
               ))
             : ""}
         </div>
-        <OrderConfirmationTotal order={order} />
+        <OrderConfirmationTotal order={order} template={template} />
         <div className={styles.orderInfo}>
-          <h3>Informaion de envío</h3>
+          <h3 style={{ color: template.textColor }}>Informaion de envío</h3>
           <p>{order ? order.shipping.name : ""}</p>
           <p>
             {order
@@ -148,7 +152,7 @@ export default function OrderConfirmation({
           <p> {order ? `${order.shipping.phone}` : ""}</p>
         </div>
         <div className={styles.orderInfo}>
-          <h3>Informaion de Pago</h3>
+          <h3 style={{ color: template.textColor }}>Informaion de Pago</h3>
           <div style={{ display: "flex" }}>
             {renderCardLogo()}
             <div>

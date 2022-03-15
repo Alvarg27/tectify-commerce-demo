@@ -94,7 +94,7 @@ export default function CustomerForm({
             <p>1</p>
           )}
         </div>
-        <h3>Información del cliente</h3>
+        <h3 style={{ color: template.textColor }}>Información del cliente</h3>
       </div>
       {step === 1 ? (
         <div>
@@ -129,13 +129,19 @@ export default function CustomerForm({
         ""
       )}
       {stepStatus === "completed" ? (
-        <div className="dataReviewCard">
+        <div
+          className="dataReviewCard"
+          style={{
+            background: template.secondaryBackgroundColor,
+            borderColor: template.borderColor,
+          }}
+        >
           <div className="row">
             <div style={{ display: "flex" }}>
               <p style={{ color: "grey", margin: "auto 10px auto auto" }}>
                 Contacto
               </p>
-              <p>
+              <p style={{ color: template.textColor }}>
                 {cart && cart.account && cart.account.email
                   ? cart.account.email
                   : ""}

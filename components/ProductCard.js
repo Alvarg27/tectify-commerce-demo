@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useEffect } from "react";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, template }) {
   const [imageHover, setImageHover] = useState(false);
   const [imageSrc, setImageSrc] = useState(product.images[0].file.url);
 
@@ -28,7 +28,10 @@ export default function ProductCard({ product }) {
             src={imageSrc}
           />
           <div className={styles.textContainer}>
-            <div className={styles.column}>
+            <div
+              className={styles.column}
+              style={{ color: template.textColor }}
+            >
               <p className={styles.name}>{product.name}</p>
               <p className={styles.price}>${product.price}</p>
             </div>

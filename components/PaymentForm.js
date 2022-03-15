@@ -40,6 +40,7 @@ export default function PaymentForm({
             base: {
               fontWeight: 500,
               fontSize: "16px",
+              color: template.textColor,
             },
           },
         },
@@ -141,12 +142,20 @@ export default function PaymentForm({
         >
           <p>4</p>
         </div>
-        <h3>Información de pago</h3>
+        <h3 style={{ color: template.textColor }}>Información de pago</h3>
       </div>
       {step === 4 ? (
         <div style={{ margin: "30px 0 0 0", width: "100%" }}>
-          <label>Tarjeta de crédito / débito</label>
-          <div className={styles.stripeContainer}>
+          <label style={{ color: template.textColor }}>
+            Tarjeta de crédito / débito
+          </label>
+          <div
+            className={styles.stripeContainer}
+            style={{
+              background: template.secondaryBackgroundColor,
+              borderColor: template.borderColor,
+            }}
+          >
             <div style={{ margin: "auto 0" }} id="card-element-id"></div>
           </div>
           {cardError ? <p className="errorMessage">{cardError}</p> : ""}

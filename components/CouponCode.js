@@ -10,12 +10,16 @@ export default function CouponCode({ template }) {
   return (
     <div className={styles.couponCode}>
       <div className={styles.container}>
-        <label>Código de descuento</label>
+        <label style={{ color: template.textColor }}>Código de descuento</label>
         <div className={styles.row}>
           <input
             style={{
+              color: template.textColor,
               borderColor:
-                hovered || focused ? template.primaryColor : "lightgray",
+                hovered || focused
+                  ? template.primaryColor
+                  : template.borderColor,
+              background: template.borderColor,
             }}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}

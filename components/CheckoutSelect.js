@@ -63,11 +63,13 @@ export default function CheckoutSelect({
   return (
     <div className={styles.checkoutSelect} style={{ width: `${width}%` }}>
       <div className={styles.container}>
-        <label>{label}</label>
+        <label style={{ color: template.textColor }}>{label}</label>
         <select
           style={{
             borderColor:
-              hovered || focused ? template.primaryColor : "lightgray",
+              hovered || focused ? template.primaryColor : template.borderColor,
+            background: template.secondaryBackgroundColor,
+            color: template.textColor,
           }}
           type={type}
           value={isEdited ? input : cartValue}
