@@ -1,0 +1,32 @@
+.couponCode .container .row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.couponCode .container button {
+  width: 150px;
+}
+
+.couponCode .container {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0;
+}
+.couponCode .container label {
+  margin: 0 0 7px 0;
+}
+.couponCode .container input {
+  height: 50px;
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  cursor: pointer;
+  padding: 0 10px;
+  width: 100%;
+  margin-right: 10px;
+}
+.couponCode .container input:focus {
+  border-color: #0077ff;
+}
+.couponCode .container input:hover {
+  border-color: #0077ff;
+}

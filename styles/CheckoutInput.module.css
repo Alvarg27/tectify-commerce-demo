@@ -1,0 +1,41 @@
+.checkoutInput .container {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0px 0 10px;
+  transform: translateX(-5px);
+  position: relative;
+}
+.checkoutInput .container label {
+  margin: 0 0 7px 0;
+}
+.checkoutInput .container input {
+  height: 50px;
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  padding: 0 10px;
+  font-size: 16px;
+}
+.checkoutInput .container input:focus {
+  border-color: #0077ff;
+}
+.checkoutInput .container input:hover {
+  border-color: #0077ff;
+}
+.checkoutInput .confirmationDot {
+  width: 10px;
+  height: 10px;
+  background: yellowgreen;
+  position: absolute;
+  border-radius: 50%;
+  right: 0;
+  top: 45px;
+  right: 15px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+@media all and (max-width: 768px) {
+  .checkoutInput {
+    width: 100% !important;
+  }
+}
