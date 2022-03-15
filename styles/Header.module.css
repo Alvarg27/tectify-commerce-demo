@@ -50,10 +50,13 @@
   display: flex;
   justify-content: space-between;
   align-content: center;
+  position: relative;
 }
 .header .bagContainer {
   position: relative;
   cursor: pointer;
+  margin: auto;
+  display: flex;
 }
 .header .bagContainer .quantity {
   position: absolute;
@@ -73,10 +76,11 @@
   margin: auto;
   font-size: 14px;
 }
-.header .iconsContainer .bagIcon {
+.header .iconsContainer .icon {
   font-size: 22px;
   transition: 0.3s;
   cursor: pointer;
+  margin: auto;
 }
 .header .iconsContainer .bagIcon:hover {
   color: grey;

@@ -8,9 +8,11 @@ export default function OptionSelectorCard({
   selectedOptions,
   option,
 }) {
-  const [backgroundColor, setBackgroundColor] = useState("none");
-  const [borderColor, setBorderColor] = useState("lightgray");
-  const [textColor, setTextColor] = useState("black");
+  const [backgroundColor, setBackgroundColor] = useState(
+    template.secondaryBackgroundColor
+  );
+  const [borderColor, setBorderColor] = useState(template.borderColor);
+  const [textColor, setTextColor] = useState(template.setTextColor);
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
@@ -19,8 +21,8 @@ export default function OptionSelectorCard({
       setBorderColor(template.primaryColor);
       setTextColor("white");
     } else {
-      setBackgroundColor("none");
-      setBorderColor("lightgray");
+      setBackgroundColor(template.secondaryBackgroundColor);
+      setBorderColor(template.borderColor);
       setTextColor("black");
     }
   }, [selectedOptions, hovered, template]);
@@ -32,7 +34,7 @@ export default function OptionSelectorCard({
         onMouseOut={() => setHovered(false)}
         onClick={() => updateOptions(option.name, value.name)}
         style={{
-          border: "1px solid lightgray",
+          border: `1px solid ${template.borderColor}`,
           borderColor: borderColor,
           background: backgroundColor,
           color: textColor,
@@ -44,9 +46,7 @@ export default function OptionSelectorCard({
           transition: "0.3s",
         }}
       >
-        <p style={{ margin: "auto", color: template.textColor }}>
-          {value.name}
-        </p>
+        <p style={{ margin: "auto" }}>{value.name}</p>
       </div>
     </div>
   );

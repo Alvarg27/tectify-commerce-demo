@@ -72,8 +72,9 @@ export default function CheckoutInput({
         <label style={{ color: template.textColor }}>{label}</label>
         <input
           style={{
-            borderColor: hovered || focused ? template.primaryColor : template.borderColor,
-            background: template.secondaryBackgroundColor,
+            borderColor:
+              hovered || focused ? template.primaryColor : template.borderColor,
+            background: template.inputColor,
             color: template.textColor,
           }}
           id={id}

@@ -48,7 +48,13 @@ export default function SlideCart({
             style={{ color: template.textColor }}
           />
         </div>
-        <div className="line" style={{ margin: "30px 0 0 0" }}></div>
+        <div
+          className="line"
+          style={{
+            margin: "30px 0 0 0",
+            background: template.secondaryBackground,
+          }}
+        ></div>
         <div className={styles.cardContainer}>
           {cart
             ? cart.items.map((item) => (

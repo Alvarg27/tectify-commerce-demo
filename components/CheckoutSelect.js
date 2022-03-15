@@ -68,7 +68,7 @@ export default function CheckoutSelect({
           style={{
             borderColor:
               hovered || focused ? template.primaryColor : template.borderColor,
-            background: template.secondaryBackgroundColor,
+            background: template.inputColor,
             color: template.textColor,
           }}
           type={type}

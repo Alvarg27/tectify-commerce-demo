@@ -19,7 +19,7 @@ export default function CouponCode({ template }) {
                 hovered || focused
                   ? template.primaryColor
                   : template.borderColor,
-              background: template.borderColor,
+              background: template.inputColor,
             }}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}

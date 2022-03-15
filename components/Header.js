@@ -1,8 +1,12 @@
 import Link from "next/link";
 import React from "react";
-import { FaShoppingBag } from "react-icons/fa";
+import { FaMoon, FaShoppingBag, FaSun } from "react-icons/fa";
+import { HiSun, HiMoon } from "react-icons/hi";
+import { useState } from "react";
 import styles from "../styles/Header.module.css";
 import SlideCart from "./SlideCart";
+import { useEffect } from "react";
+import { FiSun } from "react-icons/fi";
 
 export default function Header({
   setSlideCart,
@@ -11,19 +15,19 @@ export default function Header({
   isCheckout,
   template,
   setTemplate,
+  darkModeTemplate,
+  lightModeTemplate,
 }) {
-  const templateBlue = () => {
-    setTemplate({
-      primaryColor: "#0077ff",
-      primaryColorHover: "#0067dd",
-    });
-  };
-  const templatePink = () => {
-    setTemplate({
-      primaryColor: "pink",
-      primaryColorHover: "darkpink",
-    });
-  };
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode === true) {
+      setTemplate(darkModeTemplate);
+    } else {
+      setTemplate(lightModeTemplate);
+    }
+  }, [darkMode]);
+
   return (
     <div className={styles.header}>
       <div className={styles.container}>
@@ -41,33 +45,6 @@ export default function Header({
             <p className={styles.subLogo}>demoshop</p>
           </div>
         </Link>
-        <div
-          className={styles.colorsContainer}
-          style={{ margin: "auto", display: "flex" }}
-        >
-          <div
-            onClick={() => templateBlue()}
-            style={{
-              margin: "auto 10px",
-              width: "30px",
-              height: "30px",
-              background: "#0077ff",
-              borderRadius: "50%",
-              cursor: "pointer",
-            }}
-          ></div>
-          <div
-            onClick={() => templatePink()}
-            style={{
-              margin: "auto 10px",
-              width: "30px",
-              height: "30px",
-              background: "pink",
-              borderRadius: "50%",
-              cursor: "pointer",
-            }}
-          ></div>
-        </div>
         <div className={styles.iconsContainer}>
           {isCheckout ? (
             " "
@@ -77,7 +54,7 @@ export default function Header({
               className={styles.bagContainer}
             >
               <FaShoppingBag
-                className={styles.bagIcon}
+                className={styles.icon}
                 style={{ color: template.textColor }}
               />
               {cart && cart.item_quantity > 0 ? (
@@ -92,6 +69,32 @@ export default function Header({
               )}
             </div>
           )}
+          <div
+            style={{
+              margin: "0",
+              display: "flex",
+              transform: "translateY(1px)",
+            }}
+            onClick={() => setDarkMode(!darkMode)}
+          >
+            {darkMode ? (
+              <FiSun
+                className={styles.icon}
+                style={{
+                  color: template.textColor,
+                  margin: "auto 0 auto 30px",
+                }}
+              />
+            ) : (
+              <FaMoon
+                className={styles.icon}
+                style={{
+                  color: template.textColor,
+                  margin: "auto 0 auto 30px",
+                }}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>

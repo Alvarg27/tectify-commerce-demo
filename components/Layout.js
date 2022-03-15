@@ -16,6 +16,8 @@ export default function Layout({
   isCheckout,
   template,
   setTemplate,
+  darkModeTemplate,
+  lightModeTemplate,
 }) {
   const [overlay, setOverlay] = useState(false);
 
@@ -42,7 +44,9 @@ export default function Layout({
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"
         ></meta>
-        <style>{`body { background-color: ${template.backgroundColor}; }`}</style>
+        <style>
+          {`body {background-color: ${template.backgroundColor};}`}{" "}
+        </style>
       </Head>
       <div
         onClick={() => handleOverlayClick()}
@@ -80,6 +84,8 @@ export default function Layout({
         isCheckout={isCheckout}
         template={template}
         setTemplate={setTemplate}
+        lightModeTemplate={lightModeTemplate}
+        darkModeTemplate={darkModeTemplate}
       />
       {children}
     </div>

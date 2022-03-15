@@ -9,16 +9,29 @@ swell.init(
   process.env.NEXT_PUBLIC_SWELL_PUBLIC_KEY
 );
 
+const lightModeTemplate = {
+  primaryColor: "#0077ff",
+  primaryColorHover: "#0067dd",
+  backgroundColor: "white",
+  secondaryBackgroundColor: "rgb(250,250,250)",
+  textColor: "black",
+  secondaryTextColor: "grey",
+  borderColor: "lightgrey",
+  inputColor: "white",
+};
+const darkModeTemplate = {
+  primaryColor: "#0077ff",
+  primaryColorHover: "#0067dd",
+  backgroundColor: "#15171c",
+  secondaryBackgroundColor: "#181c24",
+  textColor: "white",
+  secondaryTextColor: "grey",
+  borderColor: "#292d38",
+  inputColor: "#1c2029",
+};
+
 function MyApp({ Component, pageProps }) {
-  const [template, setTemplate] = useState({
-    primaryColor: "#0077ff",
-    primaryColorHover: "#0067dd",
-    backgroundColor: "#15171c",
-    secondaryBackgroundColor: "#1e2129",
-    textColor: "white",
-    secondaryTextColor: "grey",
-    borderColor: "#292d38",
-  });
+  const [template, setTemplate] = useState(lightModeTemplate);
 
   const [mobileOrderSummary, setMobileOrderSummary] = useState(false);
   const [products, setProducts] = useState();
@@ -46,8 +59,6 @@ function MyApp({ Component, pageProps }) {
     setMobileOrderSummary(false);
   }, []);
 
-  console.log(order);
-
   return (
     <Layout
       setSlideCart={setSlideCart}
@@ -59,6 +70,8 @@ function MyApp({ Component, pageProps }) {
       isCheckout={isCheckout}
       template={template}
       setTemplate={setTemplate}
+      lightModeTemplate={lightModeTemplate}
+      darkModeTemplate={darkModeTemplate}
     >
       <Component
         {...pageProps}
