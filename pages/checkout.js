@@ -17,23 +17,28 @@ export default function Checkout({
   const router = useRouter();
 
   useEffect(() => {
-    if (cart === null) {
+    if (cart === null || cart === undefined) {
       router.push("/");
+    } else {
+      fetchCart();
+      setIsCheckout(true);
+      setSlideCart(false);
     }
-    fetchCart();
-    setIsCheckout(true);
-    setSlideCart(false);
   }, []);
 
   return (
     <div>
-      <CheckoutPage
-        cart={cart}
-        fetchCart={fetchCart}
-        setMobileOrderSummary={setMobileOrderSummary}
-        order={order}
-        setOrder={setOrder}
-      />
+      {cart !== null && cart !== undefined ? (
+        <CheckoutPage
+          cart={cart}
+          fetchCart={fetchCart}
+          setMobileOrderSummary={setMobileOrderSummary}
+          order={order}
+          setOrder={setOrder}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }
