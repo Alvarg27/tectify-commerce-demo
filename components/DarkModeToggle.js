@@ -29,7 +29,7 @@ export default function DarkModeToggle({
         background: template.secondaryBackgroundColor,
         outline: `1px solid ${template.borderColor}`,
         borderRadius: "30px",
-        margin: "auto auto auto 60px",
+        margin: "auto auto auto 30px",
         cursor: "pointer",
       }}
     >
