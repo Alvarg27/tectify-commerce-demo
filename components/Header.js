@@ -8,7 +8,6 @@ import SlideCart from "./SlideCart";
 import { useEffect } from "react";
 import { FiSun } from "react-icons/fi";
 import DarkModeToggle from "./DarkModeToggle";
-import Search from "./Search";
 
 export default function Header({
   setSlideCart,
