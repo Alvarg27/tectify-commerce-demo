@@ -27,7 +27,7 @@ export default function DarkModeToggle({
         height: "30px",
         width: "50px",
         background: template.secondaryBackgroundColor,
-        outline: `1px solid ${template.borderColor}`,
+        border: `1px solid ${template.borderColor}`,
         borderRadius: "30px",
         margin: "auto auto auto 30px",
         cursor: "pointer",
@@ -36,7 +36,7 @@ export default function DarkModeToggle({
       <div
         style={{
           margin: "auto",
-          top: "0px",
+          top: "-1px",
           display: "flex",
           height: "30px",
           width: "30px",
@@ -44,7 +44,7 @@ export default function DarkModeToggle({
           borderRadius: "30px",
           background: template.primaryColor,
           position: "absolute",
-          left: darkMode ? 20 : 0,
+          left: darkMode ? 20 : -1,
           transition: "0.3s",
         }}
       >
