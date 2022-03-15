@@ -54,8 +54,8 @@ export default function PaymentForm({
           // optional, called when the Element gains focus
         },
         onBlur: (event) => {
+          checkCard();
           // optional, called when the Element loses focus
-          tokenizeCard();
         },
         onEscape: (event) => {
           // optional, called when the escape key is pressed within an Element
@@ -70,6 +70,23 @@ export default function PaymentForm({
           // optional, called on card payment error
         },
       },
+    });
+  };
+
+  const checkCard = async () => {
+    const response = await swell.payment.tokenize({
+      card: {
+        onError: (err) => {
+          console.log(err);
+          setCardError(err.message);
+
+          // inform the customer there was an error
+        },
+        onSuccess: () => {
+          //finally submit the form
+        },
+      },
+      // ideal: { onError: (err) => {}, ...}
     });
   };
 
