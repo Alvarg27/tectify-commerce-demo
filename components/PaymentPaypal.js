@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import swell from "swell-js";
 
-export default function PaymentPaypal({ template, fetchCart, paymentMethod }) {
+export default function PaymentPaypal({
+  template,
+  fetchCart,
+  paymentMethod,
+  step,
+}) {
   const [processingOrder, setProcessingOrder] = useState(false);
   const [paypalError, setPaypalError] = useState();
   const router = useRouter();
@@ -50,7 +55,6 @@ export default function PaymentPaypal({ template, fetchCart, paymentMethod }) {
   };
 
   useEffect(() => {
-    paypalElement();
     setProcessingOrder(false);
     paypalElement();
   }, []);
