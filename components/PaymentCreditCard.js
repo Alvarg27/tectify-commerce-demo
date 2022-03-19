@@ -74,7 +74,7 @@ export default function PaymentCreditCard({
   const stripeElement = async () => {
     await swell.payment.createElements({
       card: {
-        elementId: "#card-element-id", // default: #card-element
+        elementId: "#card-element", // default: #card-element
         options: {
           hidePostalCode: true,
           // options are passed as a direct argument to stripe.js
@@ -141,7 +141,7 @@ export default function PaymentCreditCard({
             hovered || focused ? template.primaryColor : template.borderColor,
         }}
       >
-        <div style={{ margin: "auto 0" }} id="card-element-id"></div>
+        <div style={{ margin: "auto 0" }} id="card-element"></div>
       </div>
       {cardError ? <p className="errorMessage">{cardError}</p> : ""}
       <p

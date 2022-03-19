@@ -9,7 +9,7 @@ import LoadingButton from "./LoadingButton";
 import { useRouter } from "next/router";
 import LinkButton from "./LinkButton";
 
-const countryOptions = [{ id: "MX", name: "México" }];
+const countryOptions = [{ code: "MX", name: "México" }];
 
 const stateOptions = [
   {

@@ -14,7 +14,7 @@ export default function PaymentPaypal({
   const [paypalError, setPaypalError] = useState();
   const router = useRouter();
   const paypalElement = async () => {
-    await swell.payment.createElements({
+    const response = await swell.payment.createElements({
       paypal: {
         elementId: "#paypal-button", // default: #paypal-button
         style: {
@@ -56,7 +56,11 @@ export default function PaymentPaypal({
 
   useEffect(() => {
     setProcessingOrder(false);
+  }, []);
+
+  useEffect(() => {
     paypalElement();
+    console.log("paypal loaded");
   }, []);
 
   return (

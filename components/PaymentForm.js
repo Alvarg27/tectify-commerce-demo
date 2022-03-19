@@ -21,6 +21,34 @@ export default function PaymentForm({
   const [stepStatus, setStepStatus] = useState();
   const [paymentMethod, setPaymentMethod] = useState();
 
+  const paypalElement = async () => {
+    const response = await swell.payment.createElements({
+      paypal: {
+        elementId: "#paypal-button", // default: #paypal-button
+        style: {
+          layout: "horizontal", // optional
+          color: "gold",
+          shape: "rect",
+          label: "paypal",
+          tagline: false,
+        },
+        onSuccess: (data, actions) => {
+          submitOrder();
+          setProcessingOrder(true);
+        },
+        onCancel: () => {
+          setProcessingOrder(false);
+          // optional, called on payment cancel
+        },
+        onError: (error) => {
+          console.error(error.message);
+          setPaypalError(error.message);
+          setProcessingOrder(false);
+        },
+      },
+    });
+  };
+
   useEffect(() => {
     if (step === stepNumber) {
       setStepStatus("current");

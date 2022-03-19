@@ -84,7 +84,7 @@ export default function CheckoutSelect({
             {defaultOption}
           </option>
           {options.map((item) => (
-            <option key={item.id} value={item.id}>
+            <option key={item.code} value={item.code}>
               {item.name}
             </option>
           ))}
