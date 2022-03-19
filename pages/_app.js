@@ -32,7 +32,6 @@ const darkModeTemplate = {
 
 function MyApp({ Component, pageProps }) {
   const [template, setTemplate] = useState(lightModeTemplate);
-
   const [mobileOrderSummary, setMobileOrderSummary] = useState(false);
   const [products, setProducts] = useState();
   const [slideCart, setSlideCart] = useState();

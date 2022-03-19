@@ -11,3 +11,33 @@
   flex-direction: column;
   margin: 7px 0 0 0;
 }
+.paymentForm .paymentMethodContainer {
+  display: flex;
+}
+.paymentForm .paymentMethod {
+  width: 33.3%;
+}
+.paymentForm .paymentMethod .cardContainer {
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  height: 100px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  transition: 0.3s;
+}
+.paymentForm .paymentMethod .cardContainer .subContainer {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.paymentForm .paymentMethod .paymentIcon {
+  font-size: 30px;
+  margin: auto;
+  transition: 0.3s;
+}
+.paymentForm .paymentMethod p {
+  margin: auto;
+  text-align: center;
+}

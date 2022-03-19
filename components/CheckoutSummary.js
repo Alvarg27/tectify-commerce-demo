@@ -26,9 +26,13 @@ export default function CheckoutSummary({ cart, fetchCart, template }) {
               />
             ))
           : ""}
-        <CouponCode template={template} />
+        <CouponCode template={template} fetchCart={fetchCart} />
         {!cart || cart.item_quantity === 0 ? <p>Tu carrito esta vacio.</p> : ""}
-        <CheckoutOrderTotal cart={cart} template={template} />
+        <CheckoutOrderTotal
+          cart={cart}
+          template={template}
+          fetchCart={fetchCart}
+        />
       </div>
     </div>
   );

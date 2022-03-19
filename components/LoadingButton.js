@@ -50,6 +50,7 @@ export default function LoadingButton({
             margin: "auto 10px",
             opacity: ".5",
             transform: "translateY(2px)",
+            minWidth: "42px",
           }}
         >
           <BeatLoader color="white" size={10} />

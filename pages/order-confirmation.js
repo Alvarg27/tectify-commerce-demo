@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import React from "react";
 import OrderReviewCard from "../components/OrderReviewCard";
 import OrderConfirmationTotal from "../components/OrderConfirmationTotal";
-import { FaCcVisa, FaCcAmex, FaCcMastercard } from "react-icons/fa";
+import { FaCcVisa, FaCcAmex, FaCcMastercard, FaPaypal } from "react-icons/fa";
 import Link from "next/link";
 import OrderReviewProgressBar from "../components/OrderReviewProgressBar";
 import LoadingButton from "../components/LoadingButton";
@@ -18,6 +18,7 @@ export default function OrderConfirmation({
   fetchCart,
   template,
 }) {
+  const paymentMethod = order ? order.billing.method : "--";
   const router = useRouter();
   const [loading, setLoading] = useState();
   const [title, setTitle] = useState({
@@ -154,19 +155,34 @@ export default function OrderConfirmation({
           <p> {order ? `${order.shipping.phone}` : ""}</p>
         </div>
         <div className={styles.orderInfo}>
-          <h3 style={{ color: template.textColor }}>Informaion de Pago</h3>
-          <div style={{ display: "flex" }}>
-            {renderCardLogo()}
-            <div>
-              <p>Terminación en {order ? order.billing.card.last4 : "--"}</p>
-              <p>
-                Expiración en{" "}
-                {order
-                  ? `${order.billing.card.exp_month} / ${order.billing.card.exp_year}`
-                  : ""}
-              </p>
+          <h3 style={{ color: template.textColor }}>Método de Pago</h3>
+          {paymentMethod === "card" ? (
+            <div style={{ display: "flex" }}>
+              {renderCardLogo()}
+              <div>
+                <p>Terminación en {order ? order.billing.card.last4 : "--"}</p>
+                <p>
+                  Expiración en{" "}
+                  {order
+                    ? `${order.billing.card.exp_month} / ${order.billing.card.exp_year}`
+                    : ""}
+                </p>
+              </div>
             </div>
-          </div>
+          ) : (
+            ""
+          )}
+          {paymentMethod === "paypal" ? (
+            <div style={{ display: "flex" }}>
+              <FaPaypal
+                className={styles.ccIcon}
+                styles={{ color: "#1A1F71" }}
+              />
+              <p>Paypal</p>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div className="line" />
         <Link href={"/"}>
