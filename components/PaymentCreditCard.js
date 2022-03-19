@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import LoadingButton from "./LoadingButton";
 import styles from "../styles/PaymentForm.module.css";
+import LoadingComponent from "./LoadingComponent";
 
 export default function PaymentCreditCard({
   fetchCart,
@@ -21,6 +22,7 @@ export default function PaymentCreditCard({
   const [processingOrder, setProcessingOrder] = useState(false);
   const [hovered, setHovered] = useState(false);
   const router = useRouter();
+  const [loadingStripe, setLoadingStripe] = useState(false);
 
   const renderProcessingText = () => {
     if (processingPayment) {
@@ -46,7 +48,6 @@ export default function PaymentCreditCard({
             // inform the customer there was an error
           },
           onSuccess: () => {
-            setProcessingPayment(false);
             submitOrder();
             //finally submit the form
           },
@@ -72,52 +73,57 @@ export default function PaymentCreditCard({
   };
 
   const stripeElement = async () => {
-    await swell.payment.createElements({
-      card: {
-        elementId: "#card-element", // default: #card-element
-        options: {
-          hidePostalCode: true,
-          // options are passed as a direct argument to stripe.js
-          style: {
-            base: {
-              fontWeight: 500,
-              fontSize: "16px",
-              color: template.textColor,
+    setLoadingStripe(true);
+    try {
+      await swell.payment.createElements({
+        card: {
+          elementId: "#card-element", // default: #card-element
+          options: {
+            hidePostalCode: true,
+            // options are passed as a direct argument to stripe.js
+            style: {
+              base: {
+                fontWeight: 500,
+                fontSize: "16px",
+                color: template.textColor,
+              },
             },
           },
+          onChange: (event) => {
+            setCardError(null);
+          },
+          onReady: (event) => {
+            // optional, called when the Element is fully rendered
+          },
+          onFocus: (event) => {
+            // optional, called when the Element gains focus
+            setFocused(true);
+          },
+          onBlur: (event) => {
+            setFocused(false);
+            // optional, called when the Element loses focus
+          },
+          onEscape: (event) => {
+            // optional, called when the escape key is pressed within an Element
+          },
+          onClick: (event) => {
+            // optional, called when the Element is clicked
+          },
+          onSuccess: (result) => {
+            // optional, called on card payment success
+          },
+          onError: (error) => {
+            // optional, called on card payment error
+          },
         },
-        onChange: (event) => {
-          setCardError(null);
-        },
-        onReady: (event) => {
-          // optional, called when the Element is fully rendered
-        },
-        onFocus: (event) => {
-          // optional, called when the Element gains focus
-          setFocused(true);
-        },
-        onBlur: (event) => {
-          setFocused(false);
-          // optional, called when the Element loses focus
-        },
-        onEscape: (event) => {
-          // optional, called when the escape key is pressed within an Element
-        },
-        onClick: (event) => {
-          // optional, called when the Element is clicked
-        },
-        onSuccess: (result) => {
-          // optional, called on card payment success
-        },
-        onError: (error) => {
-          // optional, called on card payment error
-        },
-      },
-    });
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
+    setLoadingStripe(false);
   };
 
   useEffect(() => {
-    setLoading(false);
     setProcessingOrder(false);
     stripeElement();
   }, []);
@@ -133,6 +139,7 @@ export default function PaymentCreditCard({
         onMouseOut={() => setHovered(false)}
         className={styles.stripeContainer}
         style={{
+          display: loadingStripe ? "none" : "flex",
           background: template.inputColor,
           borderColor: template.borderColor,
           transition: "0.3s",
@@ -141,8 +148,18 @@ export default function PaymentCreditCard({
             hovered || focused ? template.primaryColor : template.borderColor,
         }}
       >
-        <div style={{ margin: "auto 0" }} id="card-element"></div>
+        <div
+          style={{
+            margin: "auto 0",
+          }}
+          id="card-element"
+        ></div>
       </div>
+      {loadingStripe ? (
+        <LoadingComponent template={template} height="55px" />
+      ) : (
+        ""
+      )}
       {cardError ? <p className="errorMessage">{cardError}</p> : ""}
       <p
         style={{

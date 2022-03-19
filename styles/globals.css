@@ -101,3 +101,14 @@ button {
   display: flex;
   flex-direction: column;
 }
+
+#paypal-button {
+  height: 55px;
+  overflow: hidden;
+  transition: 0.3s;
+  position: relative;
+  z-index: 0;
+}
+.paypal-buttons {
+  height: 55px !important;
+}

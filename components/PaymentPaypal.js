@@ -45,10 +45,11 @@ export default function PaymentPaypal({
         },
       });
     } catch (err) {
-      console.log(err);
+      console.error(err.message);
     }
     setLoading(false);
   };
+
   const submitOrder = async () => {
     try {
       const response = await swell.cart.submitOrder();
@@ -62,9 +63,7 @@ export default function PaymentPaypal({
     }
   };
 
-  useEffect(() => {
-    setProcessingOrder(false);
-  }, []);
+  useEffect(() => {}, []);
 
   useEffect(() => {
     paypalElement();
@@ -80,8 +79,6 @@ export default function PaymentPaypal({
             id="paypal-button"
             style={{
               display: loading ? "none" : "block",
-              height: isBreakpoint ? "45px" : "55px",
-              overflow: "hidden",
             }}
           />
           {loading ? (
