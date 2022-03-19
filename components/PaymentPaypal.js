@@ -14,33 +14,36 @@ export default function PaymentPaypal({
   const [paypalError, setPaypalError] = useState();
   const router = useRouter();
   const paypalElement = async () => {
-    const response = await swell.payment.createElements({
-      paypal: {
-        elementId: "#paypal-button", // default: #paypal-button
-        style: {
-          layout: "horizontal", // optional
-          color: "gold",
-          shape: "rect",
-          label: "paypal",
-          tagline: false,
+    try {
+      await swell.payment.createElements({
+        paypal: {
+          elementId: "#paypal-button", // default: #paypal-button
+          style: {
+            layout: "horizontal", // optional
+            color: "gold",
+            shape: "rect",
+            label: "paypal",
+            tagline: false,
+          },
+          onSuccess: (data, actions) => {
+            submitOrder();
+            setProcessingOrder(true);
+          },
+          onCancel: () => {
+            setProcessingOrder(false);
+            // optional, called on payment cancel
+          },
+          onError: (error) => {
+            console.error(error.message);
+            setPaypalError(error.message);
+            setProcessingOrder(false);
+          },
         },
-        onSuccess: (data, actions) => {
-          submitOrder();
-          setProcessingOrder(true);
-        },
-        onCancel: () => {
-          setProcessingOrder(false);
-          // optional, called on payment cancel
-        },
-        onError: (error) => {
-          console.error(error.message);
-          setPaypalError(error.message);
-          setProcessingOrder(false);
-        },
-      },
-    });
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
-
   const submitOrder = async () => {
     try {
       const response = await swell.cart.submitOrder();
@@ -58,10 +61,7 @@ export default function PaymentPaypal({
     setProcessingOrder(false);
   }, []);
 
-  useEffect(() => {
-    paypalElement();
-    console.log("paypal loaded");
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div>
