@@ -18,6 +18,7 @@ export default function CheckoutForm({
   setOrder,
   template,
   mobileOrderSummary,
+  isBreakpoint,
 }) {
   const router = useRouter();
   const [step, setStep] = useState(1);
@@ -59,6 +60,7 @@ export default function CheckoutForm({
           step={step}
           setStep={setStep}
           template={template}
+          isBreakpoint={isBreakpoint}
         />
         <AddressForm
           cart={cart}
@@ -66,6 +68,7 @@ export default function CheckoutForm({
           step={step}
           setStep={setStep}
           template={template}
+          isBreakpoint={isBreakpoint}
         />
         <ShippingMethod
           cart={cart}
@@ -73,6 +76,7 @@ export default function CheckoutForm({
           step={step}
           setStep={setStep}
           template={template}
+          isBreakpoint={isBreakpoint}
         />
         <PaymentForm
           cart={cart}
@@ -83,6 +87,7 @@ export default function CheckoutForm({
           setOrder={setOrder}
           template={template}
           mobileOrderSummary={mobileOrderSummary}
+          isBreakpoint={isBreakpoint}
         />
 
         <p className={styles.powered}>

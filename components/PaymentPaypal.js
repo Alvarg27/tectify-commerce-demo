@@ -3,17 +3,21 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import swell from "swell-js";
+import LoadingComponent from "./LoadingComponent";
 
 export default function PaymentPaypal({
   template,
   fetchCart,
   paymentMethod,
   step,
+  isBreakpoint,
 }) {
+  const [loading, setLoading] = useState(false);
   const [processingOrder, setProcessingOrder] = useState(false);
   const [paypalError, setPaypalError] = useState();
   const router = useRouter();
   const paypalElement = async () => {
+    setLoading(true);
     try {
       await swell.payment.createElements({
         paypal: {
@@ -43,6 +47,7 @@ export default function PaymentPaypal({
     } catch (err) {
       console.log(err);
     }
+    setLoading(false);
   };
   const submitOrder = async () => {
     try {
@@ -61,7 +66,9 @@ export default function PaymentPaypal({
     setProcessingOrder(false);
   }, []);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    paypalElement();
+  }, []);
 
   return (
     <div>
@@ -69,7 +76,19 @@ export default function PaymentPaypal({
         ""
       ) : (
         <div className="paypalContainer" style={{ margin: "15px 0 0 0" }}>
-          <div id="paypal-button" />
+          <div
+            id="paypal-button"
+            style={{
+              display: loading ? "none" : "block",
+              height: isBreakpoint ? "45px" : "55px",
+              overflow: "hidden",
+            }}
+          />
+          {loading ? (
+            <LoadingComponent template={template} height="55px" />
+          ) : (
+            ""
+          )}
           <p
             style={{
               margin: "10px 0 0 0",

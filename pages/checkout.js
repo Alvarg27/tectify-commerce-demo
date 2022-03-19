@@ -15,6 +15,7 @@ export default function Checkout({
   setOrder,
   template,
   mobileOrderSummary,
+  isBreakpoint,
 }) {
   const router = useRouter();
 
@@ -39,6 +40,7 @@ export default function Checkout({
           order={order}
           setOrder={setOrder}
           template={template}
+          isBreakpoint={isBreakpoint}
         />
       ) : (
         ""

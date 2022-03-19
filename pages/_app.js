@@ -4,6 +4,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import Layout from "../components/Layout";
+import { useCallback } from "react";
 swell.init(
   process.env.NEXT_PUBLIC_SWELL_STORE_ID,
   process.env.NEXT_PUBLIC_SWELL_PUBLIC_KEY
@@ -39,18 +40,64 @@ function MyApp({ Component, pageProps }) {
   const [isCheckout, setIsCheckout] = useState(false);
   const [order, setOrder] = useState();
 
-  const fetchCart = async () => {
-    const response = await swell.cart.get();
-    console.log(response);
-    setCart(response);
+  // USE MEDIA QUERY
+
+  const useMediaQuery = (width) => {
+    const [targetReached, setTargetReached] = useState(false);
+
+    const updateTarget = useCallback((e) => {
+      if (e.matches) {
+        setTargetReached(true);
+      } else {
+        setTargetReached(false);
+      }
+    }, []);
+
+    useEffect(() => {
+      const media = window.matchMedia(`(max-width: ${width}px)`);
+      media.addEventListener("change", (e) => updateTarget(e));
+
+      // Check on mount (callback is not called until a change occurs)
+      if (media.matches) {
+        setTargetReached(true);
+      }
+
+      return () => media.removeEventListener("change", (e) => updateTarget(e));
+    }, []);
+
+    return targetReached;
   };
 
-  const fetchProducts = async () => {
-    const response = await swell.products.list({
-      expand: ["variants"],
-    });
-    setProducts(response);
+  // IS BREAKPOINT
+
+  const isBreakpoint = useMediaQuery(768);
+
+  // FETCH CART
+
+  const fetchCart = async () => {
+    try {
+      const response = await swell.cart.get();
+      console.log(response);
+      setCart(response);
+    } catch (err) {
+      console.error(err.message);
+    }
   };
+
+  // FETCH PRODUCTS
+
+  const fetchProducts = async () => {
+    try {
+      const response = await swell.products.list({
+        expand: ["variants"],
+      });
+      setProducts(response);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  // EFFECTS
 
   useEffect(() => {
     fetchCart();
@@ -71,6 +118,7 @@ function MyApp({ Component, pageProps }) {
       setTemplate={setTemplate}
       lightModeTemplate={lightModeTemplate}
       darkModeTemplate={darkModeTemplate}
+      isBreakpoint={isBreakpoint}
     >
       <Component
         {...pageProps}
@@ -84,6 +132,7 @@ function MyApp({ Component, pageProps }) {
         order={order}
         setOrder={setOrder}
         template={template}
+        isBreakpoint={isBreakpoint}
       />
     </Layout>
   );

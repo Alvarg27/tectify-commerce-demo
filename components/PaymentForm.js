@@ -15,6 +15,7 @@ export default function PaymentForm({
   setOrder,
   template,
   mobileOrderSummary,
+  isBreakpoint,
 }) {
   const router = useRouter();
   const stepNumber = 4;
@@ -151,6 +152,7 @@ export default function PaymentForm({
               fetchCart={fetchCart}
               step={step}
               paymentMethod={paymentMethod}
+              isBreakpoint={isBreakpoint}
             />
           ) : (
             ""

@@ -13,6 +13,7 @@ export default function CheckoutPage({
   order,
   template,
   mobileOrderSummary,
+  isBreakpoint,
 }) {
   return (
     <div className={styles.checkoutPage}>
@@ -21,6 +22,7 @@ export default function CheckoutPage({
           template={template}
           cart={cart}
           fetchCart={fetchCart}
+          isBreakpoint={isBreakpoint}
         />
         <CheckoutForm
           template={template}
@@ -29,12 +31,14 @@ export default function CheckoutPage({
           order={order}
           setOrder={setOrder}
           mobileOrderSummary={mobileOrderSummary}
+          isBreakpoint={isBreakpoint}
         />
       </div>
       <MobileOrderTotal
         template={template}
         cart={cart}
         setMobileOrderSummary={setMobileOrderSummary}
+        isBreakpoint={isBreakpoint}
       />
     </div>
   );
