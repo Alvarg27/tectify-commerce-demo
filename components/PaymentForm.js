@@ -19,7 +19,7 @@ export default function PaymentForm({
   const router = useRouter();
   const stepNumber = 4;
   const [stepStatus, setStepStatus] = useState();
-  const [paypal, setPaypal] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState();
 
   useEffect(() => {
     if (step === stepNumber) {
@@ -53,20 +53,22 @@ export default function PaymentForm({
             <div className={styles.paymentMethod}>
               <div
                 style={{
-                  borderColor: !paypal
-                    ? template.primaryColor
-                    : template.borderColor,
+                  borderColor:
+                    paymentMethod === "card"
+                      ? template.primaryColor
+                      : template.borderColor,
                 }}
                 className={styles.cardContainer}
-                onClick={() => setPaypal(false)}
+                onClick={() => setPaymentMethod("card")}
               >
                 <div className={styles.subContainer}>
                   <FaCreditCard
                     className={styles.paymentIcon}
                     style={{
-                      color: !paypal
-                        ? template.primaryColor
-                        : template.secondaryTextColor,
+                      color:
+                        paymentMethod === "card"
+                          ? template.primaryColor
+                          : template.secondaryTextColor,
                     }}
                   />
                   <p style={{ color: template.secondaryTextColor }}>
@@ -78,20 +80,22 @@ export default function PaymentForm({
             <div className={styles.paymentMethod}>
               <div
                 style={{
-                  borderColor: paypal
-                    ? template.primaryColor
-                    : template.borderColor,
+                  borderColor:
+                    paymentMethod === "paypal"
+                      ? template.primaryColor
+                      : template.borderColor,
                 }}
                 className={styles.cardContainer}
-                onClick={() => setPaypal(true)}
+                onClick={() => setPaymentMethod("paypal")}
               >
                 <div className={styles.subContainer}>
                   <FaPaypal
                     className={styles.paymentIcon}
                     style={{
-                      color: paypal
-                        ? template.primaryColor
-                        : template.secondaryTextColor,
+                      color:
+                        paymentMethod === "paypal"
+                          ? template.primaryColor
+                          : template.secondaryTextColor,
                     }}
                   />
                   <p style={{ color: template.secondaryTextColor }}>Paypal</p>
@@ -100,7 +104,7 @@ export default function PaymentForm({
             </div>
           </div>
           <div className="line" style={{ margin: "30px 0" }} />
-          {!paypal ? (
+          {paymentMethod === "card" ? (
             <PaymentCreditCard
               step={step}
               fetchCart={fetchCart}
@@ -108,9 +112,20 @@ export default function PaymentForm({
               template={template}
               order={order}
               setOrder={setOrder}
+              paymentMethod={paymentMethod}
             />
           ) : (
-            <PaymentPaypal template={template} fetchCart={fetchCart} />
+            ""
+          )}
+          {paymentMethod === "paypal" ? (
+            <PaymentPaypal
+              template={template}
+              fetchCart={fetchCart}
+              step={step}
+              paymentMethod={paymentMethod}
+            />
+          ) : (
+            ""
           )}
         </div>
       ) : (

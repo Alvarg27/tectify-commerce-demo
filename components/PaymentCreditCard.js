@@ -70,18 +70,6 @@ export default function PaymentCreditCard({
       fetchCart();
     }
   };
-  useEffect(() => {
-    setLoading(false);
-    setProcessingOrder(false);
-  }, []);
-
-  useEffect(() => {
-    setCardError(null);
-  }, [step]);
-
-  useEffect(() => {
-    stripeElement();
-  }, []);
 
   const stripeElement = async () => {
     await swell.payment.createElements({
@@ -127,6 +115,16 @@ export default function PaymentCreditCard({
       },
     });
   };
+
+  useEffect(() => {
+    setLoading(false);
+    setProcessingOrder(false);
+    stripeElement();
+  }, []);
+
+  useEffect(() => {
+    setCardError(null);
+  }, [step]);
 
   return (
     <div>

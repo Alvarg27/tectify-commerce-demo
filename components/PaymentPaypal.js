@@ -3,15 +3,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import swell from "swell-js";
-var FUNDING_SOURCES = [
-  paypal.FUNDING.PAYPAL,
-  paypal.FUNDING.VENMO,
-  paypal.FUNDING.PAYLATER,
-  paypal.FUNDING.CREDIT,
-  paypal.FUNDING.CARD,
-];
 
-export default function PaymentPaypal({ template, fetchCart }) {
+export default function PaymentPaypal({ template, fetchCart, paymentMethod }) {
   const [processingOrder, setProcessingOrder] = useState(false);
   const [paypalError, setPaypalError] = useState();
   const router = useRouter();
@@ -59,7 +52,9 @@ export default function PaymentPaypal({ template, fetchCart }) {
   useEffect(() => {
     paypalElement();
     setProcessingOrder(false);
+    paypalElement();
   }, []);
+
   return (
     <div>
       {processingOrder ? (
