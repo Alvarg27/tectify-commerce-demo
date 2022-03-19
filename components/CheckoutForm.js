@@ -25,19 +25,19 @@ export default function CheckoutForm({
 
   useEffect(() => {
     if (step === 1) {
-      router.replace("/checkout", undefined, {
+      router.push("/checkout", undefined, {
         shallow: true,
       });
     } else if (step === 2) {
-      router.replace("/checkout/?información-de-envio", undefined, {
+      router.push("/checkout/?información-de-envio", undefined, {
         shallow: true,
       });
     } else if (step === 3) {
-      router.replace("/checkout/?metodo-de-envío", undefined, {
+      router.push("/checkout/?metodo-de-envío", undefined, {
         shallow: true,
       });
     } else if (step === 4) {
-      router.replace("/checkout/?metodo-de-pago", undefined, {
+      router.push("/checkout/?metodo-de-pago", undefined, {
         shallow: true,
       });
     } else {

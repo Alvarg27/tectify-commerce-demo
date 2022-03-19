@@ -8,6 +8,7 @@ import CheckoutSelect from "./CheckoutSelect";
 import LoadingButton from "./LoadingButton";
 import { useRouter } from "next/router";
 import LinkButton from "./LinkButton";
+import { BeatLoader } from "react-spinners";
 
 const countryOptions = [{ code: "MX", name: "México" }];
 
@@ -478,9 +479,11 @@ export default function AddressForm({
                 Envío
               </p>
               <p style={{ color: template.textColor }}>
-                {cart && cart.shipping && cart.shipping.name
-                  ? `${cart.shipping.name}, ${cart.shipping.address1} ${cart.shipping.address2}, ${cart.shipping.city}, ${cart.shipping.state}, ${cart.shipping.country},  ${cart.shipping.zip},  ${cart.shipping.phone}`
-                  : "--"}
+                {cart && cart.shipping && cart.shipping.name ? (
+                  `${cart.shipping.name}, ${cart.shipping.address1} ${cart.shipping.address2}, ${cart.shipping.city}, ${cart.shipping.state}, ${cart.shipping.country},  ${cart.shipping.zip},  ${cart.shipping.phone}`
+                ) : (
+                  <BeatLoader size={10} color={template.borderColor} />
+                )}
               </p>
             </div>
             <LinkButton

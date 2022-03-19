@@ -6,6 +6,8 @@ import { FaCheck } from "react-icons/fa";
 import { set } from "swell-js/dist/utils";
 import LoadingButton from "./LoadingButton";
 import LinkButton from "./LinkButton";
+import LoadingComponent from "./LoadingComponent";
+import { BeatLoader } from "react-spinners";
 
 export default function ShippingMethod({
   step,
@@ -108,21 +110,23 @@ export default function ShippingMethod({
       {step === 3 ? (
         <div>
           <div className={styles.cardContainer}>
-            {shippingMethods
-              ? shippingMethods.services.map((item) => (
-                  <ShippingMethodCard
-                    key={item.id}
-                    name={item.name}
-                    price={item.price}
-                    description={item.description}
-                    id={item.id}
-                    selectedMethod={selectedMethod}
-                    handleSelect={handleSelect}
-                    fetchCart={fetchCart}
-                    template={template}
-                  />
-                ))
-              : ""}
+            {shippingMethods ? (
+              shippingMethods.services.map((item) => (
+                <ShippingMethodCard
+                  key={item.id}
+                  name={item.name}
+                  price={item.price}
+                  description={item.description}
+                  id={item.id}
+                  selectedMethod={selectedMethod}
+                  handleSelect={handleSelect}
+                  fetchCart={fetchCart}
+                  template={template}
+                />
+              ))
+            ) : (
+              <LoadingComponent template={template} height="120px" />
+            )}
           </div>
           <p className="errorMessage">{error}</p>
           <LoadingButton
@@ -150,14 +154,16 @@ export default function ShippingMethod({
                 Envío
               </p>
               <p style={{ color: template.textColor }}>
-                {cart && cart.shipping && cart.shipping.service
-                  ? cart.shipping.service_name
-                  : "--"}{" "}
-                {`($${
+                {cart && cart.shipping && cart.shipping.service ? (
+                  cart.shipping.service_name
+                ) : (
+                  <BeatLoader size={10} color={template.borderColor} />
+                )}
+                {`${
                   cart && cart.shipping && cart.shipping.service
-                    ? cart.shipping.price
-                    : "--"
-                })`}
+                    ? `$(${cart.shipping.price})`
+                    : ""
+                }`}
               </p>
             </div>
             <LinkButton

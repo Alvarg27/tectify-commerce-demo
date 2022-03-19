@@ -20,7 +20,7 @@ export default function PaymentForm({
   const router = useRouter();
   const stepNumber = 4;
   const [stepStatus, setStepStatus] = useState();
-  const [paymentMethod, setPaymentMethod] = useState();
+  const [paymentMethod, setPaymentMethod] = useState("card");
 
   const paypalElement = async () => {
     const response = await swell.payment.createElements({
@@ -100,7 +100,14 @@ export default function PaymentForm({
                           : template.secondaryTextColor,
                     }}
                   />
-                  <p style={{ color: template.secondaryTextColor }}>
+                  <p
+                    style={{
+                      color:
+                        paymentMethod === "card"
+                          ? template.textColor
+                          : template.secondaryTextColor,
+                    }}
+                  >
                     Tarjeta de crédito ó debito
                   </p>
                 </div>
@@ -127,7 +134,16 @@ export default function PaymentForm({
                           : template.secondaryTextColor,
                     }}
                   />
-                  <p style={{ color: template.secondaryTextColor }}>Paypal</p>
+                  <p
+                    style={{
+                      color:
+                        paymentMethod === "paypal"
+                          ? template.textColor
+                          : template.secondaryTextColor,
+                    }}
+                  >
+                    Paypal
+                  </p>
                 </div>
               </div>
             </div>

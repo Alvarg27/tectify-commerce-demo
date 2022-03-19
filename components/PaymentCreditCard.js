@@ -33,7 +33,7 @@ export default function PaymentCreditCard({
   };
 
   const tokenizeCard = async () => {
-    if (loading || mobileOrderSummary) {
+    if (loading || loadingStripe) {
       return;
     } else {
       setLoading(true);
@@ -156,7 +156,7 @@ export default function PaymentCreditCard({
         ></div>
       </div>
       {loadingStripe ? (
-        <LoadingComponent template={template} height="55px" />
+        <LoadingComponent template={template} height="50px" />
       ) : (
         ""
       )}

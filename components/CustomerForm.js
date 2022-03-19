@@ -5,6 +5,7 @@ import CheckoutInput from "./CheckoutInput";
 import { FaCheck } from "react-icons/fa";
 import LoadingButton from "./LoadingButton";
 import LinkButton from "./LinkButton";
+import { BeatLoader } from "react-spinners";
 
 export default function CustomerForm({
   cart,
@@ -144,9 +145,11 @@ export default function CustomerForm({
                 Contacto
               </p>
               <p style={{ color: template.textColor }}>
-                {cart && cart.account && cart.account.email
-                  ? cart.account.email
-                  : "--"}
+                {cart && cart.account && cart.account.email ? (
+                  cart.account.email
+                ) : (
+                  <BeatLoader size={10} color={template.borderColor} />
+                )}
               </p>
             </div>
             <LinkButton
