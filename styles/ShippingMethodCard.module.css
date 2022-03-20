@@ -4,7 +4,7 @@
   transform: translateX(-10px);
 }
 .shippingMethodCard .container {
-  border: 1px lightgrey solid;
+  border: 2px lightgrey solid;
   padding: 15px;
   border-radius: 15px;
   display: flex;

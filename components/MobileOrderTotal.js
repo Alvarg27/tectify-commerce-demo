@@ -26,7 +26,10 @@ export default function MobileOrderTotal({
           </div>
         </div>
 
-        <h2 className={styles.price}>${cart ? cart.grand_total : "--"}</h2>
+        <div style={{ display: "flex" }}>
+          <p style={{ margin: "auto 10px" }}>Total</p>
+          <h2 className={styles.price}>${cart ? cart.grand_total : "--"}</h2>
+        </div>
       </div>
     </div>
   );

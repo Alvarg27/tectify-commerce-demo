@@ -16,45 +16,76 @@ export default function ShippingMethod({
   cart,
   template,
 }) {
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const [selectedMethod, setSelectedMethod] = useState();
   const [shippingMethods, setShippingMethods] = useState();
   const stepNumber = 3;
   const [stepStatus, setStepStatus] = useState();
+  const [loadingSelect, setLoadingSelect] = useState(false);
+  const [loadingFetch, setLoadingFetch] = useState(false);
+
+  const discounts = cart.discounts.map((discount) => {
+    if (
+      discount.rule.type === "shipment" &&
+      (!discount.rule.shipment_service ||
+        discount.rule.shipment_service === cart.shipping.service) &&
+      discount.rule.value_type === "percent"
+    ) {
+      return (discount.rule.value_percent / 100) * cart.shipping.price;
+    } else if (
+      discount.rule.type === "shipment" &&
+      (!discount.rule.shipment_service ||
+        discount.rule.shipment_service === cart.shipping.service) &&
+      discount.rule.value_type === "fixed"
+    ) {
+      return discount.rule.value_fixed;
+    } else {
+      return 0;
+    }
+  });
+
+  const totalDiscount = discounts.reduce((a, b) => a + b, 0);
 
   const fetchShippingMethods = async () => {
+    setLoadingFetch(true);
     try {
       const response = await swell.cart.getShippingRates();
       setShippingMethods(response);
+      if (cart && !cart.shipping.service) {
+        handleSelect(response.services[0].id);
+      }
     } catch (err) {
       console.log(err.message);
-      setError(err.message);
     }
+    setLoadingFetch(false);
   };
 
-  const handleSelect = (id) => {
+  const handleSelect = async (id) => {
     setSelectedMethod(id);
+    setLoadingSelect(true);
+    try {
+      await swell.cart.update({
+        shipping: {
+          service: id,
+        },
+      });
+      fetchCart();
+    } catch (err) {
+      console.error(err.message);
+      setError(err.message);
+    }
+    setLoadingSelect(false);
   };
 
   const handleSubmit = async () => {
-    if (selectedMethod) {
-      setLoading(true);
-      try {
-        const response = await swell.cart.update({
-          shipping: {
-            service: selectedMethod,
-          },
-        });
-        fetchCart();
-        setStep(4);
-      } catch (err) {
-        console.log(err.message);
-        setError(err.message);
-      }
-      setLoading(false);
+    if (cart && cart.shipping.service) {
+      setStep(4);
+      setError(null);
+      fetchCart();
+    } else {
+      setError("Selecciona un método de envío");
     }
-    setError("Selecciona un método de envío");
   };
 
   useEffect(() => {
@@ -66,26 +97,11 @@ export default function ShippingMethod({
       setStepStatus("completed");
     }
     fetchCart();
+    setError();
     fetchShippingMethods();
-    setError(null);
   }, [step]);
 
-  useEffect(() => {
-    handleSelect(
-      cart && cart.shipping && cart.shipping.service
-        ? cart.shipping.service
-        : ""
-    );
-  }, [fetchCart]);
-
-  useEffect(() => {
-    if (selectedMethod) {
-      setError(null);
-    } else {
-      return;
-    }
-  }, [selectedMethod]);
-
+  console.log(shippingMethods);
   return (
     <div className={styles.shippingMethod}>
       <div className="stepTitle">
@@ -110,7 +126,7 @@ export default function ShippingMethod({
       {step === 3 ? (
         <div>
           <div className={styles.cardContainer}>
-            {shippingMethods
+            {shippingMethods && !loadingFetch
               ? shippingMethods.services.map((item) => (
                   <ShippingMethodCard
                     key={item.id}
@@ -122,11 +138,39 @@ export default function ShippingMethod({
                     handleSelect={handleSelect}
                     fetchCart={fetchCart}
                     template={template}
+                    cart={cart}
+                    loadingSelect={loadingSelect}
                   />
                 ))
               : ""}
           </div>
+          {loadingFetch ||
+          (shippingMethods && shippingMethods.services <= 0) ? (
+            <div
+              style={{
+                display: "flex",
+                border: `1px solid ${template.bordercolor}`,
+                height: "100px",
+                borderRadius: "7px",
+              }}
+            >
+              {loadingFetch ? (
+                <div style={{ margin: "auto" }}>
+                  <BeatLoader color={template.borderColor} />
+                </div>
+              ) : (
+                <p
+                  style={{ margin: "auto", color: template.secondaryTextColor }}
+                >
+                  No existen métodos de envíó disponibles para tu dirección
+                </p>
+              )}
+            </div>
+          ) : (
+            ""
+          )}
           <p className="errorMessage">{error}</p>
+
           <LoadingButton
             loading={loading}
             name="Continuar"
@@ -159,7 +203,11 @@ export default function ShippingMethod({
                 )}
                 {`${
                   cart && cart.shipping && cart.shipping.service
-                    ? ` ($${cart.shipping.price})`
+                    ? ` ${
+                        cart.shipping.price - totalDiscount <= 0
+                          ? "(Gratis)"
+                          : `($${cart.shipping.price - totalDiscount})`
+                      }`
                     : ""
                 }`}
               </p>

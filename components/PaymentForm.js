@@ -147,40 +147,6 @@ export default function PaymentForm({
                 </div>
               </div>
             </div>
-            <div className={styles.paymentMethod}>
-              <div
-                style={{
-                  borderColor:
-                    paymentMethod === "gift_card"
-                      ? template.primaryColor
-                      : template.borderColor,
-                }}
-                className={styles.cardContainer}
-                onClick={() => setPaymentMethod("gift_card")}
-              >
-                <div className={styles.subContainer}>
-                  <FaGift
-                    className={styles.paymentIcon}
-                    style={{
-                      color:
-                        paymentMethod === "gift_card"
-                          ? template.primaryColor
-                          : template.secondaryTextColor,
-                    }}
-                  />
-                  <p
-                    style={{
-                      color:
-                        paymentMethod === "gift_card"
-                          ? template.textColor
-                          : template.secondaryTextColor,
-                    }}
-                  >
-                    Tarjeta de regalo
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
           <div className="line" style={{ margin: "30px 0" }} />
           {paymentMethod === "card" ? (

@@ -103,9 +103,13 @@ export default function CheckoutOrderTotal({ cart, template, fetchCart }) {
     <div className={styles.checkoutOrderTotal}>
       <div className={styles.rowSub}>
         <p>Subtotal</p>
-        {cart ? <p>{"$" + cart.sub_total}</p> : "--"}
+        {cart ? (
+          <p style={{ color: template.textColor }}> {"$" + cart.sub_total}</p>
+        ) : (
+          "--"
+        )}
       </div>
-      {cart && cart.discounts && cart.discounts[0] ? (
+      {cart && cart.discounts && cart.discounts ? (
         <div className={styles.rowSub}>
           <div style={{ display: "flex" }}>
             <p>Descuento</p>
@@ -120,7 +124,7 @@ export default function CheckoutOrderTotal({ cart, template, fetchCart }) {
           </div>
           {cart ? (
             <p style={{ color: template.primaryColor }}>
-              {"-$" + cart.discount_total}
+              {cart.discount_total === 0 ? "" : "-$" + cart.discount_total}
             </p>
           ) : (
             "--"
@@ -132,7 +136,22 @@ export default function CheckoutOrderTotal({ cart, template, fetchCart }) {
 
       <div className={styles.rowSub}>
         <p>Envío</p>
-        {cart ? <p>{displayShippingPrice()}</p> : "--"}
+        <div style={{ display: "flex" }}>
+          {cart && cart.shipment_discount > 0 ? (
+            <p
+              style={{
+                textDecoration: "line-through",
+                marginRight: "5px",
+                color: template.secondaryTextColor,
+              }}
+            >
+              ${cart.shipment_price}
+            </p>
+          ) : (
+            ""
+          )}
+          <p style={{ color: template.textColor }}>{displayShippingPrice()}</p>
+        </div>
       </div>
       <div className="line"></div>
       <div className={styles.row} style={{ color: template.textColor }}>

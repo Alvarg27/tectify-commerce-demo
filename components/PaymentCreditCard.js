@@ -59,6 +59,7 @@ export default function PaymentCreditCard({
   };
 
   const submitOrder = async () => {
+    setProcessingPayment(false);
     setProcessingOrder(true);
     try {
       const response = await swell.cart.submitOrder();
