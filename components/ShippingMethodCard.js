@@ -29,8 +29,6 @@ export default function ShippingMethodCard({
             selectedMethod === id || hovered
               ? template.primaryColor
               : template.borderColor,
-
-          background: template.secondaryBackgroundColor,
         }}
       >
         <div className={styles.row}>

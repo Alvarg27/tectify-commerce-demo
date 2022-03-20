@@ -110,23 +110,21 @@ export default function ShippingMethod({
       {step === 3 ? (
         <div>
           <div className={styles.cardContainer}>
-            {shippingMethods ? (
-              shippingMethods.services.map((item) => (
-                <ShippingMethodCard
-                  key={item.id}
-                  name={item.name}
-                  price={item.price}
-                  description={item.description}
-                  id={item.id}
-                  selectedMethod={selectedMethod}
-                  handleSelect={handleSelect}
-                  fetchCart={fetchCart}
-                  template={template}
-                />
-              ))
-            ) : (
-              <LoadingComponent template={template} height="120px" />
-            )}
+            {shippingMethods
+              ? shippingMethods.services.map((item) => (
+                  <ShippingMethodCard
+                    key={item.id}
+                    name={item.name}
+                    price={item.price}
+                    description={item.description}
+                    id={item.id}
+                    selectedMethod={selectedMethod}
+                    handleSelect={handleSelect}
+                    fetchCart={fetchCart}
+                    template={template}
+                  />
+                ))
+              : ""}
           </div>
           <p className="errorMessage">{error}</p>
           <LoadingButton
@@ -161,7 +159,7 @@ export default function ShippingMethod({
                 )}
                 {`${
                   cart && cart.shipping && cart.shipping.service
-                    ? `$(${cart.shipping.price})`
+                    ? ` ($${cart.shipping.price})`
                     : ""
                 }`}
               </p>
