@@ -1,4 +1,4 @@
-@keyframes slideInUp {
+@keyframes blurIn {
   0% {
     filter: blur(10px);
   }
@@ -6,9 +6,24 @@
     filter: blur(0px);
   }
 }
+@keyframes slideInDown {
+  0% {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 .cartCard .container {
   display: flex;
   margin: 30px 0;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-name: slideInDown;
 }
 .cartCard .imageContainer.imageContainer {
   width: 30%;
@@ -20,11 +35,11 @@
   object-fit: cover;
   border-radius: 10px;
   margin: auto;
-  animation-timing-function: ease-out;
   animation-duration: 0.3s;
+  animation-timing-function: ease-out;
   animation-delay: 0s;
   animation-iteration-count: 1;
-  animation-name: slideInUp;
+  animation-name: blurIn;
 }
 .cartCard .container .dataContainer {
   width: 75%;

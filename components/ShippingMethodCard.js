@@ -83,7 +83,9 @@ export default function ShippingMethodCard({
         </div>
         <p className={styles.description}>{description}</p>
         <div style={{ display: "flex", margin: "auto 0" }}>
-          {cart && cart.shipment_discount > 0 ? (
+          {cart &&
+          cart.shipment_discount > 0 &&
+          cart.shipping.service === id ? (
             <p
               style={{
                 textDecoration: "line-through",
@@ -91,7 +93,7 @@ export default function ShippingMethodCard({
                 color: template.secondaryTextColor,
               }}
             >
-              ${cart.shipment_price}
+              ${price}
             </p>
           ) : (
             ""

@@ -149,7 +149,7 @@ export default function ShippingMethod({
             <div
               style={{
                 display: "flex",
-                border: `1px solid ${template.bordercolor}`,
+                border: `1px solid ${template.borderColor}`,
                 height: "100px",
                 borderRadius: "7px",
               }}

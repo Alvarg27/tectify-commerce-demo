@@ -5,7 +5,13 @@ import { useEffect } from "react";
 import React from "react";
 import OrderReviewCard from "../components/OrderReviewCard";
 import OrderConfirmationTotal from "../components/OrderConfirmationTotal";
-import { FaCcVisa, FaCcAmex, FaCcMastercard, FaPaypal } from "react-icons/fa";
+import {
+  FaCcVisa,
+  FaCcAmex,
+  FaCcMastercard,
+  FaPaypal,
+  FaGift,
+} from "react-icons/fa";
 import Link from "next/link";
 import OrderReviewProgressBar from "../components/OrderReviewProgressBar";
 import LoadingButton from "../components/LoadingButton";
@@ -179,6 +185,14 @@ export default function OrderConfirmation({
                 styles={{ color: "#1A1F71" }}
               />
               <p>Paypal</p>
+            </div>
+          ) : (
+            ""
+          )}
+          {paymentMethod === "giftcard" ? (
+            <div style={{ display: "flex" }}>
+              <FaGift className={styles.ccIcon} styles={{ color: "#1A1F71" }} />
+              <p>Tarjeta de regalo</p>
             </div>
           ) : (
             ""
