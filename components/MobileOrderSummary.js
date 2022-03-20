@@ -7,6 +7,7 @@ import CheckoutOrderTotal from "./CheckoutOrderTotal";
 import CheckoutProductCard from "./CheckoutProductCard";
 import CouponCode from "./CouponCode";
 import LoadingButton from "./LoadingButton";
+import { useEffect } from "react";
 
 export default function MobileOrderSummary({
   mobileOrderSummary,
@@ -14,10 +15,17 @@ export default function MobileOrderSummary({
   fetchCart,
   setMobileOrderSummary,
   template,
+  isBreakpoint,
 }) {
   const handleReturn = () => {
     setMobileOrderSummary(false);
   };
+
+  useEffect(() => {
+    if (!isBreakpoint) {
+      setMobileOrderSummary(false);
+    }
+  }, [isBreakpoint]);
   return (
     <div
       className={styles.mobileOrderSummary}
@@ -58,8 +66,12 @@ export default function MobileOrderSummary({
             ""
           )}
         </div>
-        <CouponCode template={template} />
-        <CheckoutOrderTotal cart={cart} template={template} />
+        <CouponCode template={template} fetchCart={fetchCart} />
+        <CheckoutOrderTotal
+          cart={cart}
+          template={template}
+          fetchCart={fetchCart}
+        />
         <div style={{ margin: "60px 0" }}>
           <LoadingButton
             template={template}

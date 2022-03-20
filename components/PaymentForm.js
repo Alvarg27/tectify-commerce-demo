@@ -1,6 +1,6 @@
 import styles from "../styles/PaymentForm.module.css";
 import swell from "swell-js";
-import { FaCreditCard, FaLock, FaPaypal } from "react-icons/fa";
+import { FaCreditCard, FaGift, FaLock, FaPaypal } from "react-icons/fa";
 import React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -143,6 +143,40 @@ export default function PaymentForm({
                     }}
                   >
                     Paypal
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className={styles.paymentMethod}>
+              <div
+                style={{
+                  borderColor:
+                    paymentMethod === "gift_card"
+                      ? template.primaryColor
+                      : template.borderColor,
+                }}
+                className={styles.cardContainer}
+                onClick={() => setPaymentMethod("gift_card")}
+              >
+                <div className={styles.subContainer}>
+                  <FaGift
+                    className={styles.paymentIcon}
+                    style={{
+                      color:
+                        paymentMethod === "gift_card"
+                          ? template.primaryColor
+                          : template.secondaryTextColor,
+                    }}
+                  />
+                  <p
+                    style={{
+                      color:
+                        paymentMethod === "gift_card"
+                          ? template.textColor
+                          : template.secondaryTextColor,
+                    }}
+                  >
+                    Tarjeta de regalo
                   </p>
                 </div>
               </div>

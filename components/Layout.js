@@ -18,6 +18,7 @@ export default function Layout({
   setTemplate,
   darkModeTemplate,
   lightModeTemplate,
+  isBreakpoint,
 }) {
   const [overlay, setOverlay] = useState(false);
 
@@ -68,6 +69,7 @@ export default function Layout({
         setMobileOrderSummary={setMobileOrderSummary}
         mobileOrderSummary={mobileOrderSummary}
         template={template}
+        isBreakpoint={isBreakpoint}
       />
       <SlideCart
         setSlideCart={setSlideCart}

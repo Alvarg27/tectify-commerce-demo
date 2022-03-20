@@ -105,13 +105,17 @@ export default function CheckoutOrderTotal({ cart, template, fetchCart }) {
         <p>Subtotal</p>
         {cart ? <p>{"$" + cart.sub_total}</p> : "--"}
       </div>
-      {cart && cart.discounts ? (
+      {cart && cart.discounts && cart.discounts[0] ? (
         <div className={styles.rowSub}>
           <div style={{ display: "flex" }}>
             <p>Descuento</p>
             <div style={{ display: "flex" }}>
               <PromotionCard />
-              {cart && cart.coupon_code ? <CouponCodeCard /> : ""}
+              {cart && cart.coupon_code ? (
+                <CouponCodeCard fetchCart={fetchCart} />
+              ) : (
+                ""
+              )}
             </div>
           </div>
           {cart ? (

@@ -6,7 +6,6 @@
   right: 0;
   overflow: scroll;
   z-index: 101;
-  display: none;
 }
 .mobileOrderSummary .container {
   padding: 30px;
@@ -26,10 +25,4 @@
 }
 .mobileOrderSummary .row .timesIcon:hover {
   color: grey;
-}
-
-@media all and (max-width: 768px) {
-  .mobileOrderSummary {
-    display: block;
-  }
 }
