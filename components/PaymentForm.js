@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import LoadingButton from "./LoadingButton";
 import PaymentCreditCard from "./PaymentCreditCard";
-import PaymentPaypal from "./PaymentPaypal";
 
 export default function PaymentForm({
   fetchCart,
@@ -113,40 +112,6 @@ export default function PaymentForm({
                 </div>
               </div>
             </div>
-            <div className={styles.paymentMethod}>
-              <div
-                style={{
-                  borderColor:
-                    paymentMethod === "paypal"
-                      ? template.primaryColor
-                      : template.borderColor,
-                }}
-                className={styles.cardContainer}
-                onClick={() => setPaymentMethod("paypal")}
-              >
-                <div className={styles.subContainer}>
-                  <FaPaypal
-                    className={styles.paymentIcon}
-                    style={{
-                      color:
-                        paymentMethod === "paypal"
-                          ? template.primaryColor
-                          : template.secondaryTextColor,
-                    }}
-                  />
-                  <p
-                    style={{
-                      color:
-                        paymentMethod === "paypal"
-                          ? template.textColor
-                          : template.secondaryTextColor,
-                    }}
-                  >
-                    Paypal
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
           <div className="line" style={{ margin: "30px 0" }} />
           {paymentMethod === "card" ? (
@@ -158,17 +123,6 @@ export default function PaymentForm({
               order={order}
               setOrder={setOrder}
               paymentMethod={paymentMethod}
-            />
-          ) : (
-            ""
-          )}
-          {paymentMethod === "paypal" ? (
-            <PaymentPaypal
-              template={template}
-              fetchCart={fetchCart}
-              step={step}
-              paymentMethod={paymentMethod}
-              isBreakpoint={isBreakpoint}
             />
           ) : (
             ""
