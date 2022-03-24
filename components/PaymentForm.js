@@ -112,7 +112,7 @@ export default function PaymentForm({
                 </div>
               </div>
             </div>
-          </div>
+           </div>
           <div className="line" style={{ margin: "30px 0" }} />
           {paymentMethod === "card" ? (
             <PaymentCreditCard
